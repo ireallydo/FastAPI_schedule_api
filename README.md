@@ -12,6 +12,7 @@ ___models___
 
 __schemas__
 
+* delete classes that are not used
 * add data insert classes for autofill post (&& edit in crud)
 
 ___crud___
