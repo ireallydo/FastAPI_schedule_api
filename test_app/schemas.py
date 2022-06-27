@@ -271,15 +271,6 @@ class ScheduleGroupRequest(ScheduleBase):
     semester: enum_models.Semesters;
     group: int;
 
-##class ScheduleGroupResponse(ScheduleBase):
-##    group: int;
-##    weekday: str;
-##    lessons: LessonSchedule;
-##    modules: ModuleSchedule;
-##    class_type: str;
-##    room: int;
-##    teachers: TeacherSchedule;
-
 #----------------------
 
 class ScheduleModule(ScheduleBase):
@@ -321,5 +312,3 @@ class ScheduleTeacherResponse(ScheduleBase):
 
 #-----------------------
 
-class Test(BaseModel):
-    is_busy: bool; 
