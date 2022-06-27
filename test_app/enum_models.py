@@ -20,12 +20,3 @@ class ClassTypes(str, Enum):
 class Semesters(str, Enum):
     one = 1;
     two = 2;
-    
-
-#print(Weekdays('Monday').name);
-
-print(Semesters.one);
-
-a = '1';
-
-print(type(int(a)));
