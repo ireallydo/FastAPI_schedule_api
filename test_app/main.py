@@ -9,7 +9,7 @@ from database import SessionLocal, engine;
 
 models.Base.metadata.create_all(bind=engine);
 
-app = FastAPI(); 
+app = FastAPI();
 
 def get_db():
     db = SessionLocal();
@@ -29,19 +29,19 @@ def create_schedule(input_data: schemas.ScheduleCreateManually, db: Session = De
     '''populates the table with provided input
     to be used for creation, not editing data
     if the schedule for this group && semester && day && lesson already exists, returns error
-    
+
     requires manual input of all data, does not support auto generation for fields
     supports enum classes as input options for semester, weekday, lesson and class type
     as a result populates those fields with data matching with primary tables in db
 
     returns the last inserted info'''
-    
+
     already_exists = crud.check_schedule(db=db, semester=input_data.semester, group=input_data.group, weekday=input_data.weekday, lesson_number=input_data.lesson_number);
     if already_exists:
         raise HTTPException(status_code=400, detail=f'''Schedule already exists! (Group: {input_data.group}; Weekday: {input_data.weekday}; Lesson: {input_data.lesson_number}; Semester: {input_data.semester}. If you want to change schedule - use change form, please!''');
     return crud.fill_schedule_manually(db, input_data);
 
-#admins only 
+#admins only
 @app.post('/schedule/auto', status_code=201)
 def create_schedule_auto(semester: int,
                          weekday: enum_models.Weekdays,
@@ -74,23 +74,23 @@ def create_schedule_auto(semester: int,
     if attempt == False:
         raise HTTPException(status_code=400, detail=f'''All teachers are busy for provided module-type pair! Please choose other conditions!''');
     else:
-        return attempt; 
+        return attempt;
 
 #----------------------------
 # READ endpoints
 #----------------------------
 
-#students and teachers 
+#students and teachers
 @app.get('/schedule/semester_{semester}/group_{group}', response_model=List[schemas.ScheduleGroupResponse])
 def read_schedule_by_group(semester: enum_models.Semesters, group: int, skip: int = 0, limit: int = 100, db:Session = Depends(get_db)):
-    
+
     '''takes semester number and group number as an input
     returns all rows from 'schedule' table for provided group and semester'''
-    
+
     schedule = crud.get_schedule_by_group(db=db, semester=semester, group=group);
     return schedule;
 
-#students and teachers 
+#students and teachers
 @app.get('/schedule/semester_{semester}/teacher_{teacher_id}', response_model=List[schemas.ScheduleTeacherResponse])
 def read_schedule_by_teacher(semester: enum_models.Semesters, teacher_id: int, skip: int = 0, limit: int = 100, db:Session = Depends(get_db)):
 
@@ -115,12 +115,12 @@ def patch_schedule_row(semester: enum_models.Semesters,
                   room: int = None,
                   teacher: str = None,
                   db: Session = Depends(get_db)):
-    
+
     update = crud.update_schedule(db, semester=semester, group=group, weekday=weekday,
                          lesson_number=lesson_number, module=module,
                          class_type=class_type, room=room, teacher=teacher);
 
-    return update; 
+    return update;
 
 #----------------------------
 # DELETE endpoints
@@ -129,7 +129,7 @@ def patch_schedule_row(semester: enum_models.Semesters,
 #admins only
 @app.delete('/schedule', responses={200: {'model': str}})
 def delete_schedule(semester: enum_models.Semesters, group: int = None, db:Session = Depends(get_db)):
-    
+
     '''deletes the rows from the table
     requires semester argument, additional argument - group, by default set to null
 
@@ -137,16 +137,9 @@ def delete_schedule(semester: enum_models.Semesters, group: int = None, db:Sessi
     if group number is provided as well - deletes only group schedule for the provided semester
 
     does not affect table existance'''
-    
+
     crud.clear_table(db=db, semester=semester, group=group);
     if group == None:
         return JSONResponse(status_code=200, content={'message': f'Schedule for {semester} semester was successfully deleted for all groups!'})
     else:
         return JSONResponse(status_code=200, content={'message': f'Schedule for group {group} for {semester} semester was successfully deleted!'})
-    
-
-
-
-
-
-

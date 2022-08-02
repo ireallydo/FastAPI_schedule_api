@@ -3,6 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base;
 from sqlalchemy.orm import sessionmaker;
 
 SQLALCHEMY_DATABASE_URL = 'mysql+mysqlconnector://superuser:password@localhost/test1';
+#SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:3141592653589@postgresserver/test1'
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL);
 

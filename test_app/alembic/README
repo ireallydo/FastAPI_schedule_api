@@ -1,0 +1,5 @@
+Generic single-database configuration.
+
+As soon as the db already exist and is filled with data by the time Alembic is applied,
+the migration will be used with alembic stamp head and fake zero point db
+for first revision (https://stackoverflow.com/questions/52121596/creating-zero-state-migration-for-existing-db-with-sqlalchemy-alembic-and-fak).

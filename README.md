@@ -1,6 +1,6 @@
 # schedule_api_fastapi
 
-to_do: 
+to_do:
 
 ___models___
 
@@ -8,7 +8,7 @@ ___models___
 * check and add on cascade properties to relationships if needed
 * exclude or use AcademicYear class
 * add foreign keys to GroupBusy, TeaherBusy and RoomBusy classes
-* uncomment dialects and use mysql types for better memory allocation 
+* uncomment dialects and use mysql types for better memory allocation
 
 __schemas__
 
@@ -18,14 +18,23 @@ __schemas__
 ___crud___
 
 * add semester argument to autofill (check is busy)
-* async 
+* async
 * check where can change all() to one()
 * check loading concepts (?)
 
 ___main___
 
-* async 
+* async
 
-more to_do: 
+more to_do:
 
-* authentication and roles 
+* authentication and roles
+
+___DB___
+
+* Alembic
+* migration to postgresql
+* async with alembic 
+
+___DEPLOY___
+* docker
