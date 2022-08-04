@@ -4,10 +4,11 @@ from fastapi import Depends, FastAPI, HTTPException;
 from fastapi.responses import JSONResponse;
 from sqlalchemy.orm import Session;
 
-import crud, models, schemas, enum_models;
+import crud, models, models2, schemas, enum_models;
 from database import SessionLocal, engine;
 
 models.Base.metadata.create_all(bind=engine);
+models2.Base.metadata.create_all(bind=engine);
 
 app = FastAPI();
 

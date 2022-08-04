@@ -12,6 +12,7 @@ class User(Base):
     ''' '''
     __tablename__ = 'users';
 
+    test_col = Column(Integer);
     id = Column(Integer, primary_key=True, index=True);
     username = Column(String(255), unique=True, index=True);
     email = Column(String(255), unique=True, index=True);
@@ -194,7 +195,7 @@ class RoomBusy(Base):
     room_id = Column(Integer, nullable=False, index=True);
     weekday = Column(String(255), nullable=False, index=True);
     lesson = Column(Integer, nullable=False, index=True);
-    is_busy = Column(Boolean, index=True, default=False);
+    is_busy = Column(Boolean, index=True, default=False, nullable=False);
 
 # -----------------------------------------------------------------
 # date-time classes
