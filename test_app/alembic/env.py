@@ -22,8 +22,14 @@ import models
 target_metadata = models.Base.metadata
 
 def include_name(name, type_, parent_names):
-    if type_ == "table":
-        return name in target_metadata.tables
+    if type_ == "schema":
+        return name in models;
+    elif type_ == "table":
+        # use schema_qualified_table_name directly
+        return (
+            parent_names["schema_qualified_table_name"] in
+            target_metadata.tables
+        )
     else:
         return True
 
@@ -56,7 +62,7 @@ def run_migrations_offline() -> None:
         dialect_opts={"paramstyle": "named"},
         #to ignore tables from different services
         include_name = include_name,
-        include_schemas = False
+        include_schemas = True
     )
 
     with context.begin_transaction():
@@ -82,7 +88,7 @@ def run_migrations_online() -> None:
             target_metadata=target_metadata,
             #to ignore tables from different services
             include_name = include_name,
-            include_schemas = False
+            include_schemas = True
         )
 
         with context.begin_transaction():

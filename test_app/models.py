@@ -8,11 +8,21 @@ from database import Base
 # -----------------------------------------------------------------
 # auth class
 # -----------------------------------------------------------------
+
+class Test(Base):
+    ''' '''
+    __tablename__ = 'test_table_to_save_on_drop';
+
+    id = Column(Integer, primary_key=True, index=True);
+    test_col1 = Column (Integer);
+    Test_col2 = Column (String(255));
+
 class User(Base):
     ''' '''
     __tablename__ = 'users';
 
     test_col = Column(Integer);
+    new_col = Column(Integer);
     id = Column(Integer, primary_key=True, index=True);
     username = Column(String(255), unique=True, index=True);
     email = Column(String(255), unique=True, index=True);
