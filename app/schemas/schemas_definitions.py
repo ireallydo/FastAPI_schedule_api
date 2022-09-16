@@ -1,7 +1,7 @@
 from typing import List, Union, Dict
 from pydantic import BaseModel
 
-import enum_models
+from enums import *
 
 
 # -----------------------------------------------------------------
@@ -20,7 +20,7 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int;
-    username: str; 
+    username: str;
     is_active: bool;
 
     class Config:
@@ -39,13 +39,13 @@ class AdminCreate(AdminBase):
 class Admin(AdminBase):
     id: int;
     name: str;
-    
+
     class Config:
         orm_mode = True;
 
 class AdminUser(Admin):
     username: List[User];
-    
+
 # -----------------------------------------------------------------
 # students classes
 # -----------------------------------------------------------------
@@ -63,12 +63,12 @@ class Student(StudentBase):
     id: int;
     academic_year: int;
     academic_group: int;
-    
+
     class Config:
         orm_mode = True;
 
 class StudentUser(Student):
-    username: List[User]; 
+    username: List[User];
 
 # -----------------------------------------------------------------
 # academic year classes
@@ -118,7 +118,7 @@ class TypeClass(TypeClassBase):
     id: int;
 
     class Config:
-        orm_mode = True; 
+        orm_mode = True;
 
 # -----------------------------------------------------------------
 # modules classes
@@ -133,14 +133,14 @@ class ModuleCreate(ModuleBase):
     year: int;
 
 class Module(ModuleCreate):
-    id: int; 
+    id: int;
 
 class ModuleClasses(Module):
     classes: List[TypeClass];
 
 class ModuleSchedule(ModuleBase):
     pass;
-    
+
 # -----------------------------------------------------------------
 # teachers classes
 # -----------------------------------------------------------------
@@ -194,8 +194,8 @@ class RoomBusyBase(BaseModel):
     is_busy: bool;
 
     class Config:
-        orm_mode = True; 
-    
+        orm_mode = True;
+
 
 # -----------------------------------------------------------------
 # lesson classes
@@ -205,7 +205,7 @@ class LessonBase(BaseModel):
     number: int;
     time: str;
     class Config:
-        orm_mode = True; 
+        orm_mode = True;
 
 class LessonCreate(LessonBase):
     pass;
@@ -227,7 +227,7 @@ class WeekdayCreate(WeekdayBase):
 
 class Weekday(WeekdayBase):
     id: int;
-    
+
     class Config:
         orm_mode = True;
 
@@ -311,4 +311,3 @@ class ScheduleTeacherResponse(ScheduleBase):
     lessons: List[ScheduleLessonForTeacher];
 
 #-----------------------
-

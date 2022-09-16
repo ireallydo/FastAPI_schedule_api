@@ -4,14 +4,13 @@ from fastapi import Depends, FastAPI, HTTPException;
 from fastapi.responses import JSONResponse;
 from sqlalchemy.orm import Session;
 
-import crud
+from crud import check_schedule, fill_schedule_manually, check_group_busy, autofill_schedule, get_schedule_by_group, get_schedule_by_teacher_id, update_schedule, clear_table
 from models import *
-from schemas import *
+from schemas import ScheduleCreateManually, Schedule, ScheduleGroupResponse, ScheduleTeacherResponse
 from enums import *
 from db import SessionLocal, engine;
 
 models.Base.metadata.create_all(bind=engine);
-models2.Base.metadata.create_all(bind=engine);
 
 app = FastAPI();
 
@@ -28,8 +27,8 @@ def get_db():
 #----------------------------
 
 #admins only
-@app.post('/schedule/manually', status_code=201, response_model=schemas.Schedule)
-def create_schedule(input_data: schemas.ScheduleCreateManually, db: Session = Depends(get_db)):
+@app.post('/schedule/manually', status_code=201, response_model=Schedule)
+def create_schedule(input_data: ScheduleCreateManually, db: Session = Depends(get_db)):
     '''populates the table with provided input
     to be used for creation, not editing data
     if the schedule for this group && semester && day && lesson already exists, returns error
@@ -40,10 +39,10 @@ def create_schedule(input_data: schemas.ScheduleCreateManually, db: Session = De
 
     returns the last inserted info'''
 
-    already_exists = crud.check_schedule(db=db, semester=input_data.semester, group=input_data.group, weekday=input_data.weekday, lesson_number=input_data.lesson_number);
+    already_exists = check_schedule(db=db, semester=input_data.semester, group=input_data.group, weekday=input_data.weekday, lesson_number=input_data.lesson_number);
     if already_exists:
         raise HTTPException(status_code=400, detail=f'''Schedule already exists! (Group: {input_data.group}; Weekday: {input_data.weekday}; Lesson: {input_data.lesson_number}; Semester: {input_data.semester}. If you want to change schedule - use change form, please!''');
-    return crud.fill_schedule_manually(db, input_data);
+    return fill_schedule_manually(db, input_data);
 
 #admins only
 @app.post('/schedule/auto', status_code=201)
@@ -63,12 +62,12 @@ def create_schedule_auto(semester: int,
     sets group busy and commit new row to schedule database
     if group is busy, or there are no options with teachers, rises HTTPException'''
 
-    group_busy_flag = crud.check_group_busy(db=db, group_number=group_number, weekday=weekday, lesson_number=lesson_number);
+    group_busy_flag = check_group_busy(db=db, group_number=group_number, weekday=weekday, lesson_number=lesson_number);
 
     if group_busy_flag == True:
         raise HTTPException(status_code=400, detail=f'''Group {group_number} in already busy on that time! Choose other conditions or use update!''');
 
-    attempt = crud.autofill_schedule(db=db,
+    attempt = autofill_schedule(db=db,
                                   semester=semester,
                                   weekday=weekday,
                                   lesson_number=lesson_number,
@@ -85,23 +84,23 @@ def create_schedule_auto(semester: int,
 #----------------------------
 
 #students and teachers
-@app.get('/schedule/semester_{semester}/group_{group}', response_model=List[schemas.ScheduleGroupResponse])
+@app.get('/schedule/semester_{semester}/group_{group}', response_model=List[ScheduleGroupResponse])
 def read_schedule_by_group(semester: enum_models.Semesters, group: int, skip: int = 0, limit: int = 100, db:Session = Depends(get_db)):
 
     '''takes semester number and group number as an input
     returns all rows from 'schedule' table for provided group and semester'''
 
-    schedule = crud.get_schedule_by_group(db=db, semester=semester, group=group);
+    schedule = get_schedule_by_group(db=db, semester=semester, group=group);
     return schedule;
 
 #students and teachers
-@app.get('/schedule/semester_{semester}/teacher_{teacher_id}', response_model=List[schemas.ScheduleTeacherResponse])
+@app.get('/schedule/semester_{semester}/teacher_{teacher_id}', response_model=List[ScheduleTeacherResponse])
 def read_schedule_by_teacher(semester: enum_models.Semesters, teacher_id: int, skip: int = 0, limit: int = 100, db:Session = Depends(get_db)):
 
     '''takes semester number and teacher's id as an input
     returns all rows from 'schedule' table for provided teacher and semester'''
 
-    schedule = crud.get_schedule_by_teacher_id(db=db, semester=semester, teacher_id=teacher_id);
+    schedule = get_schedule_by_teacher_id(db=db, semester=semester, teacher_id=teacher_id);
     return schedule;
 
 #----------------------------
@@ -120,7 +119,7 @@ def patch_schedule_row(semester: enum_models.Semesters,
                   teacher: str = None,
                   db: Session = Depends(get_db)):
 
-    update = crud.update_schedule(db, semester=semester, group=group, weekday=weekday,
+    update = update_schedule(db, semester=semester, group=group, weekday=weekday,
                          lesson_number=lesson_number, module=module,
                          class_type=class_type, room=room, teacher=teacher);
 
@@ -142,7 +141,7 @@ def delete_schedule(semester: enum_models.Semesters, group: int = None, db:Sessi
 
     does not affect table existance'''
 
-    crud.clear_table(db=db, semester=semester, group=group);
+    clear_table(db=db, semester=semester, group=group);
     if group == None:
         return JSONResponse(status_code=200, content={'message': f'Schedule for {semester} semester was successfully deleted for all groups!'})
     else:

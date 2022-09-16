@@ -1,9 +1,11 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, func;
 from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
 
-import models, schemas, enum_models;
+from models import *
+from schemas import *
+from enums import *
 
-from database import engine, Base;
+from db import engine, Base;
 
 
 enum_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5};
@@ -22,17 +24,17 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.User).offset(skip).limit(limit).all();
 
 # -----------------------------------------------------------------
-# create functions 
+# create functions
 # -----------------------------------------------------------------
 
-def fill_schedule_manually(db: Session, input_data: schemas.ScheduleCreateManually):
+def fill_schedule_manually(db: Session, input_data: ScheduleCreateManually):
     '''function for fully manual creation of schedule, has no specific checks or constraints'''
-    
+
     input_data.weekday = translate_enum_weekday(db, input_data.weekday);
     input_data.class_type = translate_enum_class_type(db, input_data.class_type);
-        
+
     new_line = models.Schedule(**input_data.dict());
-    
+
     db.add(new_line);
     db.commit();
     db.refresh(new_line);
@@ -44,8 +46,8 @@ def autofill_schedule(db: Session, semester: int, weekday: enum_models.Weekdays,
     db_weekday = translate_enum_weekday(db, weekday);
     group_id = get_group_id_by_number(db, group_number);
     db_class_type = translate_enum_class_type(db, class_type);
-    chosen_room_number = 0; 
-    
+    chosen_room_number = 0;
+
     teachers_list = teachers_id_by_module(db, module_id=module_id);
 
     for teacher in teachers_list:
@@ -55,7 +57,7 @@ def autofill_schedule(db: Session, semester: int, weekday: enum_models.Weekdays,
             chosen_teacher_id = teacher;
             set_teacher_busy(db=db, teacher_id=chosen_teacher_id, weekday=db_weekday, lesson=lesson_number);
             break;
-        
+
         if teacher_busy_flag == True and teacher == teachers_list[-1]:
             join_groups_check = query_db_for_same_class(db=db,
                                                         teachers_list=teachers_list,
@@ -72,7 +74,7 @@ def autofill_schedule(db: Session, semester: int, weekday: enum_models.Weekdays,
                 chosen_room_number = join_groups_check[1];
         else:
             continue;
-    
+
     if chosen_room_number == 0:
         room_id = check_room_busy(db=db, weekday=db_weekday, lesson=lesson_number);
         chosen_room_number = get_room_number_by_id(db=db, room_id=room_id);
@@ -87,30 +89,30 @@ def autofill_schedule(db: Session, semester: int, weekday: enum_models.Weekdays,
                                class_type=db_class_type,
                                room=chosen_room_number,
                                teacher_id=chosen_teacher_id);
-    
+
     db.add(new_line);
     db.commit();
     db.refresh(new_line);
-    
-    return new_line; 
+
+    return new_line;
 
 # -----------------------------------------------------------------
-# read functions 
+# read functions
 # -----------------------------------------------------------------
-    
+
 def check_schedule(db: Session,
                   semester: enum_models.Semesters,
                   group: int,
                   weekday: enum_models.Weekdays,
                   lesson_number: enum_models.Lessons):
 
-    db_weekday = translate_enum_weekday(db, weekday); 
+    db_weekday = translate_enum_weekday(db, weekday);
 
     return db.query(models.Schedule).filter(models.Schedule.group==group,
                                             models.Schedule.semester==semester,
                                             models.Schedule.weekday==db_weekday,
                                             models.Schedule.lesson_number==lesson_number).all();
-    
+
 
 def get_schedule_by_group(db: Session, semester: enum_models.Semesters, group: int, skip: int = 0, limit: int = 100):
 
@@ -121,8 +123,8 @@ def get_schedule_by_group(db: Session, semester: enum_models.Semesters, group: i
                                     join(models.Schedule.modules).options(contains_eager(models.Weekday.lessons).\
                                                                           contains_eager(models.Lesson.schedule).\
                                                                           contains_eager(models.Schedule.modules)).order_by(models.Lesson.id).offset(skip).limit(limit).all();
-    
-    return schedule; 
+
+    return schedule;
 
 
 def get_schedule_by_teacher_id(db: Session, semester: enum_models.Semesters, teacher_id: int, skip: int = 0, limit: int = 100):
@@ -135,10 +137,10 @@ def get_schedule_by_teacher_id(db: Session, semester: enum_models.Semesters, tea
                                                                           contains_eager(models.Lesson.schedule).\
                                                                           contains_eager(models.Schedule.modules)).order_by(models.Lesson.id).offset(skip).limit(limit).all();
 
-    return schedule; 
-    
+    return schedule;
+
 # -----------------------------------------------------------------
-# update functions 
+# update functions
 # -----------------------------------------------------------------
 
 def update_schedule(db: Session,
@@ -163,8 +165,8 @@ def update_schedule(db: Session,
         module = models.Schedule.module;
 
     if teacher == None:
-        teacher = models.Schedule.teacher; 
-  
+        teacher = models.Schedule.teacher;
+
     db_weekday = translate_enum_weekday(db, weekday);
 
     db.query(models.Schedule).filter(models.Schedule.semester==semester,
@@ -177,9 +179,9 @@ def update_schedule(db: Session,
                                                                                   ],
                                                                                  update_args={'preserve_parameter_order':True});
     db.commit();
-    
+
 # -----------------------------------------------------------------
-# delete functions 
+# delete functions
 # -----------------------------------------------------------------
 def clear_table(db: Session, semester: enum_models.Semesters, group: int = None):
     if group == None:
@@ -190,7 +192,7 @@ def clear_table(db: Session, semester: enum_models.Semesters, group: int = None)
         db.commit();
 
 # -----------------------------------------------------------------
-# enum translation functions 
+# enum translation functions
 # -----------------------------------------------------------------
 
 def translate_enum_weekday(db: Session, weekday: enum_models.Weekdays):
@@ -198,7 +200,7 @@ def translate_enum_weekday(db: Session, weekday: enum_models.Weekdays):
     takes a value from the enum model as an input
     returns the matching weekday value from the 'weekdays' table in db
     e.g. "Monday" will return a proper weekday name from database in accordance with the enum attribute value'''
-    if str(enum_models.Weekdays(weekday).name) in enum_dict.keys(): 
+    if str(enum_models.Weekdays(weekday).name) in enum_dict.keys():
         day_id=enum_dict[str(enum_models.Weekdays(weekday).name)];
         db_weekday = db.query(models.Weekday.name).where(models.Weekday.id==day_id).all();
     return db_weekday[0][0];
@@ -214,7 +216,7 @@ def translate_enum_class_type(db: Session, class_type: enum_models.ClassTypes):
     return db_class_type[0][0];
 
 # -----------------------------------------------------------------
-# tech read functions 
+# tech read functions
 # -----------------------------------------------------------------
 
 def get_group_id_by_number(db: Session, group: int):
@@ -234,7 +236,7 @@ def teachers_id_by_module(db: Session, module_id: int):
     teachers_id_by_module = db.query(models.teachers_modules).where(models.teachers_modules.c.Module_id==module_id).all();
 
     teachers_list = [];
-    
+
     for instance in teachers_id_by_module:
         teachers_list.append(instance['Teacher_id']);
 
@@ -242,12 +244,12 @@ def teachers_id_by_module(db: Session, module_id: int):
 
 def query_db_for_same_class(db: Session, teachers_list: list, semester: int, weekday: str, lesson_number: int, module_id: int, class_type: str):
     '''checks if there are classes in the schedule with the same teacher, module, class_type at the same time
-    for teachers in the teachers_list 
+    for teachers in the teachers_list
     if there are - returns a tuple of teacher_id and room_number of such classes
     is used in autofill_schedule function'''
 
     for teacher in teachers_list:
-    
+
         can_join_lessons = db.query(models.Schedule).filter(models.Schedule.teacher_id==teacher,
                                     models.Schedule.semester==semester,
                                     models.Schedule.weekday==weekday,
@@ -259,7 +261,7 @@ def query_db_for_same_class(db: Session, teachers_list: list, semester: int, wee
             chosen_teacher_id = teacher;
             chosen_room_number = query_dict.room;
             return chosen_teacher_id, chosen_room_number;
-        
+
     return False;
 
 def check_group_busy(db: Session, group_number: int, weekday: enum_models.Weekdays, lesson_number: int):
@@ -306,7 +308,7 @@ def check_room_busy(db: Session, weekday: str, lesson: int):
     return db_request.room_id;
 
 # -----------------------------------------------------------------
-# tech create functions 
+# tech create functions
 # -----------------------------------------------------------------
 
 def set_group_busy(db:Session, group_id: int, weekday: str, lesson: int):
@@ -328,6 +330,3 @@ def set_teacher_busy(db:Session, teacher_id: int, weekday: str, lesson: int):
     db.commit();
 
 #-----------------------------that's all, folks---------------------------------
-
-
-

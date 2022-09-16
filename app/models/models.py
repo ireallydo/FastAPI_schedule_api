@@ -3,19 +3,12 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Table
 #from sqlalchemy.dialects.mysql import MEDIUMINT, TINYINT, VARCHAR, YEAR
 
-from database import Base
+from db import Base
 
 # -----------------------------------------------------------------
 # auth class
 # -----------------------------------------------------------------
 
-class Test(Base):
-    ''' '''
-    __tablename__ = 'test_table_to_save_on_drop';
-
-    id = Column(Integer, primary_key=True, index=True);
-    test_col1 = Column (Integer);
-    Test_col2 = Column (String(255));
 
 class User(Base):
     ''' '''
