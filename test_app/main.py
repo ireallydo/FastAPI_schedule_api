@@ -4,8 +4,11 @@ from fastapi import Depends, FastAPI, HTTPException;
 from fastapi.responses import JSONResponse;
 from sqlalchemy.orm import Session;
 
-import crud, models, models2, schemas, enum_models;
-from database import SessionLocal, engine;
+import crud
+from models import *
+from schemas import *
+from enums import *
+from db import SessionLocal, engine;
 
 models.Base.metadata.create_all(bind=engine);
 models2.Base.metadata.create_all(bind=engine);
