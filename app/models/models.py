@@ -3,15 +3,19 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Table
 #from sqlalchemy.dialects.mysql import MEDIUMINT, TINYINT, VARCHAR, YEAR
 
-from database import Base
+from db import Base
 
 # -----------------------------------------------------------------
 # auth class
 # -----------------------------------------------------------------
+
+
 class User(Base):
     ''' '''
     __tablename__ = 'users';
 
+    test_col = Column(Integer);
+    new_col = Column(Integer);
     id = Column(Integer, primary_key=True, index=True);
     username = Column(String(255), unique=True, index=True);
     email = Column(String(255), unique=True, index=True);
@@ -20,7 +24,7 @@ class User(Base):
     student_id = Column(Integer, ForeignKey('students.id'), unique=True, index=True);
     admin_id = Column(Integer, ForeignKey('admins.id'), unique=True, index=True);
     teacher_id = Column(Integer, ForeignKey('teachers.id'), unique=True, index=True);
-    # users - students - one-to-one (unique) 
+    # users - students - one-to-one (unique)
     # users - teachers - one-to-one (unique)
     # users - administration - one-to-one (unique)
 
@@ -38,7 +42,7 @@ class Admin(Base):
     name = Column(String(255), unique=True, index=True);
     # users - administration - one-to-one (unique)
 
-    username = relationship('User', back_populates='admin', uselist=False);    
+    username = relationship('User', back_populates='admin', uselist=False);
 
 # -----------------------------------------------------------------
 # students classes
@@ -58,7 +62,7 @@ class Student(Base):
 
     year = relationship('AcademicYear', back_populates='students');
     group = relationship('AcademicGroup', back_populates='students');
-    username = relationship('User', back_populates='student', uselist=False); 
+    username = relationship('User', back_populates='student', uselist=False);
 
 class AcademicYear(Base):
     __tablename__ = 'years';
@@ -87,7 +91,7 @@ class GroupBusy(Base):
     weekday = Column(String(255), nullable=False, index=True);
     lesson = Column(Integer, nullable=False, index=True);
     is_busy = Column(Boolean, index=True, default=False);
-    
+
 # -----------------------------------------------------------------
 # teachers classes
 # -----------------------------------------------------------------
@@ -123,7 +127,7 @@ class TeacherBusy(Base):
     weekday = Column(String(255), nullable=False, index=True);
     lesson = Column(Integer, nullable=False, index=True);
     is_busy = Column(Boolean, index=True, default=False);
-    
+
 # -----------------------------------------------------------------
 # modules classes
 # -----------------------------------------------------------------
@@ -145,7 +149,7 @@ class Module(Base):
                            secondary = modules_typesOfClasses,
                            #overlaps='modules',
                            back_populates='modules');
-    
+
     teachers = relationship('Teacher',
                            order_by = 'asc(Teacher.last_name)',
                            secondary = teachers_modules,
@@ -159,7 +163,7 @@ class TypeOfClass(Base):
 
     id = Column(Integer, primary_key=True, index=True);
     name = Column(String(255), nullable=False, index=True);
-    
+
     modules = relationship('Module',
                            order_by = 'asc(Module.name)',
                            secondary = modules_typesOfClasses,
@@ -171,7 +175,7 @@ class TypeOfClass(Base):
 
     # class_type - schedule - one-to-many
     schedule = relationship('Schedule', back_populates = 'class_types');
-    
+
 # -----------------------------------------------------------------
 # rooms classes
 # -----------------------------------------------------------------
@@ -194,7 +198,7 @@ class RoomBusy(Base):
     room_id = Column(Integer, nullable=False, index=True);
     weekday = Column(String(255), nullable=False, index=True);
     lesson = Column(Integer, nullable=False, index=True);
-    is_busy = Column(Boolean, index=True, default=False);
+    is_busy = Column(Boolean, index=True, default=False, nullable=False);
 
 # -----------------------------------------------------------------
 # date-time classes
@@ -232,15 +236,15 @@ class Lesson(Base):
                             back_populates='lessons');
 
     schedule = relationship('Schedule', back_populates = 'lessons');
-   
+
 # -----------------------------------------------------------------
-# semester schedule class 
+# semester schedule class
 # -----------------------------------------------------------------
 class Schedule(Base):
     __tablename__ = 'schedule';
 
     id = Column(Integer, primary_key=True, index=True);
-    semester = Column(Integer, index=True); 
+    semester = Column(Integer, index=True);
     group = Column(Integer, ForeignKey('groups.number'), index=True);
     weekday = Column(String(255), ForeignKey('weekdays.name'), nullable=False, index=True);
     lesson_number = Column(Integer, ForeignKey('lessons.number'), nullable=False, index=True);
@@ -255,5 +259,4 @@ class Schedule(Base):
     modules = relationship('Module', back_populates = 'schedule');
     class_types = relationship('TypeOfClass', back_populates = 'schedule');
     rooms = relationship('Room', back_populates = 'schedule');
-    teachers = relationship('Teacher', back_populates = 'schedule'); 
-
+    teachers = relationship('Teacher', back_populates = 'schedule');
