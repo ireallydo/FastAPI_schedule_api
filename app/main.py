@@ -10,7 +10,7 @@ from schemas import ScheduleCreateManually, Schedule, ScheduleGroupResponse, Sch
 from enums import *
 from db import SessionLocal, engine;
 
-models.Base.metadata.create_all(bind=engine);
+Base.metadata.create_all(bind=engine);
 
 app = FastAPI();
 
@@ -47,11 +47,11 @@ def create_schedule(input_data: ScheduleCreateManually, db: Session = Depends(ge
 #admins only
 @app.post('/schedule/auto', status_code=201)
 def create_schedule_auto(semester: int,
-                         weekday: enum_models.Weekdays,
+                         weekday: WeekdaysEnum,
                          lesson_number: int,
                          group_number: int,
                          module_id: int,
-                         class_type: enum_models.ClassTypes,
+                         class_type: ClassTypesEnum,
                          db: Session = Depends(get_db)):
     '''checks if the provided group_number is busy for the provided date/time
     if not, checks if there are teachers to be assigned for provided module and class type:
@@ -85,7 +85,7 @@ def create_schedule_auto(semester: int,
 
 #students and teachers
 @app.get('/schedule/semester_{semester}/group_{group}', response_model=List[ScheduleGroupResponse])
-def read_schedule_by_group(semester: enum_models.Semesters, group: int, skip: int = 0, limit: int = 100, db:Session = Depends(get_db)):
+def read_schedule_by_group(semester: SemestersEnum, group: int, skip: int = 0, limit: int = 100, db:Session = Depends(get_db)):
 
     '''takes semester number and group number as an input
     returns all rows from 'schedule' table for provided group and semester'''
@@ -95,7 +95,7 @@ def read_schedule_by_group(semester: enum_models.Semesters, group: int, skip: in
 
 #students and teachers
 @app.get('/schedule/semester_{semester}/teacher_{teacher_id}', response_model=List[ScheduleTeacherResponse])
-def read_schedule_by_teacher(semester: enum_models.Semesters, teacher_id: int, skip: int = 0, limit: int = 100, db:Session = Depends(get_db)):
+def read_schedule_by_teacher(semester: SemestersEnum, teacher_id: int, skip: int = 0, limit: int = 100, db:Session = Depends(get_db)):
 
     '''takes semester number and teacher's id as an input
     returns all rows from 'schedule' table for provided teacher and semester'''
@@ -109,12 +109,12 @@ def read_schedule_by_teacher(semester: enum_models.Semesters, teacher_id: int, s
 
 #admins and teachers
 @app.patch('/schedule')
-def patch_schedule_row(semester: enum_models.Semesters,
+def patch_schedule_row(semester: SemestersEnum,
                   group: int,
-                  weekday: enum_models.Weekdays,
-                  lesson_number: enum_models.Lessons,
+                  weekday: WeekdaysEnum,
+                  lesson_number: LessonsEnum,
                   module: str = None,
-                  class_type: enum_models.ClassTypes = None,
+                  class_type: ClassTypesEnum = None,
                   room: int = None,
                   teacher: str = None,
                   db: Session = Depends(get_db)):
@@ -131,7 +131,7 @@ def patch_schedule_row(semester: enum_models.Semesters,
 
 #admins only
 @app.delete('/schedule', responses={200: {'model': str}})
-def delete_schedule(semester: enum_models.Semesters, group: int = None, db:Session = Depends(get_db)):
+def delete_schedule(semester: SemestersEnum, group: int = None, db:Session = Depends(get_db)):
 
     '''deletes the rows from the table
     requires semester argument, additional argument - group, by default set to null

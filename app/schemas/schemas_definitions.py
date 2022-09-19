@@ -247,12 +247,12 @@ class ScheduleCreate(ScheduleBase):
     pass
 
 class ScheduleCreateManually(ScheduleBase):
-    semester: enum_models.Semesters;
+    semester: SemestersEnum;
     group: int;
-    weekday: enum_models.Weekdays;
-    lesson_number: enum_models.Lessons;
+    weekday: WeekdaysEnum;
+    lesson_number: LessonsEnum;
     module_id: int;
-    class_type: enum_models.ClassTypes;
+    class_type: ClassTypesEnum;
     room: int;
     teacher_id: int;
 
@@ -268,7 +268,7 @@ class Schedule(ScheduleBase):
     teacher_id: int;
 
 class ScheduleGroupRequest(ScheduleBase):
-    semester: enum_models.Semesters;
+    semester: SemestersEnum;
     group: int;
 
 #----------------------
