@@ -1,18 +1,11 @@
-from .AcademicGroupModel import *
-from .AcademicYearModel import *
-from .AdminModel import *
-from .GroupBusyModel import *
-from .LessonModel import *
-from .ModuleModel import *
-from .modules_to_typesOfClasses import *
-from .RoomBusyModel import *
-from .RoomModel import *
-from .ScheduleModel import *
-from .StudentModel import *
-from .TeacherBusyModel import *
-from .TeacherModel import *
-from .teachers_to_modules import *
-from .TypeOfClassModel import *
-from .UserModel import *
-from .WeekdayModel import *
-from .weekdays_to_lessons import *
+# from .GroupBusyModel import *
+# from .LessonModel import *
+# from .ModuleModel import *
+# from .RoomBusyModel import *
+# from .RoomModel import *
+# from .ScheduleModel import *
+# from .StudentModel import *
+# from .TeacherBusyModel import *
+# from .TeacherModel import *
+# from .teachers_to_modules_association_table import *
+# from .UserModel import *

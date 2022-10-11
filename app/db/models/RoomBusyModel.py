@@ -1,9 +1,9 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
-from db import Base
+from db.models import BaseModel
 
-class RoomBusyModel(Base):
-    __tablename__ = 'rooms_busy';
+class RoomBusyModel(BaseModel):
+    __tablename__ = 'tbl_rooms_busy';
 
     id = Column(Integer, primary_key=True, index=True);
     room_id = Column(Integer, nullable=False, index=True);

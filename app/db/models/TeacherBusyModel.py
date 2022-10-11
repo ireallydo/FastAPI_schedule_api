@@ -1,9 +1,9 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
-from db import Base
+from db.models import BaseModel
 
 class TeacherBusyModel(Base):
-    __tablename__ = 'teachers_busy';
+    __tablename__ = 'tbl_teachers_busy';
 
     id = Column(Integer, primary_key=True, index=True);
     teacher_id = Column(Integer, nullable=False, index=True);
