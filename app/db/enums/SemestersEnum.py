@@ -1,5 +1,5 @@
 from enum import Enum;
 
 class SemestersEnum(str, Enum):
-    one = 1;
-    two = 2;
+    FIRST = 1;
+    SECOND = 2;

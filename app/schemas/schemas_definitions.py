@@ -1,7 +1,7 @@
 from typing import List, Union, Dict
 from pydantic import BaseModel
 
-from enums import *
+from db.enums import *
 
 
 # -----------------------------------------------------------------

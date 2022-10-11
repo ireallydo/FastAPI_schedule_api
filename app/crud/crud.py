@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eage
 
 from db.models import *
 from schemas import *
-from enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
+from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 
 
 enum_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5};

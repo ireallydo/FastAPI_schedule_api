@@ -6,10 +6,9 @@ from sqlalchemy.orm import Session;
 
 from crud import check_schedule, fill_schedule_manually, check_group_busy, autofill_schedule, get_schedule_by_group, get_schedule_by_teacher_id, update_schedule, clear_table
 from db.models import *
-from db.models.BaseModel import BaseModel
 from schemas import ScheduleCreateManually, Schedule, ScheduleGroupResponse, ScheduleTeacherResponse
-from enums import *
-from db import SessionLocal, engine
+from db.enums import *
+from db.database import SessionLocal, engine
 
 BaseModel.metadata.create_all(bind=engine);
 

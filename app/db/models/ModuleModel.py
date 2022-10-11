@@ -3,11 +3,10 @@ from sqlalchemy.dialects.postgresql import UUID, BOOLEAN, INTEGER
 from uuid import uuid4
 from sqlalchemy.orm import relationship
 
-from models import teachers_to_modules_association_table
+from db.models import BaseModel, teachers_to_modules_association_table
 
-from db.models import BaseModel
+from db.enums import ClassTypesEnum, AcademicYearsEnum
 
-from enums import ClassTypesEnum, AcademicYearsEnum
 
 class ModuleModel(BaseModel):
     __tablename__ = 'tbl_modules'
