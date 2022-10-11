@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 fastapi = "*"
+fastapi-utils = "*"
 sqlalchemy = "*"
 alembic = "*"
 alembic-autogen-check = "*"
