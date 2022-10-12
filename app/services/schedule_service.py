@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eage
 
 from db.models import *
 from db.dto import *
+from db.dao import schedule_dao
 from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 
 
@@ -13,19 +14,15 @@ enum_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5};
 # create functions
 # -----------------------------------------------------------------
 
-def fill_schedule_manually(db: Session, input_data: ScheduleCreateManuallyDTO):
+def fill_schedule_manually(db, input_data: ScheduleCreateManuallyDTO):
     '''function for fully manual creation of schedule, has no specific checks or constraints'''
 
-    input_data.weekday = translate_enum_weekday(db, input_data.weekday);
-    input_data.class_type = translate_enum_class_type(db, input_data.class_type);
+    # input_data.weekday = translate_enum_weekday(db, input_data.weekday);
+    # input_data.class_type = translate_enum_class_type(db, input_data.class_type);
 
-    new_line = ScheduleModel(**input_data.dict());
+    new_line = schedule_dao.fill_manually(db, input_data)
 
-    db.add(new_line);
-    db.commit();
-    db.refresh(new_line);
-
-    return new_line;
+    return new_line
 
 def autofill_schedule(db: Session, semester: int, weekday: WeekdaysEnum, lesson_number: int, group_number: int, module_id: int, class_type: ClassTypesEnum):
 
@@ -86,18 +83,11 @@ def autofill_schedule(db: Session, semester: int, weekday: WeekdaysEnum, lesson_
 # read functions
 # -----------------------------------------------------------------
 
-def check_schedule(db: Session,
-                  semester: SemestersEnum,
-                  group: int,
-                  weekday: WeekdaysEnum,
-                  lesson_number: LessonsEnum):
+def check_schedule(db, input_data: ScheduleCreateManuallyDTO):
 
-    db_weekday = translate_enum_weekday(db, weekday);
+    # db_weekday = translate_enum_weekday(input_data.weekday);
 
-    return db.query(ScheduleModel).filter(ScheduleModel.group==group,
-                                            ScheduleModel.semester==semester,
-                                            ScheduleModel.weekday==db_weekday,
-                                            ScheduleModel.lesson_number==lesson_number).all();
+    return schedule_dao.check_exists(db, input_data)
 
 
 def get_schedule_by_group(db: Session, semester: SemestersEnum, group: int, skip: int = 0, limit: int = 100):

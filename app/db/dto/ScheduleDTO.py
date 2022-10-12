@@ -1,6 +1,8 @@
 from typing import List, Union, Dict
 from pydantic import BaseModel
 
+from uuid import UUID
+
 from db.enums import *
 from .TeacherDTO import TeacherScheduleDTO
 
@@ -11,30 +13,31 @@ from .TeacherDTO import TeacherScheduleDTO
 class ScheduleBaseDTO(BaseModel):
     class Config:
         orm_mode = True;
+        arbitrary_types_allowed=True
 
 class ScheduleCreateDTO(ScheduleBaseDTO):
     pass
 
 class ScheduleCreateManuallyDTO(ScheduleBaseDTO):
     semester: SemestersEnum;
-    group: int;
+    group_number: AcademicGroupsEnum;
     weekday: WeekdaysEnum;
     lesson_number: LessonsEnum;
-    module_id: int;
+    module_id: UUID;
     class_type: ClassTypesEnum;
-    room: int;
-    teacher_id: int;
+    room_number: int;
+    teacher_id: UUID;
 
 class ScheduleDTO(ScheduleBaseDTO):
-    id: int;
-    semester: int;
-    group: int;
-    weekday: str;
-    lesson_number: int;
-    module_id: int;
-    class_type: str;
-    room: int;
-    teacher_id: int;
+    id: UUID;
+    semester: SemestersEnum;
+    group_number: AcademicGroupsEnum;
+    weekday: WeekdaysEnum;
+    lesson_number: LessonsEnum;
+    module_id: UUID;
+    class_type: ClassTypesEnum;
+    room_number: int;
+    teacher_id: UUID;
 
 class ScheduleGroupRequestDTO(ScheduleBaseDTO):
     semester: SemestersEnum;

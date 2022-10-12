@@ -1,6 +1,6 @@
 from enum import Enum;
 
 class ClassTypesEnum(str, Enum):
-    LECTURE = 'lecture';
-    SEMINAR = 'seminar';
-    LABORATORY = 'laboratory';
+    LECTURE = 'лекция'
+    SEMINAR = 'семинар'
+    LABORATORY = 'лабораторная'

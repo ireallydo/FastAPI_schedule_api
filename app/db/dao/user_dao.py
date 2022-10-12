@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
 
+from fastapi import Depends, FastAPI, HTTPException
+
 from db.models import UserModel
 
 def get_db():

@@ -4,7 +4,8 @@ from datetime import datetime
 from uuid import uuid4
 from sqlalchemy.orm import relationship
 
-from db.models import BaseModel, teachers_to_modules_association_table
+from db.models import BaseModel
+from db.models.teachers_to_modules_association_table import teachers_to_modules_association
 
 class TeacherModel(BaseModel):
     __tablename__ = 'tbl_teachers'
@@ -19,8 +20,8 @@ class TeacherModel(BaseModel):
     updated_at = Column('updated_at', DateTime, default=datetime.utcnow, onupdate=func.current_timestamp())
 
     modules = relationship('ModuleModel',
-                           order_by='asc(Module.module_name)',
-                           secondary=teachers_to_modules_association_table,
+                           order_by='asc(ModuleModel.module_name)',
+                           secondary=teachers_to_modules_association,
                            back_populates='teachers')
 
     users = relationship('UserModel', back_populates='teachers', uselist=False);

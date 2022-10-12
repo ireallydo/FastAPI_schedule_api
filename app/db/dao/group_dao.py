@@ -1,6 +1,9 @@
 from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
 
+from fastapi import Depends, FastAPI, HTTPException
+
 from db.models import UserModel
+from db.enums import WeekdaysEnum
 
 def get_db():
     db = SessionLocal();

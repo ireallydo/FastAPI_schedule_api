@@ -1,6 +1,6 @@
 from enum import Enum;
 
-class AcademicGroupsEnum(Enum):
+class AcademicGroupsEnum(str, Enum):
     FIRST_1 = 101
     SECOND_1 = 102
     THIRD_1 = 103

@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
 
-from services import group_service, room_service, schedule_service, teacher_service, user_service
+from services import group_service, room_service, schedule_service, teacher_service, user_service, module_service
 
 from db.models import *
 from db.dto import *
@@ -25,6 +25,7 @@ def get_db():
         yield db;
     finally:
         db.close();
+
 
 #----------------------------
 # CREATE endpoints (additional endpoints for admins - downpage)
@@ -48,10 +49,12 @@ class ScheduleView:
 
         returns the last inserted info'''
 
-        already_exists = schedule_service.check_schedule(db=db, semester=input_data.semester, group=input_data.group, weekday=input_data.weekday, lesson_number=input_data.lesson_number);
+        already_exists = schedule_service.check_schedule(self.db, input_data)
+        print('CHECKED!!')
+         # semester=input_data.semester, group=input_data.group, weekday=input_data.weekday, lesson_number=input_data.lesson_number)
         if already_exists:
             raise HTTPException(status_code=400, detail=f'''Schedule already exists! (Group: {input_data.group}; Weekday: {input_data.weekday}; Lesson: {input_data.lesson_number}; Semester: {input_data.semester}. If you want to change schedule - use change form, please!''');
-        return schedule_service.fill_schedule_manually(self, input_data);
+        return schedule_service.fill_schedule_manually(self.db, input_data);
 
     #admins only
     @router.post(ApiSpec.SCHEDULE_AUTO, status_code=201)
