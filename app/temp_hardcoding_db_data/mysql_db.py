@@ -37,7 +37,7 @@ phnull = None;
 ##mycursor.execute('SELECT * FROM years');
 ##myresult = mycursor.fetchall();
 ##for x in myresult:
-##    print(x); 
+##    print(x);
 
 # ---------------------------------------
 # POPULATE GROUPS TABLE
@@ -63,7 +63,7 @@ phnull = None;
 ##myresult = mycursor.fetchall();
 ##for x in myresult:
 ##    print(x);
-##    
+##
 # ---------------------------------------
 # POPULATE WEEKDAYS TABLE
 # ---------------------------------------
@@ -88,7 +88,7 @@ phnull = None;
 ##mycursor.execute('SELECT * FROM weekdays order by id asc');
 ##myresult = mycursor.fetchall();
 ##for x in myresult:
-##    print(x); 
+##    print(x);
 
 # ---------------------------------------
 # POPULATE LESSONS TABLE
@@ -111,7 +111,7 @@ phnull = None;
 ##mycursor.execute('SELECT * FROM lessons');
 ##myresult = mycursor.fetchall();
 ##for x in myresult:
-##    print(x); 
+##    print(x);
 ### ---------------------------------------
 ##
 ##
@@ -146,116 +146,116 @@ phnull = None;
 # POPULATE GROUPS_BUSY TABLE
 # ---------------------------------------
 
-sql = 'INSERT INTO groups_busy (group_id, weekday, lesson, is_busy) VALUES (%s, %s, %s, %s)';
-val = [
-    (1, "Понедельник", 1, False),
-    (1, "Понедельник", 2, False),
-    (1, "Понедельник", 3, False),
-    (1,"Вторник", 1, False),
-    (1,"Вторник", 2, False),
-    (1,"Вторник", 3, False),
-    (1, "Среда", 1, False),
-    (1, "Среда", 2, False),
-    (1, "Среда", 3, False),
-    (1, "Четверг", 1, False),
-    (1, "Четверг", 2, False),
-    (1, "Четверг", 3, False),
-    (1, "Пятница", 1, False),
-    (1, "Пятница", 2, False),
-    (1, "Пятница", 3, False),
-
-    (2, "Понедельник", 1, False),
-    (2, "Понедельник", 2, False),
-    (2, "Понедельник", 3, False),
-    (2,"Вторник", 1, False),
-    (2,"Вторник", 2, False),
-    (2,"Вторник", 3, False),
-    (2, "Среда", 1, False),
-    (2, "Среда", 2, False),
-    (2, "Среда", 3, False),
-    (2, "Четверг", 1, False),
-    (2, "Четверг", 2, False),
-    (2, "Четверг", 3, False),
-    (2, "Пятница", 1, False),
-    (2, "Пятница", 2, False),
-    (2, "Пятница", 3, False),
-
-    (3, "Понедельник", 1, False),
-    (3, "Понедельник", 2, False),
-    (3, "Понедельник", 3, False),
-    (3,"Вторник", 1, False),
-    (3,"Вторник", 2, False),
-    (3,"Вторник", 3, False),
-    (3, "Среда", 1, False),
-    (3, "Среда", 2, False),
-    (3, "Среда", 3, False),
-    (3, "Четверг", 1, False),
-    (3, "Четверг", 2, False),
-    (3, "Четверг", 3, False),
-    (3, "Пятница", 1, False),
-    (3, "Пятница", 2, False),
-    (3, "Пятница", 3, False),
-
-    (4, "Понедельник", 1, False),
-    (4, "Понедельник", 2, False),
-    (4, "Понедельник", 3, False),
-    (4,"Вторник", 1, False),
-    (4,"Вторник", 2, False),
-    (4,"Вторник", 3, False),
-    (4, "Среда", 1, False),
-    (4, "Среда", 2, False),
-    (4, "Среда", 3, False),
-    (4, "Четверг", 1, False),
-    (4, "Четверг", 2, False),
-    (4, "Четверг", 3, False),
-    (4, "Пятница", 1, False),
-    (4, "Пятница", 2, False),
-    (4, "Пятница", 3, False),
-
-    (5, "Понедельник", 1, False),
-    (5, "Понедельник", 2, False),
-    (5, "Понедельник", 3, False),
-    (5,"Вторник", 1, False),
-    (5,"Вторник", 2, False),
-    (5,"Вторник", 3, False),
-    (5, "Среда", 1, False),
-    (5, "Среда", 2, False),
-    (5, "Среда", 3, False),
-    (5, "Четверг", 1, False),
-    (5, "Четверг", 2, False),
-    (5, "Четверг", 3, False),
-    (5, "Пятница", 1, False),
-    (5, "Пятница", 2, False),
-    (5, "Пятница", 3, False),
-
-    (6, "Понедельник", 1, False),
-    (6, "Понедельник", 2, False),
-    (6, "Понедельник", 3, False),
-    (6,"Вторник", 1, False),
-    (6,"Вторник", 2, False),
-    (6,"Вторник", 3, False),
-    (6, "Среда", 1, False),
-    (6, "Среда", 2, False),
-    (6, "Среда", 3, False),
-    (6, "Четверг", 1, False),
-    (6, "Четверг", 2, False),
-    (6, "Четверг", 3, False),
-    (6, "Пятница", 1, False),
-    (6, "Пятница", 2, False),
-    (6, "Пятница", 3, False),
-    ];
-
-mycursor.executemany(sql,val);
-mydb.commit();
-print(mycursor.rowcount, ' rows were inserted');
-print('last row id:', mycursor.lastrowid);
-
-
-print('----------\ngroups_busy TABLE\n----------');
-mycursor.execute('SELECT * FROM groups_busy');
-myresult = mycursor.fetchall();
-for x in myresult:
-    print(x);
+# sql = 'INSERT INTO groups_busy (group_id, weekday, lesson, is_busy) VALUES (%s, %s, %s, %s)';
+# val = [
+#     (1, "Понедельник", 1, False),
+#     (1, "Понедельник", 2, False),
+#     (1, "Понедельник", 3, False),
+#     (1,"Вторник", 1, False),
+#     (1,"Вторник", 2, False),
+#     (1,"Вторник", 3, False),
+#     (1, "Среда", 1, False),
+#     (1, "Среда", 2, False),
+#     (1, "Среда", 3, False),
+#     (1, "Четверг", 1, False),
+#     (1, "Четверг", 2, False),
+#     (1, "Четверг", 3, False),
+#     (1, "Пятница", 1, False),
+#     (1, "Пятница", 2, False),
+#     (1, "Пятница", 3, False),
+#
+#     (2, "Понедельник", 1, False),
+#     (2, "Понедельник", 2, False),
+#     (2, "Понедельник", 3, False),
+#     (2,"Вторник", 1, False),
+#     (2,"Вторник", 2, False),
+#     (2,"Вторник", 3, False),
+#     (2, "Среда", 1, False),
+#     (2, "Среда", 2, False),
+#     (2, "Среда", 3, False),
+#     (2, "Четверг", 1, False),
+#     (2, "Четверг", 2, False),
+#     (2, "Четверг", 3, False),
+#     (2, "Пятница", 1, False),
+#     (2, "Пятница", 2, False),
+#     (2, "Пятница", 3, False),
+#
+#     (3, "Понедельник", 1, False),
+#     (3, "Понедельник", 2, False),
+#     (3, "Понедельник", 3, False),
+#     (3,"Вторник", 1, False),
+#     (3,"Вторник", 2, False),
+#     (3,"Вторник", 3, False),
+#     (3, "Среда", 1, False),
+#     (3, "Среда", 2, False),
+#     (3, "Среда", 3, False),
+#     (3, "Четверг", 1, False),
+#     (3, "Четверг", 2, False),
+#     (3, "Четверг", 3, False),
+#     (3, "Пятница", 1, False),
+#     (3, "Пятница", 2, False),
+#     (3, "Пятница", 3, False),
+#
+#     (4, "Понедельник", 1, False),
+#     (4, "Понедельник", 2, False),
+#     (4, "Понедельник", 3, False),
+#     (4,"Вторник", 1, False),
+#     (4,"Вторник", 2, False),
+#     (4,"Вторник", 3, False),
+#     (4, "Среда", 1, False),
+#     (4, "Среда", 2, False),
+#     (4, "Среда", 3, False),
+#     (4, "Четверг", 1, False),
+#     (4, "Четверг", 2, False),
+#     (4, "Четверг", 3, False),
+#     (4, "Пятница", 1, False),
+#     (4, "Пятница", 2, False),
+#     (4, "Пятница", 3, False),
+#
+#     (5, "Понедельник", 1, False),
+#     (5, "Понедельник", 2, False),
+#     (5, "Понедельник", 3, False),
+#     (5,"Вторник", 1, False),
+#     (5,"Вторник", 2, False),
+#     (5,"Вторник", 3, False),
+#     (5, "Среда", 1, False),
+#     (5, "Среда", 2, False),
+#     (5, "Среда", 3, False),
+#     (5, "Четверг", 1, False),
+#     (5, "Четверг", 2, False),
+#     (5, "Четверг", 3, False),
+#     (5, "Пятница", 1, False),
+#     (5, "Пятница", 2, False),
+#     (5, "Пятница", 3, False),
+#
+#     (6, "Понедельник", 1, False),
+#     (6, "Понедельник", 2, False),
+#     (6, "Понедельник", 3, False),
+#     (6,"Вторник", 1, False),
+#     (6,"Вторник", 2, False),
+#     (6,"Вторник", 3, False),
+#     (6, "Среда", 1, False),
+#     (6, "Среда", 2, False),
+#     (6, "Среда", 3, False),
+#     (6, "Четверг", 1, False),
+#     (6, "Четверг", 2, False),
+#     (6, "Четверг", 3, False),
+#     (6, "Пятница", 1, False),
+#     (6, "Пятница", 2, False),
+#     (6, "Пятница", 3, False),
+#     ];
+#
+# mycursor.executemany(sql,val);
+# mydb.commit();
+# print(mycursor.rowcount, ' rows were inserted');
+# print('last row id:', mycursor.lastrowid);
+#
+#
+# print('----------\ngroups_busy TABLE\n----------');
+# mycursor.execute('SELECT * FROM groups_busy');
+# myresult = mycursor.fetchall();
+# for x in myresult:
+#     print(x);
 ##
 ### ---------------------------------------
 ### POPULATE ADMINS TABLE
@@ -307,7 +307,7 @@ for x in myresult:
 ##mycursor.execute('SELECT * FROM students');
 ##result = mycursor.fetchall();
 ##for x in result:
-##    print(x); 
+##    print(x);
 
 # ---------------------------------------
 # POPULATE TEACHERS TABLE
@@ -330,7 +330,7 @@ for x in myresult:
 ##    ('Выбегалло','Амвросий','Амбруазович'),
 ##    ('Редькин','Магнус','Федорович'),
 ##    ('Бальзамо','Джузеппе', phnull),
-##    # воинствующий атеизм 
+##    # воинствующий атеизм
 ##    ('Неунывай-Дубино','Перун','Маркович'),
 ##    # математический анализ
 ##    ('Привалов','Александр', 'Иванович')
@@ -345,217 +345,217 @@ for x in myresult:
 ##mycursor.execute('SELECT * FROM teachers');
 ##result = mycursor.fetchall();
 ##for x in result:
-##    print(x); 
+##    print(x);
 
 # ---------------------------------------
 # POPULATE TEACHERS_BUSY TABLE
 # ---------------------------------------
 
-sql = 'INSERT INTO teachers_busy (teacher_id, weekday, lesson, is_busy) VALUES (%s,%s, %s, %s)';
-val = [
-    (1, "Понедельник", 1, False),
-    (1, "Понедельник", 2, False),
-    (1, "Понедельник", 3, False),
-    (1,"Вторник", 1, False),
-    (1,"Вторник", 2, False),
-    (1,"Вторник", 3, False),
-    (1, "Среда", 1, False),
-    (1, "Среда", 2, False),
-    (1, "Среда", 3, False),
-    (1, "Четверг", 1, False),
-    (1, "Четверг", 2, False),
-    (1, "Четверг", 3, False),
-    (1, "Пятница", 1, False),
-    (1, "Пятница", 2, False),
-    (1, "Пятница", 3, False),
-
-    (2, "Понедельник", 1, False),
-    (2, "Понедельник", 2, False),
-    (2, "Понедельник", 3, False),
-    (2,"Вторник", 1, False),
-    (2,"Вторник", 2, False),
-    (2,"Вторник", 3, False),
-    (2, "Среда", 1, False),
-    (2, "Среда", 2, False),
-    (2, "Среда", 3, False),
-    (2, "Четверг", 1, False),
-    (2, "Четверг", 2, False),
-    (2, "Четверг", 3, False),
-    (2, "Пятница", 1, False),
-    (2, "Пятница", 2, False),
-    (2, "Пятница", 3, False),
-
-    (3, "Понедельник", 1, False),
-    (3, "Понедельник", 2, False),
-    (3, "Понедельник", 3, False),
-    (3,"Вторник", 1, False),
-    (3,"Вторник", 2, False),
-    (3,"Вторник", 3, False),
-    (3, "Среда", 1, False),
-    (3, "Среда", 2, False),
-    (3, "Среда", 3, False),
-    (3, "Четверг", 1, False),
-    (3, "Четверг", 2, False),
-    (3, "Четверг", 3, False),
-    (3, "Пятница", 1, False),
-    (3, "Пятница", 2, False),
-    (3, "Пятница", 3, False),
-
-    (4, "Понедельник", 1, False),
-    (4, "Понедельник", 2, False),
-    (4, "Понедельник", 3, False),
-    (4,"Вторник", 1, False),
-    (4,"Вторник", 2, False),
-    (4,"Вторник", 3, False),
-    (4, "Среда", 1, False),
-    (4, "Среда", 2, False),
-    (4, "Среда", 3, False),
-    (4, "Четверг", 1, False),
-    (4, "Четверг", 2, False),
-    (4, "Четверг", 3, False),
-    (4, "Пятница", 1, False),
-    (4, "Пятница", 2, False),
-    (4, "Пятница", 3, False),
-
-    (5, "Понедельник", 1, False),
-    (5, "Понедельник", 2, False),
-    (5, "Понедельник", 3, False),
-    (5,"Вторник", 1, False),
-    (5,"Вторник", 2, False),
-    (5,"Вторник", 3, False),
-    (5, "Среда", 1, False),
-    (5, "Среда", 2, False),
-    (5, "Среда", 3, False),
-    (5, "Четверг", 1, False),
-    (5, "Четверг", 2, False),
-    (5, "Четверг", 3, False),
-    (5, "Пятница", 1, False),
-    (5, "Пятница", 2, False),
-    (5, "Пятница", 3, False),
-
-    (6, "Понедельник", 1, False),
-    (6, "Понедельник", 2, False),
-    (6, "Понедельник", 3, False),
-    (6,"Вторник", 1, False),
-    (6,"Вторник", 2, False),
-    (6,"Вторник", 3, False),
-    (6, "Среда", 1, False),
-    (6, "Среда", 2, False),
-    (6, "Среда", 3, False),
-    (6, "Четверг", 1, False),
-    (6, "Четверг", 2, False),
-    (6, "Четверг", 3, False),
-    (6, "Пятница", 1, False),
-    (6, "Пятница", 2, False),
-    (6, "Пятница", 3, False),
-
-    (7, "Понедельник", 1, False),
-    (7, "Понедельник", 2, False),
-    (7, "Понедельник", 3, False),
-    (7,"Вторник", 1, False),
-    (7,"Вторник", 2, False),
-    (7,"Вторник", 3, False),
-    (7, "Среда", 1, False),
-    (7, "Среда", 2, False),
-    (7, "Среда", 3, False),
-    (7, "Четверг", 1, False),
-    (7, "Четверг", 2, False),
-    (7, "Четверг", 3, False),
-    (7, "Пятница", 1, False),
-    (7, "Пятница", 2, False),
-    (7, "Пятница", 3, False),
-
-    (8, "Понедельник", 1, False),
-    (8, "Понедельник", 2, False),
-    (8, "Понедельник", 3, False),
-    (8,"Вторник", 1, False),
-    (8,"Вторник", 2, False),
-    (8,"Вторник", 3, False),
-    (8, "Среда", 1, False),
-    (8, "Среда", 2, False),
-    (8, "Среда", 3, False),
-    (8, "Четверг", 1, False),
-    (8, "Четверг", 2, False),
-    (8, "Четверг", 3, False),
-    (8, "Пятница", 1, False),
-    (8, "Пятница", 2, False),
-    (8, "Пятница", 3, False),
-
-    (9, "Понедельник", 1, False),
-    (9, "Понедельник", 2, False),
-    (9, "Понедельник", 3, False),
-    (9,"Вторник", 1, False),
-    (9,"Вторник", 2, False),
-    (9,"Вторник", 3, False),
-    (9, "Среда", 1, False),
-    (9, "Среда", 2, False),
-    (9, "Среда", 3, False),
-    (9, "Четверг", 1, False),
-    (9, "Четверг", 2, False),
-    (9, "Четверг", 3, False),
-    (9, "Пятница", 1, False),
-    (9, "Пятница", 2, False),
-    (9, "Пятница", 3, False),
-
-    (10, "Понедельник", 1, False),
-    (10, "Понедельник", 2, False),
-    (10, "Понедельник", 3, False),
-    (10,"Вторник", 1, False),
-    (10,"Вторник", 2, False),
-    (10,"Вторник", 3, False),
-    (10, "Среда", 1, False),
-    (10, "Среда", 2, False),
-    (10, "Среда", 3, False),
-    (10, "Четверг", 1, False),
-    (10, "Четверг", 2, False),
-    (10, "Четверг", 3, False),
-    (10, "Пятница", 1, False),
-    (10, "Пятница", 2, False),
-    (10, "Пятница", 3, False),
-
-    (11, "Понедельник", 1, False),
-    (11, "Понедельник", 2, False),
-    (11, "Понедельник", 3, False),
-    (11,"Вторник", 1, False),
-    (11,"Вторник", 2, False),
-    (11,"Вторник", 3, False),
-    (11, "Среда", 1, False),
-    (11, "Среда", 2, False),
-    (11, "Среда", 3, False),
-    (11, "Четверг", 1, False),
-    (11, "Четверг", 2, False),
-    (11, "Четверг", 3, False),
-    (11, "Пятница", 1, False),
-    (11, "Пятница", 2, False),
-    (11, "Пятница", 3, False),
-
-    (12, "Понедельник", 1, False),
-    (12, "Понедельник", 2, False),
-    (12, "Понедельник", 3, False),
-    (12,"Вторник", 1, False),
-    (12,"Вторник", 2, False),
-    (12,"Вторник", 3, False),
-    (12, "Среда", 1, False),
-    (12, "Среда", 2, False),
-    (12, "Среда", 3, False),
-    (12, "Четверг", 1, False),
-    (12, "Четверг", 2, False),
-    (12, "Четверг", 3, False),
-    (12, "Пятница", 1, False),
-    (12, "Пятница", 2, False),
-    (12, "Пятница", 3, False),
-    ];
-
-mycursor.executemany(sql,val);
-mydb.commit();
-print(mycursor.rowcount, ' rows were inserted');
-print('last row id:', mycursor.lastrowid);
-
-print('----------\nteachers_busy TABLE\n----------');
-mycursor.execute('SELECT * FROM teachers_busy');
-myresult = mycursor.fetchall();
-for x in myresult:
-    print(x);
+# sql = 'INSERT INTO teachers_busy (teacher_id, weekday, lesson, is_busy) VALUES (%s,%s, %s, %s)';
+# val = [
+#     (1, "Понедельник", 1, False),
+#     (1, "Понедельник", 2, False),
+#     (1, "Понедельник", 3, False),
+#     (1,"Вторник", 1, False),
+#     (1,"Вторник", 2, False),
+#     (1,"Вторник", 3, False),
+#     (1, "Среда", 1, False),
+#     (1, "Среда", 2, False),
+#     (1, "Среда", 3, False),
+#     (1, "Четверг", 1, False),
+#     (1, "Четверг", 2, False),
+#     (1, "Четверг", 3, False),
+#     (1, "Пятница", 1, False),
+#     (1, "Пятница", 2, False),
+#     (1, "Пятница", 3, False),
+#
+#     (2, "Понедельник", 1, False),
+#     (2, "Понедельник", 2, False),
+#     (2, "Понедельник", 3, False),
+#     (2,"Вторник", 1, False),
+#     (2,"Вторник", 2, False),
+#     (2,"Вторник", 3, False),
+#     (2, "Среда", 1, False),
+#     (2, "Среда", 2, False),
+#     (2, "Среда", 3, False),
+#     (2, "Четверг", 1, False),
+#     (2, "Четверг", 2, False),
+#     (2, "Четверг", 3, False),
+#     (2, "Пятница", 1, False),
+#     (2, "Пятница", 2, False),
+#     (2, "Пятница", 3, False),
+#
+#     (3, "Понедельник", 1, False),
+#     (3, "Понедельник", 2, False),
+#     (3, "Понедельник", 3, False),
+#     (3,"Вторник", 1, False),
+#     (3,"Вторник", 2, False),
+#     (3,"Вторник", 3, False),
+#     (3, "Среда", 1, False),
+#     (3, "Среда", 2, False),
+#     (3, "Среда", 3, False),
+#     (3, "Четверг", 1, False),
+#     (3, "Четверг", 2, False),
+#     (3, "Четверг", 3, False),
+#     (3, "Пятница", 1, False),
+#     (3, "Пятница", 2, False),
+#     (3, "Пятница", 3, False),
+#
+#     (4, "Понедельник", 1, False),
+#     (4, "Понедельник", 2, False),
+#     (4, "Понедельник", 3, False),
+#     (4,"Вторник", 1, False),
+#     (4,"Вторник", 2, False),
+#     (4,"Вторник", 3, False),
+#     (4, "Среда", 1, False),
+#     (4, "Среда", 2, False),
+#     (4, "Среда", 3, False),
+#     (4, "Четверг", 1, False),
+#     (4, "Четверг", 2, False),
+#     (4, "Четверг", 3, False),
+#     (4, "Пятница", 1, False),
+#     (4, "Пятница", 2, False),
+#     (4, "Пятница", 3, False),
+#
+#     (5, "Понедельник", 1, False),
+#     (5, "Понедельник", 2, False),
+#     (5, "Понедельник", 3, False),
+#     (5,"Вторник", 1, False),
+#     (5,"Вторник", 2, False),
+#     (5,"Вторник", 3, False),
+#     (5, "Среда", 1, False),
+#     (5, "Среда", 2, False),
+#     (5, "Среда", 3, False),
+#     (5, "Четверг", 1, False),
+#     (5, "Четверг", 2, False),
+#     (5, "Четверг", 3, False),
+#     (5, "Пятница", 1, False),
+#     (5, "Пятница", 2, False),
+#     (5, "Пятница", 3, False),
+#
+#     (6, "Понедельник", 1, False),
+#     (6, "Понедельник", 2, False),
+#     (6, "Понедельник", 3, False),
+#     (6,"Вторник", 1, False),
+#     (6,"Вторник", 2, False),
+#     (6,"Вторник", 3, False),
+#     (6, "Среда", 1, False),
+#     (6, "Среда", 2, False),
+#     (6, "Среда", 3, False),
+#     (6, "Четверг", 1, False),
+#     (6, "Четверг", 2, False),
+#     (6, "Четверг", 3, False),
+#     (6, "Пятница", 1, False),
+#     (6, "Пятница", 2, False),
+#     (6, "Пятница", 3, False),
+#
+#     (7, "Понедельник", 1, False),
+#     (7, "Понедельник", 2, False),
+#     (7, "Понедельник", 3, False),
+#     (7,"Вторник", 1, False),
+#     (7,"Вторник", 2, False),
+#     (7,"Вторник", 3, False),
+#     (7, "Среда", 1, False),
+#     (7, "Среда", 2, False),
+#     (7, "Среда", 3, False),
+#     (7, "Четверг", 1, False),
+#     (7, "Четверг", 2, False),
+#     (7, "Четверг", 3, False),
+#     (7, "Пятница", 1, False),
+#     (7, "Пятница", 2, False),
+#     (7, "Пятница", 3, False),
+#
+#     (8, "Понедельник", 1, False),
+#     (8, "Понедельник", 2, False),
+#     (8, "Понедельник", 3, False),
+#     (8,"Вторник", 1, False),
+#     (8,"Вторник", 2, False),
+#     (8,"Вторник", 3, False),
+#     (8, "Среда", 1, False),
+#     (8, "Среда", 2, False),
+#     (8, "Среда", 3, False),
+#     (8, "Четверг", 1, False),
+#     (8, "Четверг", 2, False),
+#     (8, "Четверг", 3, False),
+#     (8, "Пятница", 1, False),
+#     (8, "Пятница", 2, False),
+#     (8, "Пятница", 3, False),
+#
+#     (9, "Понедельник", 1, False),
+#     (9, "Понедельник", 2, False),
+#     (9, "Понедельник", 3, False),
+#     (9,"Вторник", 1, False),
+#     (9,"Вторник", 2, False),
+#     (9,"Вторник", 3, False),
+#     (9, "Среда", 1, False),
+#     (9, "Среда", 2, False),
+#     (9, "Среда", 3, False),
+#     (9, "Четверг", 1, False),
+#     (9, "Четверг", 2, False),
+#     (9, "Четверг", 3, False),
+#     (9, "Пятница", 1, False),
+#     (9, "Пятница", 2, False),
+#     (9, "Пятница", 3, False),
+#
+#     (10, "Понедельник", 1, False),
+#     (10, "Понедельник", 2, False),
+#     (10, "Понедельник", 3, False),
+#     (10,"Вторник", 1, False),
+#     (10,"Вторник", 2, False),
+#     (10,"Вторник", 3, False),
+#     (10, "Среда", 1, False),
+#     (10, "Среда", 2, False),
+#     (10, "Среда", 3, False),
+#     (10, "Четверг", 1, False),
+#     (10, "Четверг", 2, False),
+#     (10, "Четверг", 3, False),
+#     (10, "Пятница", 1, False),
+#     (10, "Пятница", 2, False),
+#     (10, "Пятница", 3, False),
+#
+#     (11, "Понедельник", 1, False),
+#     (11, "Понедельник", 2, False),
+#     (11, "Понедельник", 3, False),
+#     (11,"Вторник", 1, False),
+#     (11,"Вторник", 2, False),
+#     (11,"Вторник", 3, False),
+#     (11, "Среда", 1, False),
+#     (11, "Среда", 2, False),
+#     (11, "Среда", 3, False),
+#     (11, "Четверг", 1, False),
+#     (11, "Четверг", 2, False),
+#     (11, "Четверг", 3, False),
+#     (11, "Пятница", 1, False),
+#     (11, "Пятница", 2, False),
+#     (11, "Пятница", 3, False),
+#
+#     (12, "Понедельник", 1, False),
+#     (12, "Понедельник", 2, False),
+#     (12, "Понедельник", 3, False),
+#     (12,"Вторник", 1, False),
+#     (12,"Вторник", 2, False),
+#     (12,"Вторник", 3, False),
+#     (12, "Среда", 1, False),
+#     (12, "Среда", 2, False),
+#     (12, "Среда", 3, False),
+#     (12, "Четверг", 1, False),
+#     (12, "Четверг", 2, False),
+#     (12, "Четверг", 3, False),
+#     (12, "Пятница", 1, False),
+#     (12, "Пятница", 2, False),
+#     (12, "Пятница", 3, False),
+#     ];
+#
+# mycursor.executemany(sql,val);
+# mydb.commit();
+# print(mycursor.rowcount, ' rows were inserted');
+# print('last row id:', mycursor.lastrowid);
+#
+# print('----------\nteachers_busy TABLE\n----------');
+# mycursor.execute('SELECT * FROM teachers_busy');
+# myresult = mycursor.fetchall();
+# for x in myresult:
+#     print(x);
 ##
 ### ---------------------------------------
 ### POPULATE MODULES TABLE
@@ -590,7 +590,7 @@ for x in myresult:
 ##mycursor.execute('SELECT * FROM modules');
 ##result = mycursor.fetchall();
 ##for x in result:
-##    print(x); 
+##    print(x);
 ##
 ##
 # ---------------------------------------
@@ -684,7 +684,7 @@ for x in myresult:
 ##    (8,1), (8,3),
 ##    (9,2),
 ##    (10,1), (10,3),
-##    (11,3), 
+##    (11,3),
 ##    (12,3),
 ##    (13,3),
 ##    (14,1),
@@ -743,7 +743,7 @@ for x in myresult:
 ##mycursor.execute('SELECT * FROM rooms');
 ##result = mycursor.fetchall();
 ##for x in result:
-##    print(x); 
+##    print(x);
 
 # ---------------------------------------
 # POPULATE ROOMS_BUSY TABLE
@@ -963,7 +963,7 @@ for x in myresult:
 
 ##
 ##
-### --- template ---- 
+### --- template ----
 ##
 ##
 ####sql = 'INSERT INTO () VALUES ()';
@@ -985,20 +985,20 @@ for x in myresult:
 ### POPULATE USERS TABLE
 ### ---------------------------------------
 ##
-####sql = 'INSERT INTO users (username, email, full_name, hashed_password, disabled) VALUES (%s, %s, %s, %s, %s)';
-####val = [
-####    ('johndoe', 'johndoe@example.com', 'John Doe', 'fakehashedpassword1', False),
-####    ('alice', 'alice@example.com', 'Alice What', 'fakehashedpassword2', True)
-####    ];
-####
-####mycursor.executemany(sql,val);
-####mydb.commit();
-####print(mycursor.rowcount, 'were inserted');
-####print(mycursor.lastrowid);
-####
-####mycursor.execute('SELECT * FROM users');
-####myresult = mycursor.fetchall();
-####for x in myresult:
-####    print(x);
+sql = 'INSERT INTO users (id, username, email, hashed_password, is_active) VALUES (%s, %s, %s, %s, %s)';
+val = [
+   (1, 'johndoe', 'johndoe@example.com', 'fakehashedpassword1', False),
+   (2, 'alice', 'alice@example.com', 'fakehashedpassword2', True)
+   ];
+
+mycursor.executemany(sql,val);
+mydb.commit();
+print(mycursor.rowcount, 'were inserted');
+print(mycursor.lastrowid);
+
+mycursor.execute('SELECT * FROM users');
+myresult = mycursor.fetchall();
+for x in myresult:
+   print(x);
 ##
 ### ---------------------------------------

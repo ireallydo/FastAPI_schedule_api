@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+fastapi-utils = "*"
+sqlalchemy = "*"
+alembic = "*"
+alembic-autogen-check = "*"
+psycopg2-binary = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+
+[packages.uvicorn]
+extras = [ "standard",]
+
+[packages.pydantic]
+extras = [ "dotenv"]
