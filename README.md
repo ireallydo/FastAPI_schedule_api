@@ -8,7 +8,6 @@ ___models___
 
 __schemas__
 
-
 ___crud___
 
 * add semester argument to autofill (check is busy)
