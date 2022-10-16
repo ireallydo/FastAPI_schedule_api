@@ -1,28 +1,15 @@
-from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
+from sqlalchemy.orm import Session
 
 from fastapi import Depends, FastAPI, HTTPException
 
-from db.models import UserModel
+from db.models import TeacherModel, TeacherBusyModel
+from db.enums import WeekdaysEnum
+from db.dto import *
+from . import BaseDAO
 
-def get_db():
-    db = SessionLocal();
-    try:
-        yield db;
-    finally:
-        db.close();
+class TeacherDAO(BaseDAO[TeacherModel, TeacherCreateDTO, TeacherPatchDTO, TeacherDeleteDTO]):
 
-db: Session = Depends(get_db)
+    def get_id_by_module(db: Session, module_id):
+        return db.query(teachers_to_modules).where(teachers_to_modules.c.Module_id==module_id).all()
 
-def set_busy(db: Session, teacher_id, weekday, lesson):
-        db.query(TeacherBusyModel).filter(TeacherBusyModel.teacher_id==teacher_id,
-                                                 TeacherBusyModel.weekday==weekday,
-                                                 TeacherBusyModel.lesson==lesson).update({'is_busy': True}, synchronize_session="fetch");
-        db.commit()
-
-def get_id_by_module(db: Session, module_id):
-    return db.query(teachers_to_modules).where(teachers_to_modules.c.Module_id==module_id).all()
-
-def check_busy(db: Session, teacher_id, weekday, lesson):
-    return db.query(TeacherBusyModel.is_busy).where(TeacherBusyModel.teacher_id==teacher_id,
-                                                           TeacherBusyModel.weekday==weekday,
-                                                           TeacherBusyModel.lesson==lesson).all()
+teacher_dao = TeacherDAO(TeacherModel)

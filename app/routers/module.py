@@ -1,13 +1,12 @@
 from typing import List
 
-from fastapi import Depends, FastAPI, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
 
-from services import group_service, room_service, schedule_service, teacher_service, user_service, module_service
+from services import module_service
 
 from db.models import *
 from db.dto import *

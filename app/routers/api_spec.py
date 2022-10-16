@@ -10,3 +10,6 @@ class ApiSpec(str, Enum):
 
     MODULES = '/modules'
     GET_MODULES_BY_NAME = '/modules/{module_name}'
+
+    TEACHERS = '/teachers'
+    TEACHER_BUSY = '/teacher_busy'

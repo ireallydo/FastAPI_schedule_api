@@ -1,50 +1,58 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, func;
 from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
+from sorcery import dict_of
 
 from db.models import *
 from db.dto import *
-from db.dao import teacher_dao
+from db.dao import teacher_dao, teacher_busy_dao
 from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 
 
-enum_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5};
+def create(db, input_data):
+    return teacher_dao.create(db, input_data)
 
-# -----------------------------------------------------------------
-# tech create functions
-# -----------------------------------------------------------------
+def get_all(db, skip, limit):
+    return teacher_dao.get_all(db, skip, limit)
 
-def set_teacher_busy(teacher_id: int, weekday: str, lesson: int):
-    '''takes teacher id, weekday (str) and lesson number as input
-    sets the is_busy flag to true'''
+def patch(db, search_data, patch_data):
+    teacher = teacher_dao.get_by(db, search_data)
+    teacher_dao.patch(db, patch_data, teacher.id)
+    return teacher_dao.get_by_id(db, teacher.id)
 
-    teacher_dao.set_busy(teacher_id, weekday, lesson)
+def delete(db, input_data):
+    teacher = teacher_dao.get_by(db, input_data)
+    return teacher_dao.delete(db, teacher.id)
 
-# -----------------------------------------------------------------
-# tech read functions
-# -----------------------------------------------------------------
+def get_teacher_by(db, teacher_data):
+    teacher=teacher_dao.get_by(db, teacher_data)
+    return teacher
 
-
-def teachers_id_by_module(module_id: int):
-    '''takes module id as an input, outputs the list of corresponding teachers ids'''
-    teachers_id_by_module = teacher_dao.get_id_by_module(module_id)
-
-    teachers_list = [];
-
-    for instance in teachers_id_by_module:
-        teachers_list.append(instance['Teacher_id']);
-
-    return teachers_list;
-
-
-def check_teacher_busy(teacher_id: int, weekday: str, lesson: int):
+def check_teacher_busy(db, teacher_id, weekday, lesson):
     '''takes teacher id, weekday (str) and lesson number as input
     returns false flag if the teacher is NOT busy and true flag is the teacher IS busy'''
+    teacher_busy = teacher_busy_dao.check_busy(db, teacher_id, weekday, lesson)
+    print(teacher_busy)
+    return teacher_busy
 
-    db_request = teacher_dao.check_busy(teacher_id, weekday, lesson)
+def create_teacher_busy(db, teacher_id, weekday, lesson):
+    input_data = dict_of(teacher_id, weekday, lesson)
+    input_data["is_busy"]=True
+    teacher_busy_dao.create(db, input_data)
+    return check_teacher_busy(db, teacher_id, weekday, lesson)
 
-    db_dict = db_request[0];
+def set_teacher_busy(db, teacher_id, weekday, lesson):
+    '''takes teacher id, weekday (str) and lesson number as input
+    sets the is_busy flag to true'''
+    return teacher_busy_dao.set_busy(db, teacher_id, weekday, lesson)
 
-    if db_dict['is_busy']== False:
-        return False;
-    else:
-        return True;
+#
+# def teachers_id_by_module(module_id: int):
+#     '''takes module id as an input, outputs the list of corresponding teachers ids'''
+#     teachers_id_by_module = teacher_dao.get_id_by_module(module_id)
+#
+#     teachers_list = [];
+#
+#     for instance in teachers_id_by_module:
+#         teachers_list.append(instance['Teacher_id']);
+#
+#     return teachers_list;

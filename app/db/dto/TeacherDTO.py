@@ -1,35 +1,48 @@
-from typing import List, Union, Dict
+from typing import List, Union, Dict, Optional
 from pydantic import BaseModel
 
-from db.enums import *
-from . import ModuleDTO
+from uuid import UUID
 
-# -----------------------------------------------------------------
-# teachers classes
-# -----------------------------------------------------------------
+from db.enums import ClassTypesEnum, AcademicYearsEnum, WeekdaysEnum, LessonsEnum
+from db.dto import ModuleDTO
+
 
 class TeacherBaseDTO(BaseModel):
-    pass;
+    class Config:
+        orm_mode = True
+        arbitrary_types_allowed=True
 
 class TeacherCreateDTO(TeacherBaseDTO):
-    last_name: str;
-    first_name: str;
-    second_name: Union[str, None] = None;
-    class Config:
-        orm_mode = True;
+    first_name: str
+    second_name: Optional[str]
+    last_name: str
 
-class TeacherDTO(BaseModel):
-    id: int;
+class TeacherDTO(TeacherBaseDTO):
+    id: UUID
+    first_name: str
+    second_name: Optional[str]
+    last_name: str
 
-    class Config:
-        orm_mode = True;
+class TeacherPatchDTO(TeacherBaseDTO):
+    first_name: Optional[str]
+    second_name: Optional[str]
+    last_name: Optional[str]
+
+class TeacherDeleteDTO(TeacherCreateDTO):
+    pass
+
+class TeacherBusyDTO(TeacherCreateDTO):
+    weekday: WeekdaysEnum
+    lesson: LessonsEnum
+
+
 
 class TeacherModulesDTO(TeacherDTO):
-    modules: List[ModuleDTO];
+    modules: List[ModuleDTO]
 
 class TeacherScheduleDTO(TeacherBaseDTO):
     last_name: str;
     first_name: str;
-    second_name: Union[str, None] = None;
+    second_name: Optional[str]
     class Config:
         orm_mode = True;
