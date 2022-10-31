@@ -1,28 +1,54 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, func;
-from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator
+from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
+from sorcery import dict_of
 
 from db.models import *
 from db.dto import *
-from db.dao import room_dao
-from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
+from db.dao import room_dao, room_busy_dao
+from db.enums import ClassTypesEnum
 
 
-enum_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5}
+def create(db, input_data):
+    return room_dao.create(db, input_data)
 
-# -----------------------------------------------------------------
-# tech read functions
-# -----------------------------------------------------------------
+def get_all(db, skip, limit):
+    return room_dao.get_all(db, skip, limit)
 
-def get_room_number_by_id(room_id: int):
-    '''takes a room id and returns correspondig room number'''
-    request_room_number = room_dao.get_by_id(room_id)
-    room_number = request_room_number[0][0]
-    return room_number
+def patch(db, search_data, patch_data):
+    #room = room_dao.get_by(db, search_data)
+    room = room_dao.get_room_by_number(db, search_data)
+    room_dao.patch(db, patch_data, room.id)
+    return room_dao.get_by_id(db, room.id)
 
-def check_room_busy(weekday: str, lesson: int):
-    '''takes weekday and lesson as input
-    returns one room with is_busy flag set to false (empty room)'''
+def delete(db, input_data):
+    room = room_dao.get_by(db, input_data)
+    return room_dao.delete(db, room.id)
 
-    db_request = room_dao.check_busy(weekday, lesson)
+def get_room_by_number(db, room_number):
+    return room_dao.get_room_by_number(db, room_number)
 
-    return db_request.room_id
+def check_room_busy(db, room_id, weekday, lesson):
+    room_busy = room_busy_dao.check_busy(db, room_id, weekday, lesson)
+    return room_busy
+
+def create_room_busy(db, room_id, weekday, lesson):
+    input_data = dict_of(room_id, weekday, lesson)
+    input_data["is_busy"]=True
+    room_busy_dao.create(db, input_data)
+    return check_room_busy(db, room_id, weekday, lesson)
+
+def set_room_busy(db, room_id, weekday, lesson):
+    room_busy_dao.set_busy(db, room_id, weekday, lesson)
+    return check_room_busy(db, room_id, weekday, lesson)
+
+# def get_room_number_by_id(room_id: int):
+#     '''takes a room id and returns correspondig room number'''
+#     request_room_number = room_dao.get_by_id(room_id)
+#     room_number = request_room_number[0][0]
+#     return room_number
+
+# def check_room_busy(db, room_id, weekday, lesson):
+#
+#     db_request = room_dao.check_busy(weekday, lesson)
+#
+#     return db_request.room_id

@@ -1,27 +1,30 @@
-from typing import List, Union, Dict
+from typing import List, Union, Dict, Optional
 from pydantic import BaseModel
 
-from db.enums import *
+from uuid import UUID
 
+from db.enums import AcademicYearsEnum, AcademicGroupsEnum
 
-
-# -----------------------------------------------------------------
-# students classes
-# -----------------------------------------------------------------
 
 class StudentBaseDTO(BaseModel):
-    last_name: str;
-    first_name: str;
-    second_name: Union[str, None] = None;
-
-class StudentCreateDTO(StudentBaseDTO):
-    academic_year: int;
-    academic_group: int;
-
-class StudentDTO(StudentBaseDTO):
-    id: int;
-    academic_year: int;
-    academic_group: int;
+    first_name: str
+    second_name: Optional[str]
+    last_name: str
 
     class Config:
-        orm_mode = True;
+        orm_mode = True
+
+class StudentCreateDTO(StudentBaseDTO):
+    academic_year: AcademicYearsEnum
+    academic_group: AcademicGroupsEnum
+
+class StudentDTO(StudentBaseDTO):
+    academic_year: AcademicYearsEnum
+    academic_group: AcademicGroupsEnum
+    id: UUID
+
+class StudentPatchDTO(StudentCreateDTO):
+    pass
+
+class StudentDeleteDTO(StudentCreateDTO):
+    pass

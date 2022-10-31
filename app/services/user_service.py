@@ -1,17 +1,30 @@
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, func;
+from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
+from sorcery import dict_of
+
 from db.models import *
 from db.dto import *
 from db.dao import user_dao
-from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 
-# -----------------------------------------------------------------
-# auth functions
-# -----------------------------------------------------------------
 
-def get_user_by_id(user_id: int):
-    return user_dao.get_by_id(db=db, user_id=user_id)
+def create(db, input_data):
+    return user_dao.create(db, input_data)
 
-def get_user_by_email(email:str):
-    return user_dao.get_by_email(db=db, email=email)
+def get_all(db, skip, limit):
+    return user_dao.get_all(db, skip, limit)
 
-def get_users(skip: int = 0, limit: int = 100):
-    return user_dao.get_(db=db, skip=0, int=100)
+def patch(db, search_data, patch_data):
+    user = user_dao.get_by(db, search_data)
+    user_dao.patch(db, patch_data, user.id)
+    return user_dao.get_by_id(db, user.id)
+
+def patch_inactive(db, search_data, patch_data):
+    user = user_dao.get_by(db, search_data)
+# def get_user_by_id(user_id: int):
+#     return user_dao.get_by_id(db=db, user_id=user_id)
+#
+# def get_user_by_email(email:str):
+#     return user_dao.get_by_email(db=db, email=email)
+#
+# def get_users(skip: int = 0, limit: int = 100):
+#     return user_dao.get_(db=db, skip=0, int=100)

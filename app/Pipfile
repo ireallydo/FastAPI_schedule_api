@@ -10,6 +10,7 @@ sqlalchemy = "*"
 alembic = "*"
 alembic-autogen-check = "*"
 psycopg2-binary = "*"
+sorcery = "*"
 
 [dev-packages]
 

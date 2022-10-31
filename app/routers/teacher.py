@@ -20,11 +20,11 @@ from db.database import SessionLocal, engine
 router = APIRouter(tags=["teacher"])
 
 def get_db():
-    db = SessionLocal();
+    db = SessionLocal()
     try:
-        yield db;
+        yield db
     finally:
-        db.close();
+        db.close()
 
 @cbv(router)
 class TeacherView:
@@ -54,8 +54,8 @@ class TeacherView:
             middle_name=""
         return JSONResponse(status_code=200, content={'message': f'Преподаватель {input_data.first_name} {middle_name} {input_data.last_name} был успешно удален из базы данных!'})
 
-    @router.post(ApiSpec.TEACHER_BUSY, status_code=201, response_model=TeacherBusyDTO)
-    def post_teacher_busy(self, input_data: TeacherBusyDTO):
+    @router.post(ApiSpec.TEACHER_BUSY, status_code=201, response_model=TeacherBusyResponseDTO)
+    def post_teacher_busy(self, input_data: TeacherBusyRequestDTO):
         teacher_data={"first_name":input_data.first_name, "second_name":input_data.second_name, "last_name":input_data.last_name}
         teacher=teacher_service.get_teacher_by(self.db, teacher_data)
         weekday=input_data.weekday

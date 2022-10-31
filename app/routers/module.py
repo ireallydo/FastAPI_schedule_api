@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import Depends, HTTPException
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
 from fastapi import APIRouter
@@ -19,11 +20,11 @@ from db.database import SessionLocal, engine
 router = APIRouter(tags=["module"])
 
 def get_db():
-    db = SessionLocal();
+    db = SessionLocal()
     try:
-        yield db;
+        yield db
     finally:
-        db.close();
+        db.close()
 
 @cbv(router)
 class ModuleView:
@@ -46,8 +47,8 @@ class ModuleView:
         return response
 
     @router.patch(ApiSpec.MODULES, status_code=201, response_model=ModuleDTO)
-    def patch_module(self, input_data: ModulePatchDTO):
-        response = module_service.patch(self.db, input_data)
+    def patch_module(self, search_data: ModuleCreateDTO, patch_data: ModulePatchDTO):
+        response = module_service.patch(self.db, search_data, patch_data)
         return response
 
     @router.delete(ApiSpec.MODULES, responses={200: {'model': str}})

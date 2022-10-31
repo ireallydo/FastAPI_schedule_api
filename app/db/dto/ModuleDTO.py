@@ -23,10 +23,10 @@ class ModuleDTO(ModuleBaseDTO):
     class_type: ClassTypesEnum
     academic_year: AcademicYearsEnum
 
-class ModulePatchDTO(ModuleCreateDTO):
-    new_module_name: str
-    new_class_type: ClassTypesEnum
-    new_academic_year: AcademicYearsEnum
+class ModulePatchDTO(ModuleBaseDTO):
+    module_name: Optional[str]
+    class_type: Optional[ClassTypesEnum]
+    academic_year: Optional[AcademicYearsEnum]
 
 class ModuleDeleteDTO(ModuleCreateDTO):
     pass

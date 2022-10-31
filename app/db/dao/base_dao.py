@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 from fastapi import Depends, FastAPI, HTTPException
 
-from db.models import BaseModel, TeacherModel
+from db.models import BaseModel
 from db.enums import WeekdaysEnum
 from db.dto import *
 

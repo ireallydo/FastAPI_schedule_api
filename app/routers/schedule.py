@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
 
-from services import group_service, room_service, schedule_service, teacher_service, user_service, module_service
+from services import schedule_service
 
 from db.models import *
 from db.dto import *

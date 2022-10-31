@@ -1,4 +1,4 @@
-from .BaseModel import *
+from .BaseModel import BaseModel
 from .GroupBusyModel import *
 from .LessonModel import *
 from .ModuleModel import *

@@ -1,26 +1,34 @@
-from typing import List, Union, Dict
+from typing import List, Union, Dict, Optional
 from pydantic import BaseModel
 
-from db.enums import *
+from uuid import UUID
 
-# -----------------------------------------------------------------
-# auth classes
-# -----------------------------------------------------------------
+from db.enums import ClassTypesEnum, AcademicYearsEnum, WeekdaysEnum, LessonsEnum
+from db.dto import ModuleDTO
+
 
 class UserBaseDTO(BaseModel):
-    email: str;
+    class Config:
+        orm_mode = True
 
 class UserCreateDTO(UserBaseDTO):
-    username: str;
-    password: str;
-    student_id: Union[str, None] = None;
-    admin_id: Union[str, None] = None;
-    teacher_id: Union[str, None] = None;
+    login: str
+    password: str
+    email: str
 
 class UserDTO(UserBaseDTO):
-    id: int;
-    username: str;
-    is_active: bool;
+    id: UUID
+    login: str
+    email: str
+    is_active: bool
 
-    class Config:
-        orm_mode = True;
+class UserPatchDTO(UserCreateDTO):
+    login: str
+    password: str
+
+class UserChangePasswordDTO(UserBaseDTO):
+    password: str
+
+class UserDeactivateDTO(UserBaseDTO):
+    login: str
+    is_active: bool

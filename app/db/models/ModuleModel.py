@@ -8,7 +8,6 @@ from db.models.teachers_to_modules_association_table import teachers_to_modules_
 from db.enums import ClassTypesEnum, AcademicYearsEnum
 
 
-
 class ModuleModel(BaseModel):
     __tablename__ = 'tbl_modules'
 

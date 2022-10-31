@@ -43,6 +43,10 @@ class ScheduleGroupRequestDTO(ScheduleBaseDTO):
     semester: SemestersEnum;
     group: int;
 
+class SchedulePatchDTO(ScheduleBaseDTO):
+    pass
+class ScheduleDeleteDTO(ScheduleBaseDTO):
+    pass
 #----------------------
 
 class ScheduleModuleDTO(ScheduleBaseDTO):

@@ -1,22 +1,20 @@
-from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
+from sqlalchemy.orm import Session
 
 from fastapi import Depends, FastAPI, HTTPException
 
-from db.models import UserModel
+from db.models.RoomModel import RoomModel
+from db.enums import LessonsEnum, WeekdaysEnum
+from db.dto import *
+from .base_dao import BaseDAO
 
-def get_db():
-    db = SessionLocal();
-    try:
-        yield db;
-    finally:
-        db.close();
 
-db: Session = Depends(get_db)
+class RoomDAO(BaseDAO[RoomModel, RoomCreateDTO, RoomPatchDTO, RoomDeleteDTO]):
 
-def get_by_id(db: Session, room_id):
-    return db.query(RoomModel.number).where(RoomModel.id==room_id)
+    def get_room_by_number(self, db: Session, room_number):
+        response = db.query(self.model).filter(self.model.room_number==room_number).first()
+        return response
 
-def check_busy(db: Session, weekday, lesson):
-    return db.query(RoomBusyModel).where(RoomBusyModel.weekday==weekday,
-                                                 RoomBusyModel.lesson==lesson,
-                                                 RoomBusyModel.is_busy==False).first()
+    # def get_by_id(db: Session, room_id):
+    #     return db.query(RoomModel.number).where(RoomModel.id==room_id)
+
+room_dao = RoomDAO(RoomModel)

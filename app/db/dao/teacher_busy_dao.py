@@ -2,10 +2,11 @@ from sqlalchemy.orm import Session
 
 from fastapi import Depends, FastAPI, HTTPException
 
-from db.models import TeacherBusyModel
+from db.models.TeacherBusyModel import TeacherBusyModel
 from db.enums import WeekdaysEnum, LessonsEnum
 from db.dto import *
-from . import BaseDAO
+from .base_dao import BaseDAO
+
 
 class TeacherBusyDAO(BaseDAO[TeacherBusyModel, TeacherBusyDTO, None, None]):
 
@@ -14,7 +15,7 @@ class TeacherBusyDAO(BaseDAO[TeacherBusyModel, TeacherBusyDTO, None, None]):
                                                                TeacherBusyModel.weekday==weekday,
                                                                TeacherBusyModel.lesson==lesson).first()
         return response
-        
+
     def set_busy(self, db: Session, teacher_id, weekday, lesson):
         db.query(TeacherBusyModel).filter(TeacherBusyModel.teacher_id==teacher_id,
                                                    TeacherBusyModel.weekday==weekday,

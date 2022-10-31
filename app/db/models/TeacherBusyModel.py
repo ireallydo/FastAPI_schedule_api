@@ -12,9 +12,8 @@ class TeacherBusyModel(BaseModel):
 
     teacher_id = Column('teacher_id', UUID(as_uuid=True), ForeignKey('tbl_teachers.id', ondelete="CASCADE"), primary_key=True)
     weekday = Column('weekday', Enum(WeekdaysEnum), nullable=False, primary_key=True)
-    lesson = Column('lesson', Enum(LessonsEnum), nullable=False, primary_key=True)
+    lesson = Column('lesson', Enum(LessonsEnum), ForeignKey('tbl_lessons.lesson_number'), nullable=False, primary_key=True)
     is_busy = Column('is_busy', Boolean, default=False)
 
-    #ForeignKey('tbl_lessons.lesson_number')
-    # many-to-one, this one is parent
-    #lessons = relationship('LessonModel')
+    #many-to-one, this one is parent
+    lessons = relationship('LessonModel')

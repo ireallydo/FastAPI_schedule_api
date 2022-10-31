@@ -1,30 +1,24 @@
-from typing import List, Union, Dict
+from typing import List, Union, Dict, Optional
 from pydantic import BaseModel
 
-from db.enums import *
+from uuid import UUID
 
+from db.enums import ClassTypesEnum
 
-# -----------------------------------------------------------------
-# rooms classes
-# -----------------------------------------------------------------
 
 class RoomBaseDTO(BaseModel):
-    number: int;
+    class Config:
+        orm_mode = True
 
 class RoomCreateDTO(RoomBaseDTO):
-    pass;
+    room_number: int
+    class_type: ClassTypesEnum
 
-class RoomDTO(RoomBaseDTO):
-    id: int;
+class RoomDTO(RoomCreateDTO):
+    pass
 
-    class Config:
-        orm_mode = True;
+class RoomPatchDTO(RoomBaseDTO):
+    class_type: ClassTypesEnum
 
-class RoomBusyBaseDTO(BaseModel):
-    room_id: int;
-    weekday: str;
-    lesson: int;
-    is_busy: bool;
-
-    class Config:
-        orm_mode = True;
+class RoomDeleteDTO(RoomBaseDTO):
+    room_number: int

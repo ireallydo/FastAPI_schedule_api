@@ -31,11 +31,6 @@ class TeacherPatchDTO(TeacherBaseDTO):
 class TeacherDeleteDTO(TeacherCreateDTO):
     pass
 
-class TeacherBusyDTO(TeacherCreateDTO):
-    weekday: WeekdaysEnum
-    lesson: LessonsEnum
-
-
 
 class TeacherModulesDTO(TeacherDTO):
     modules: List[ModuleDTO]

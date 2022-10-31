@@ -11,7 +11,7 @@ from db.enums import ClassTypesEnum
 class RoomModel(BaseModel):
     __tablename__ = 'tbl_rooms';
 
-    id = Column('id', Integer, primary_key=True)
+    id = Column("id", UUID(as_uuid=True), unique=True, primary_key=True, default=uuid4)
     room_number = Column('room_number', Integer, unique=True)
     class_type = Column('class_type', Enum(ClassTypesEnum))
 

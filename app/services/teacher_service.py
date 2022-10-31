@@ -28,10 +28,7 @@ def get_teacher_by(db, teacher_data):
     return teacher
 
 def check_teacher_busy(db, teacher_id, weekday, lesson):
-    '''takes teacher id, weekday (str) and lesson number as input
-    returns false flag if the teacher is NOT busy and true flag is the teacher IS busy'''
     teacher_busy = teacher_busy_dao.check_busy(db, teacher_id, weekday, lesson)
-    print(teacher_busy)
     return teacher_busy
 
 def create_teacher_busy(db, teacher_id, weekday, lesson):
@@ -41,9 +38,8 @@ def create_teacher_busy(db, teacher_id, weekday, lesson):
     return check_teacher_busy(db, teacher_id, weekday, lesson)
 
 def set_teacher_busy(db, teacher_id, weekday, lesson):
-    '''takes teacher id, weekday (str) and lesson number as input
-    sets the is_busy flag to true'''
-    return teacher_busy_dao.set_busy(db, teacher_id, weekday, lesson)
+    teacher_busy_dao.set_busy(db, teacher_id, weekday, lesson)
+    return check_teacher_busy(db, teacher_id, weekday, lesson)
 
 #
 # def teachers_id_by_module(module_id: int):
