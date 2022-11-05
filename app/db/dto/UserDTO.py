@@ -32,3 +32,6 @@ class UserChangePasswordDTO(UserBaseDTO):
 class UserDeactivateDTO(UserBaseDTO):
     login: str
     is_active: bool
+
+class UserFullDTO(UserDTO):
+    password: str

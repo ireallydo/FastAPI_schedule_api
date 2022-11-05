@@ -20,6 +20,11 @@ def patch(db, search_data, patch_data):
 
 def patch_inactive(db, search_data, patch_data):
     user = user_dao.get_by(db, search_data)
+
+def get_by_login(db, login):
+    user = user_dao.get_by_login(db, login)
+    print(user)
+    return user
 # def get_user_by_id(user_id: int):
 #     return user_dao.get_by_id(db=db, user_id=user_id)
 #

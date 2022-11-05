@@ -27,10 +27,6 @@ def get_db():
         db.close();
 
 
-#----------------------------
-# CREATE endpoints (additional endpoints for admins - downpage)
-#----------------------------
-
 @cbv(router)
 class ScheduleView:
     # dependencies as class attributes

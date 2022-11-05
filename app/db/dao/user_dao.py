@@ -11,7 +11,7 @@ from .base_dao import BaseDAO
 class UserDAO(BaseDAO[UserModel, UserCreateDTO, UserPatchDTO, None]):
 
     def get_by_login(self, db, login):
-        response = db.query(UserModel).filter(UserModel.login==login).offset(skip).limit(limit).all()
+        response = db.query(UserModel).filter(UserModel.login==login).one()
         print(response)
         return response
     #
@@ -21,6 +21,7 @@ class UserDAO(BaseDAO[UserModel, UserCreateDTO, UserPatchDTO, None]):
     #     return response
 
 user_dao = UserDAO(UserModel)
+
 
 #class UserDao:
 
