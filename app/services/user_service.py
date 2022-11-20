@@ -6,8 +6,11 @@ from db.models import *
 from db.dto import *
 from db.dao import user_dao
 
+import utils
+
 
 def create(db, input_data):
+    input_data.password = utils.hash_password(input_data.password)
     return user_dao.create(db, input_data)
 
 def get_all(db, skip, limit):
@@ -18,8 +21,9 @@ def patch(db, search_data, patch_data):
     user_dao.patch(db, patch_data, user.id)
     return user_dao.get_by_id(db, user.id)
 
-def patch_inactive(db, search_data, patch_data):
-    user = user_dao.get_by(db, search_data)
+def set_inactive(db, id):
+    user_dao.set_inactive(db, id)
+    return user_dao.get_by_id(db, id)
 
 def get_by_login(db, login):
     user = user_dao.get_by_login(db, login)

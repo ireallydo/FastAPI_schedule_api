@@ -31,5 +31,5 @@ class ApiSpec(str, Enum):
     USERS = '/users'
     USERS_INACTIVE = '/users/inactivity'
 
-    AUTH = '/token'
-    AUTH_USER = '/auth/current_user'
+    AUTH = '/login'
+    AUTH_USER = '/me'

@@ -12,6 +12,8 @@ alembic-autogen-check = "*"
 psycopg2-binary = "*"
 sorcery = "*"
 python-multipart = "*"
+passlib = "*"
+python-jose="*"
 
 [dev-packages]
 

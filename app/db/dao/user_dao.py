@@ -14,6 +14,12 @@ class UserDAO(BaseDAO[UserModel, UserCreateDTO, UserPatchDTO, None]):
         response = db.query(UserModel).filter(UserModel.login==login).one()
         print(response)
         return response
+
+    def set_inactive(self, db, id):
+        db_model = self.model
+        db.query(db_model).filter(self.model.id==id).update({"is_active": False})
+        db.commit()
+
     #
     # def get_by_year(self, db, year_number, skip, limit):
     #     response = db.query(StudentModel).filter(StudentModel.academic_year==year_number).offset(skip).limit(limit).all()

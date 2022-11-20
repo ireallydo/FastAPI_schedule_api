@@ -1,21 +1,19 @@
-from typing import List
+from sorcery import dict_of
+from jose import jwt
 
-from fastapi import Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import JSONResponse
-from sqlalchemy.orm import Session
-
-from fastapi import APIRouter
-from fastapi_utils.cbv import cbv
-
-from services import auth_service, user_service
-
-from db.models import *
-from db.dto import *
-from db.enums import *
-from .api_spec import ApiSpec
-
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
+from fastapi_utils.cbv import cbv
+
+from sqlalchemy.orm import Session
+
+import utils
+from services import auth_service, user_service
+from db.models import *
+from db.dto import *
+from .api_spec import ApiSpec
 from db.database import SessionLocal, engine
 
 
@@ -28,43 +26,30 @@ def get_db():
     finally:
         db.close()
 
-def fake_hash_password(db, password: str):
-    return password
-
-db: Session = Depends(get_db)
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-def get_current_user(db, token: str = Depends(oauth2_scheme)):
-    user = fake_decode_token(db, token)
-    if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Пользователь не авторизован', headers={'WWW-Authenticate': 'Bearer'})
-    return user
-
-def fake_decode_token(db, token):
-    username = token
-    user = user_dao.get_by(db, username)
-    return user
-
-def get_current_active_user(current_user: UserDTO = Depends(get_current_user)):
-    if current_user.is_active == False:
-        raise HTTPException(status_code=400, detail='Пользователь удален')
-    return current_user
-
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login", scheme_name="JWT")
 
 @cbv(router)
 class AuthView:
     db: Session = Depends(get_db)
 
     @router.get(ApiSpec.AUTH_USER, status_code=200, response_model=UserDTO)
-    def get_current_user(current_user: UserDTO = Depends(get_current_active_user)):
-        return current_user
+    def get_current_user(self, token = Depends(oauth2_scheme)):
+        user = auth_service.get_current_user(self.db, token)
+        if user is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Could not find user")
+        return user
 
     @router.post(ApiSpec.AUTH, status_code=201)
     def login(self, form_data: OAuth2PasswordRequestForm = Depends()):
         user = user_service.get_by_login(self.db, form_data.username)
         if not user:
             raise HTTPException(status_code=400, detail='Неправильное имя пользователя или пароль')
-        hashed_password = fake_hash_password(self.db, form_data.password)
-        if not hashed_password == user.password:
+        if not utils.verify_password(form_data.password, user.password):
             raise HTTPException(status_code=400, detail='Неправильное имя пользователя или пароль')
-        return {'access_token': user.login, 'token_type': 'bearer'}
+
+        access_token = utils.create_access_token(user.email)
+        refresh_token = utils.create_refresh_token(user.email)
+        user_id = user.id
+
+        return {'access_token': access_token,
+                'refresh_token': refresh_token}

@@ -46,6 +46,6 @@ class UserView:
         return response
 
     @router.patch(ApiSpec.USERS_INACTIVE, status_code=201, response_model=UserDTO)
-    def set_user_inactive(self, search_data: UserPatchDTO, patch_data: UserDeactivateDTO):
-        response = user_service.patch_inactive(self.db, search_data, patch_data)
+    def set_user_inactive(self, id, patch_data: UserDeactivateDTO):
+        response = user_service.set_inactive(self.db, id)
         return response
