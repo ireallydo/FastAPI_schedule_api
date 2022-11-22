@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
 
-from services import student_service
+from services import teacher_to_module_service
 
 from db.models import *
 from db.dto import *
@@ -27,22 +27,18 @@ def get_db():
         db.close()
 
 @cbv(router)
-class teacherToModuleView:
+class TeacherToModuleView:
 
     db: Session = Depends(get_db)
 
-    @router.post(ApiSpec.TEACHERS_MODULES, status_code=200, response_model=TeachersToModulesDTO)
+    @router.post(ApiSpec.TEACHERS_MODULES, status_code=201)
     def post_teacher_to_module(self, input_data: TeachersToModulesCreateDTO):
         return teacher_to_module_service.post_teacher_to_module(self.db, input_data)
 
-    @router.get(ApiSpec.TEACHERS_MODULES, status_code=200, response_model=TeachersToModulesDTO)
-    def get_teachers_to_modules(self, input_data: TeachersToModulesGetDTO):
-        return teacher_to_module_service.get_by_input(self.db, input_data)
-
-    @router.patch(ApiSpec.TEACHERS_MODULES, status_code=200, response_model=TeachersToModulesDTO)
-    def patch_teacher_to_module(self, input_data: TeachersToModulesPatchDTO):
-        return teacher_to_module_service.patch_teacher_to_module(self.db, input_data)
+    @router.get(ApiSpec.TEACHERS_MODULES, status_code=200)
+    def get_all_teachers_to_modules(self):
+        return teacher_to_module_service.get_all(self.db)
 
     @router.delete(ApiSpec.TEACHERS_MODULES, status_code=201)
     def delete_teacher_to_module(self, input_data: TeachersToModulesDeleteDTO):
-        return teacher_to_module_service.delete_teacher_to_module(self.db, input_data)
+        return teacher_to_module_service.delete_association(self.db, input_data)

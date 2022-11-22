@@ -7,19 +7,25 @@ from db.enums import ClassTypesEnum, AcademicYearsEnum, WeekdaysEnum, LessonsEnu
 from db.dto import ModuleDTO
 
 class TeachersToModulesBaseDTO(BaseModel):
-    pass
+    class Config:
+        orm_mode = True
+        arbitrary_types_allowed=True
 
 class TeachersToModulesCreateDTO(TeachersToModulesBaseDTO):
-    pass
+    first_name: str
+    second_name: Optional[str]
+    last_name: str
+    module_name: str
+    class_type: ClassTypesEnum
 
 class TeachersToModulesPatchDTO(TeachersToModulesBaseDTO):
     pass
 
-class TeachersToModulesDeleteDTO(TeachersToModulesBaseDTO):
+class TeachersToModulesDeleteDTO(TeachersToModulesCreateDTO):
     pass
 
-class TeachersToModulesGetDTO(TeachersToModulesBaseDTO):
+class TeachersToModulesGetDTO(TeachersToModulesCreateDTO):
     pass
 
-class TeachersToModulesDTO(TeachersToModulesBaseDTO):
+class TeachersToModulesDTO(TeachersToModulesCreateDTO):
     pass

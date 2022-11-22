@@ -27,6 +27,10 @@ def get_teacher_by(db, teacher_data):
     teacher=teacher_dao.get_by(db, teacher_data)
     return teacher
 
+def get_by_id(db, teacher_id):
+    teacher=teacher_dao.get_by_id(db, teacher_id)
+    return teacher
+
 def check_teacher_busy(db, teacher_id, weekday, lesson):
     teacher_busy = teacher_busy_dao.check_busy(db, teacher_id, weekday, lesson)
     return teacher_busy
