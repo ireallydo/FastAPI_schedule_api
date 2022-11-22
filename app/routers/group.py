@@ -38,7 +38,8 @@ class GroupBusyView:
             if busy_flag:
                 raise HTTPException(status_code=400, detail=f'''Группа уже занята!''')
             else:
-                response = group_service.set_group_busy(self.db, input_data)
+                group_service.set_group_busy(self.db, input_data)
         else:
-            response = group_service.create_group_busy(self.db, input_data)
+            group_service.create_group_busy(self.db, input_data)
+        response = group_service.check_group_busy(self.db, input_data)
         return response

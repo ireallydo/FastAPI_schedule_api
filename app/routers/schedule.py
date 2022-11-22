@@ -54,7 +54,7 @@ class ScheduleView:
         return schedule_service.fill_schedule_manually(self.db, input_data);
 
     #admins only
-    @router.post(ApiSpec.SCHEDULE_AUTO, status_code=201)
+    @router.post(ApiSpec.SCHEDULE_AUTO, status_code=200, response_model=ScheduleDTO)
     def create_schedule_auto(self, input_data: ScheduleCreateDTO):
         '''checks if the provided group_number is busy for the provided date/time
         if not, checks if there are teachers to be assigned for provided module and class type:
@@ -69,10 +69,7 @@ class ScheduleView:
         print(group_busy_dict)
 
         group_busy_db_entry = group_service.check_group_busy(self.db, group_busy_dict)
-        print('GROUP BUSY DB ENTRY')
-        print(group_busy_db_entry)
         if group_busy_db_entry:
-            ptint('GROUP BUSY')
             print(group_busy_db_entry.is_busy)
             group_busy_flag=group_busy_db_entry.is_busy
             if group_busy_flag == True:
@@ -83,6 +80,12 @@ class ScheduleView:
         if attempt == False:
             raise HTTPException(status_code=400, detail=f'''Все преподаватели указанного модуля заняты в указанное время. Пожалуйста, введите другие условия.''')
         else:
+            group_busy_input = dict_of(input_data.group_number, input_data.weekday, input_data.lesson_number)
+            if group_busy_db_entry:
+                    group_service.set_group_busy(self.db, group_busy_input)
+            else:
+                group_service.create_group_busy(self.db, group_busy_input)
+            print(attempt)
             return attempt
 
     #----------------------------

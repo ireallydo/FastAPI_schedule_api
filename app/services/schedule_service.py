@@ -28,8 +28,6 @@ def autofill_schedule(db: Session, input_data: ScheduleCreateDTO):
     teachers_list = teacher_service.get_teachers_by_module(db, module_id)
 
     for teacher in teachers_list:
-        print('TEACHER ID')
-        print(teacher)
         teacher_busy = teacher_service.check_teacher_busy(db, teacher, input_data.weekday, input_data.lesson_number)
         if teacher_busy:
             teacher_busy_flag = teacher_busy.is_busy
@@ -48,16 +46,12 @@ def autofill_schedule(db: Session, input_data: ScheduleCreateDTO):
                 return False
             else:
                 (teacher_id, room_number) = join_groups_check
-                # chosen_teacher_id = join_groups_check[0]
-                # chosen_room_number = join_groups_check[1]
         else:
             continue
 
     if not room_number:
         try:
             appropriate_rooms = room_service.get_rooms_by_class_type(db, input_data.class_type)
-            print('APPROPRIATE ROOMS')
-            print(appropriate_rooms)
             for room in appropriate_rooms:
                 print(room.id)
                 room_in_busy_table = room_service.check_room_busy(db, room.id, input_data.weekday, input_data.lesson_number)
@@ -71,30 +65,9 @@ def autofill_schedule(db: Session, input_data: ScheduleCreateDTO):
                     break
         except:
             raise HTTPException(status_code=400, detail=f'''Все доступные кабинеты для указанного вида занятий в указанное время заняты.''')
-        # room_id = room_service.get_spare_room(db, input_data.weekday, input_data.lesson_number)
-        # if room_id:
-        #     chosen_room_number = room_service.get_by_id(db, room_id)
-        # else:
-        #     pass
-            # if room_service.count_rooms_in_table()
-            # chosen_room_number = 0
-
-    group_busy_input = dict_of(input_data.group_number, input_data.weekday, input_data.lesson_number)
-    group_service.set_group_busy(db, group_busy_input)
-    print('GROUP SET BUSY')
-    print(group_busy_input)
 
     new_line_dict = dict_of(input_data.semester, input_data.group_number,input_data.weekday, input_data.lesson_number, module_id, input_data.class_type, room_number, teacher_id)
     new_line = ScheduleModel(**new_line_dict)
-    # (semester=input_data.semester,
-    #                            group=input_data.group_number,
-    #                            weekday=input_data.weekday,
-    #                            lesson_number=input_data.lesson_number,
-    #                            module_id=module_id,
-    #                            class_type=input_data.class_type,
-    #                            room=chosen_room_number,
-    #                            teacher_id=chosen_teacher_id)
-
     db.add(new_line);
     db.commit();
     db.refresh(new_line);

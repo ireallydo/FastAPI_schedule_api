@@ -9,11 +9,10 @@ from db.enums import WeekdaysEnum, LessonsEnum
 
 
 def create_group_busy(db, input_data):
-    input_data = input_data.dict()
+    if type(input_data) is not dict:
+        input_data = input_data.dict()
     input_data["is_busy"]=True
     group_busy_dao.create(db, input_data)
-    current_group_busy = group_busy_dao.check_busy(db, input_data)
-    return current_group_busy
 
 def set_group_busy(db, input_data):
     group_busy_dao.set_busy(db, input_data)
