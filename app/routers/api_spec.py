@@ -4,7 +4,7 @@ from enum import Enum
 class ApiSpec(str, Enum):
     SCHEDULE = '/schedule'
     SCHEDULE_MANUAL = '/schedule/manually'
-    SCHEDULE_AUTO = '/schedule/auto'
+    SCHEDULE_AUTO = '/schedule'
     SCHEDULE_GROUP = '/schedule/semester_{semester}/group_{group}'
     SCHEDULE_TEACHER = '/schedule/semester_{semester}/teacher_{teacher_id}'
 
@@ -13,6 +13,8 @@ class ApiSpec(str, Enum):
 
     TEACHERS = '/teachers'
     TEACHER_BUSY = '/teacher_busy'
+
+    TEACHERS_MODULES = '/teachers_to_modules'
 
     STUDENTS = '/students'
     GET_STUDENT_BY_NAME = '/students/name/{first_name}/surname/{last_name}'

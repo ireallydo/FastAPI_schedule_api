@@ -7,7 +7,7 @@ from db.enums import AcademicGroupsEnum, WeekdaysEnum, LessonsEnum
 
 class GroupBusyDTO(BaseModel):
     weekday: WeekdaysEnum
-    lesson: LessonsEnum
+    lesson_number: LessonsEnum
 
     class Config:
         orm_mode = True

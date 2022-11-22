@@ -1,4 +1,5 @@
 from typing import List
+from sorcery import dict_of
 
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import JSONResponse
@@ -7,7 +8,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
 
-from services import schedule_service
+from services import schedule_service, group_service
 
 from db.models import *
 from db.dto import *
@@ -54,13 +55,7 @@ class ScheduleView:
 
     #admins only
     @router.post(ApiSpec.SCHEDULE_AUTO, status_code=201)
-    def create_schedule_auto(self,
-                             semester: int,
-                             weekday: WeekdaysEnum,
-                             lesson_number: int,
-                             group_number: int,
-                             module_id: int,
-                             class_type: ClassTypesEnum):
+    def create_schedule_auto(self, input_data: ScheduleCreateDTO):
         '''checks if the provided group_number is busy for the provided date/time
         if not, checks if there are teachers to be assigned for provided module and class type:
         - either not busy ones related to this module
@@ -70,22 +65,21 @@ class ScheduleView:
         sets group busy and commit new row to schedule database
         if group is busy, or there are no options with teachers, rises HTTPException'''
 
-        group_busy_flag = group_service.check_group_busy(db=self.db, group_number=group_number, weekday=weekday, lesson_number=lesson_number);
+        group_busy_dict: GroupBusyDTO = dict_of(input_data.weekday, input_data.lesson_number, input_data.group_number)
+        print(group_busy_dict)
 
-        if group_busy_flag == True:
-            raise HTTPException(status_code=400, detail=f'''Group {group_number} in already busy on that time! Choose other conditions or use update!''');
+        group_busy_db_entry = group_service.check_group_busy(self.db, group_busy_dict)
+        if group_busy_db_entry:
+            group_busy_flag=group_busy_db_entry.is_busy
+            if group_busy_flag:
+                raise HTTPException(status_code=400, detail=f'''Группа уже занята!''')
 
-        attempt = schedule_service.autofill_schedule(db=self.db,
-                                      semester=semester,
-                                      weekday=weekday,
-                                      lesson_number=lesson_number,
-                                      group_number=group_number,
-                                      module_id=module_id,
-                                      class_type=class_type);
+        attempt = schedule_service.autofill_schedule(self.db, input_data)
+
         if attempt == False:
-            raise HTTPException(status_code=400, detail=f'''All teachers are busy for provided module-type pair! Please choose other conditions!''');
+            raise HTTPException(status_code=400, detail=f'''Все преподаватели указанного модуля заняты в указанное время. Пожалуйста, введите другие условия.''')
         else:
-            return attempt;
+            return attempt
 
     #----------------------------
     # READ endpoints

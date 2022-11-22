@@ -6,8 +6,7 @@ from db.dto import *
 from db.dao import schedule_dao
 from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 
-
-enum_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5};
+from services import teacher_service, module_service
 
 
 # -----------------------------------------------------------------
@@ -24,14 +23,12 @@ def fill_schedule_manually(db, input_data: ScheduleCreateManuallyDTO):
 
     return new_line
 
-def autofill_schedule(db: Session, semester: int, weekday: WeekdaysEnum, lesson_number: int, group_number: int, module_id: int, class_type: ClassTypesEnum):
+def autofill_schedule(db: Session, input_data: ScheduleCreateDTO):
 
-    db_weekday = translate_enum_weekday(db, weekday);
-    group_id = get_group_id_by_number(db, group_number);
-    db_class_type = translate_enum_class_type(db, class_type);
-    chosen_room_number = 0;
-
-    teachers_list = teachers_id_by_module(db, module_id=module_id);
+    module_id = module_service.get_by_name(db, input_data.module_name, 0, 100)
+    print("MODULE IDS")
+    print(module_id)
+    teachers_list = teacher_service.get_teachers_by_module(db, module_id)
 
     for teacher in teachers_list:
         teacher_busy_flag = check_teacher_busy(db=db, teacher_id=teacher, weekday=db_weekday, lesson=lesson_number);

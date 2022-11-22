@@ -8,3 +8,4 @@ from .module_dao import module_dao
 from .lesson_dao import lesson_dao
 from .room_dao import room_dao
 from .room_busy_dao import room_busy_dao
+from .teachers_to_modules_dao import teachers_to_modules_dao

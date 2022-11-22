@@ -1,9 +1,9 @@
 from fastapi import APIRouter
-from . import schedule, module, lesson, room, student, group, user, authentication
+from . import authentication, schedule, user, module, lesson, room, teacher, teacher_to_module, student, group
 
 api_router = APIRouter()
 
-endpoints = [schedule, module, lesson, room, student, group, user, authentication]
+endpoints = [authentication, schedule, user, module, lesson, room, teacher, teacher_to_module, student, group]
 
 for endpoint in endpoints:
     api_router.include_router(endpoint.router)

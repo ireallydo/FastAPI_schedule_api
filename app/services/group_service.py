@@ -20,6 +20,7 @@ def set_group_busy(db, input_data):
     return check_group_busy(db, input_data)
 
 def check_group_busy(db, input_data):
-    input_data = input_data.dict()
+    if type(input_data) is not dict:
+        input_data = input_data.dict()
     group_busy = group_busy_dao.check_busy(db, input_data)
     return group_busy

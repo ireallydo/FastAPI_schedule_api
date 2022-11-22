@@ -16,7 +16,12 @@ class ScheduleBaseDTO(BaseModel):
         arbitrary_types_allowed=True
 
 class ScheduleCreateDTO(ScheduleBaseDTO):
-    pass
+    semester: SemestersEnum
+    weekday: WeekdaysEnum
+    lesson_number: LessonsEnum
+    group_number: AcademicGroupsEnum
+    module_name: str
+    class_type: ClassTypesEnum
 
 class ScheduleCreateManuallyDTO(ScheduleBaseDTO):
     semester: SemestersEnum;
@@ -38,6 +43,19 @@ class ScheduleDTO(ScheduleBaseDTO):
     class_type: ClassTypesEnum;
     room_number: int;
     teacher_id: UUID;
+
+class ScheduleOutDTO(ScheduleBaseDTO):
+    semester: SemestersEnum
+    group_number: AcademicGroupsEnum
+    weekday: WeekdaysEnum
+    lesson_number: LessonsEnum
+    lesson_time: str
+    module_name: str
+    class_type: ClassTypesEnum
+    room_number: int
+    teacher_first_name: str
+    teacher_second_name: str
+    teacher_last_name: str
 
 class ScheduleGroupRequestDTO(ScheduleBaseDTO):
     semester: SemestersEnum;

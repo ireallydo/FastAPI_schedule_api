@@ -4,7 +4,7 @@ from sorcery import dict_of
 
 from db.models import *
 from db.dto import *
-from db.dao import teacher_dao, teacher_busy_dao
+from db.dao import teacher_dao, teacher_busy_dao, teachers_to_modules_dao
 from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 
 
@@ -40,6 +40,12 @@ def create_teacher_busy(db, teacher_id, weekday, lesson):
 def set_teacher_busy(db, teacher_id, weekday, lesson):
     teacher_busy_dao.set_busy(db, teacher_id, weekday, lesson)
     return check_teacher_busy(db, teacher_id, weekday, lesson)
+
+def get_teachers_by_module(db, module_name):
+    '''takes module id as an input, outputs the list of corresponding teachers ids'''
+
+    teachers_to_modules_dao.get_teachers_by_module(db, module_id)
+
 
 #
 # def teachers_id_by_module(module_id: int):
