@@ -69,9 +69,13 @@ class ScheduleView:
         print(group_busy_dict)
 
         group_busy_db_entry = group_service.check_group_busy(self.db, group_busy_dict)
+        print('GROUP BUSY DB ENTRY')
+        print(group_busy_db_entry)
         if group_busy_db_entry:
+            ptint('GROUP BUSY')
+            print(group_busy_db_entry.is_busy)
             group_busy_flag=group_busy_db_entry.is_busy
-            if group_busy_flag:
+            if group_busy_flag == True:
                 raise HTTPException(status_code=400, detail=f'''Группа уже занята!''')
 
         attempt = schedule_service.autofill_schedule(self.db, input_data)

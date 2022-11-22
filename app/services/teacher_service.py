@@ -45,10 +45,12 @@ def set_teacher_busy(db, teacher_id, weekday, lesson):
     teacher_busy_dao.set_busy(db, teacher_id, weekday, lesson)
     return check_teacher_busy(db, teacher_id, weekday, lesson)
 
-def get_teachers_by_module(db, module_name):
+def get_teachers_by_module(db, module_id):
     '''takes module id as an input, outputs the list of corresponding teachers ids'''
-
-    teachers_to_modules_dao.get_teachers_by_module(db, module_id)
+    response = teachers_to_modules_dao.get_teachers_by_module(db, module_id)
+    print('TEACHERS IDS FROM SERVICE')
+    print(response)
+    return response
 
 
 #

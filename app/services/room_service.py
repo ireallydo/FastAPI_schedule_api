@@ -14,6 +14,9 @@ def create(db, input_data):
 def get_all(db, skip, limit):
     return room_dao.get_all(db, skip, limit)
 
+def get_all_busy(db, skip, limit):
+    return room_busy_dao.get_all(db, skip, limit)
+
 def patch(db, search_data, patch_data):
     #room = room_dao.get_by(db, search_data)
     room = room_dao.get_room_by_number(db, search_data)
@@ -31,6 +34,10 @@ def check_room_busy(db, room_id, weekday, lesson):
     room_busy = room_busy_dao.check_busy(db, room_id, weekday, lesson)
     return room_busy
 
+def get_spare_room(db, weekday, lesson):
+    spare_room = room_busy_dao.get_spare_room(db, weekday, lesson)
+    return spare_room.id
+
 def create_room_busy(db, room_id, weekday, lesson):
     input_data = dict_of(room_id, weekday, lesson)
     input_data["is_busy"]=True
@@ -40,6 +47,20 @@ def create_room_busy(db, room_id, weekday, lesson):
 def set_room_busy(db, room_id, weekday, lesson):
     room_busy_dao.set_busy(db, room_id, weekday, lesson)
     return check_room_busy(db, room_id, weekday, lesson)
+
+def count_rooms_in_table(db):
+    count_busy = 0
+    for room in get_all_busy(db, 0, 100):
+        count_busy += 1
+    count_room = 0
+    for room in get_all(db, 0, 100):
+        count_room += 1
+    return count_busy < count_room
+
+def get_rooms_by_class_type(db, class_type):
+    result = room_dao.get_rooms_by_class_type(db, class_type)
+    return result
+
 
 # def get_room_number_by_id(room_id: int):
 #     '''takes a room id and returns correspondig room number'''

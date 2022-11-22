@@ -1,3 +1,5 @@
+from sorcery import dict_of
+
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, func;
 from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
 
@@ -6,12 +8,8 @@ from db.dto import *
 from db.dao import schedule_dao
 from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 
-from services import teacher_service, module_service
+from services import teacher_service, module_service, room_service, group_service
 
-
-# -----------------------------------------------------------------
-# create functions
-# -----------------------------------------------------------------
 
 def fill_schedule_manually(db, input_data: ScheduleCreateManuallyDTO):
     '''function for fully manual creation of schedule, has no specific checks or constraints'''
@@ -25,56 +23,103 @@ def fill_schedule_manually(db, input_data: ScheduleCreateManuallyDTO):
 
 def autofill_schedule(db: Session, input_data: ScheduleCreateDTO):
 
-    module_id = module_service.get_by_name(db, input_data.module_name, 0, 100)
-    print("MODULE IDS")
-    print(module_id)
+    module = module_service.get_by_name_and_type(db, input_data.module_name, input_data.class_type)
+    module_id = module.id
     teachers_list = teacher_service.get_teachers_by_module(db, module_id)
 
     for teacher in teachers_list:
-        teacher_busy_flag = check_teacher_busy(db=db, teacher_id=teacher, weekday=db_weekday, lesson=lesson_number);
+        print('TEACHER ID')
+        print(teacher)
+        teacher_busy = teacher_service.check_teacher_busy(db, teacher, input_data.weekday, input_data.lesson_number)
+        if teacher_busy:
+            teacher_busy_flag = teacher_busy.is_busy
+        else:
+            teacher_busy_flag = False
 
         if teacher_busy_flag == False:
-            chosen_teacher_id = teacher;
-            set_teacher_busy(db=db, teacher_id=chosen_teacher_id, weekday=db_weekday, lesson=lesson_number);
-            break;
+            teacher_id = teacher
+            teacher_service.set_teacher_busy(db, teacher_id, input_data.weekday, input_data.lesson_number)
+            room_number = None
+            break
 
         if teacher_busy_flag == True and teacher == teachers_list[-1]:
-            join_groups_check = query_db_for_same_class(db=db,
-                                                        teachers_list=teachers_list,
-                                                        semester=semester,
-                                                        weekday=db_weekday,
-                                                        lesson_number=lesson_number,
-                                                        module_id=module_id,
-                                                        class_type=db_class_type);
-
+            join_groups_check = query_db_for_same_class(db, teachers_list, module_id, input_data)
             if join_groups_check == False:
-                return False;
+                return False
             else:
-                chosen_teacher_id = join_groups_check[0];
-                chosen_room_number = join_groups_check[1];
+                (teacher_id, room_number) = join_groups_check
+                # chosen_teacher_id = join_groups_check[0]
+                # chosen_room_number = join_groups_check[1]
         else:
-            continue;
+            continue
 
-    if chosen_room_number == 0:
-        room_id = check_room_busy(db=db, weekday=db_weekday, lesson=lesson_number);
-        chosen_room_number = get_room_number_by_id(db=db, room_id=room_id);
+    if not room_number:
+        try:
+            appropriate_rooms = room_service.get_rooms_by_class_type(db, input_data.class_type)
+            print('APPROPRIATE ROOMS')
+            print(appropriate_rooms)
+            for room in appropriate_rooms:
+                print(room.id)
+                room_in_busy_table = room_service.check_room_busy(db, room.id, input_data.weekday, input_data.lesson_number)
+                if room_in_busy_table:
+                    if room_in_busy_table.is_busy == False:
+                        room_number = room_in_busy_table.room_number
+                    else:
+                        continue
+                else:
+                    room_number = room.room_number
+                    break
+        except:
+            raise HTTPException(status_code=400, detail=f'''Все доступные кабинеты для указанного вида занятий в указанное время заняты.''')
+        # room_id = room_service.get_spare_room(db, input_data.weekday, input_data.lesson_number)
+        # if room_id:
+        #     chosen_room_number = room_service.get_by_id(db, room_id)
+        # else:
+        #     pass
+            # if room_service.count_rooms_in_table()
+            # chosen_room_number = 0
 
-    set_group_busy(db=db, group_id=group_id, weekday=db_weekday, lesson=lesson_number);
+    group_busy_input = dict_of(input_data.group_number, input_data.weekday, input_data.lesson_number)
+    group_service.set_group_busy(db, group_busy_input)
+    print('GROUP SET BUSY')
+    print(group_busy_input)
 
-    new_line = ScheduleModel(semester=semester,
-                               group=group_number,
-                               weekday=db_weekday,
-                               lesson_number=lesson_number,
-                               module_id=module_id,
-                               class_type=db_class_type,
-                               room=chosen_room_number,
-                               teacher_id=chosen_teacher_id);
+    new_line_dict = dict_of(input_data.semester, input_data.group_number,input_data.weekday, input_data.lesson_number, module_id, input_data.class_type, room_number, teacher_id)
+    new_line = ScheduleModel(**new_line_dict)
+    # (semester=input_data.semester,
+    #                            group=input_data.group_number,
+    #                            weekday=input_data.weekday,
+    #                            lesson_number=input_data.lesson_number,
+    #                            module_id=module_id,
+    #                            class_type=input_data.class_type,
+    #                            room=chosen_room_number,
+    #                            teacher_id=chosen_teacher_id)
 
     db.add(new_line);
     db.commit();
     db.refresh(new_line);
 
-    return new_line;
+    return new_line
+
+
+
+def query_db_for_same_class(db: Session, teachers_list: list, module_id, input_data):
+    '''checks if there are classes in the schedule with the same teacher, module, class_type at the same time
+    for teachers in the teachers_list
+    if there are - returns a tuple of teacher_id and room_number of such classes
+    is used in autofill_schedule function'''
+
+    for teacher in teachers_list:
+        can_join_lessons = schedule_dao.join_lessons_check(db, teacher, module_id, input_data)
+        if can_join_lessons:
+            chosen_teacher_id = teacher
+            chosen_room_number = can_join_lessons.room
+            return chosen_teacher_id, chosen_room_number
+    return False
+
+
+
+
 
 # -----------------------------------------------------------------
 # read functions
@@ -165,33 +210,3 @@ def clear_table(db: Session, semester: SemestersEnum, group: int = None):
     else:
         db.query(ScheduleModel).filter(ScheduleModel.semester==semester, ScheduleModel.group==group).delete();
         db.commit();
-
-
-
-# -----------------------------------------------------------------
-# tech read functions
-# -----------------------------------------------------------------
-
-
-
-def query_db_for_same_class(db: Session, teachers_list: list, semester: int, weekday: str, lesson_number: int, module_id: int, class_type: str):
-    '''checks if there are classes in the schedule with the same teacher, module, class_type at the same time
-    for teachers in the teachers_list
-    if there are - returns a tuple of teacher_id and room_number of such classes
-    is used in autofill_schedule function'''
-
-    for teacher in teachers_list:
-
-        can_join_lessons = db.query(ScheduleModel).filter(ScheduleModel.teacher_id==teacher,
-                                    ScheduleModel.semester==semester,
-                                    ScheduleModel.weekday==weekday,
-                                    ScheduleModel.lesson_number==lesson_number,
-                                    ScheduleModel.module_id==module_id,
-                                    ScheduleModel.class_type==class_type).all();
-        if can_join_lessons:
-            query_dict = can_join_lessons[0];
-            chosen_teacher_id = teacher;
-            chosen_room_number = query_dict.room;
-            return chosen_teacher_id, chosen_room_number;
-
-    return False;

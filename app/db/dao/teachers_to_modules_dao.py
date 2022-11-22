@@ -17,9 +17,8 @@ class TeachersToModulesDAO:
         self.model = model
 
     def get_teachers_by_module(self, db, module_id):
-        teachers_list = []
-        response = db.query(self.model.teacher_id).where(self.model.c.module_id==module_id).all()
-        print(response)
+        teachers_list = [row.teacher_id for row in db.query(self.model).filter(self.model.c.module_id==module_id).all()]
+        print(teachers_list)
         return teachers_list
 
     def post_teacher_to_module(self, db, teacher_id, module_id):

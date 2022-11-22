@@ -10,11 +10,11 @@ from .base_dao import BaseDAO
 class GroupBusyDAO(BaseDAO[GroupBusyModel, GroupBusyDTO, None, None]):
 
     def check_busy(self, db: Session, input_data):
-        response = db.query(GroupBusyModel).filter_by(**input_data).first()
+        response = db.query(self.model).filter_by(**input_data).first()
         return response
 
     def set_busy(self, db: Session, input_data):
-        db.query(GroupBusyModel).filter_by(**input_data).update({'is_busy': True}, synchronize_session="fetch")
+        db.query(self.model).filter_by(**input_data).update({'is_busy': True}, synchronize_session="fetch")
         db.commit()
 
 group_busy_dao = GroupBusyDAO(GroupBusyModel)

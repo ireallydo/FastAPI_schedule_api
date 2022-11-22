@@ -26,4 +26,12 @@ class ScheduleDAO(BaseDAO[ScheduleModel, ScheduleCreateDTO, SchedulePatchDTO, Sc
                                                 ScheduleModel.weekday==input_data.weekday,
                                                 ScheduleModel.lesson_number==input_data.lesson_number).all()
 
+    def join_lessons_check(self, db, teacher, module_id, input_data):
+        return db.query(self.model).filter(self.model.teacher_id==teacher,
+                                    self.model.semester==input_data.semester,
+                                    self.model.weekday==input_data.wweekday,
+                                    self.model.lesson_number==input_data.lesson_number,
+                                    self.model.module_id==module_id,
+                                    self.model.class_type==input_data.class_type).first()
+
 schedule_dao = ScheduleDAO(ScheduleModel)
