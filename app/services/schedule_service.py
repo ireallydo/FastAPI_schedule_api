@@ -8,7 +8,7 @@ from db.dto import *
 from db.dao import schedule_dao
 from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 
-from services import teacher_service, module_service, room_service, group_service
+from services import teacher_service, module_service, room_service, group_service, lesson_service
 
 
 def fill_schedule_manually(db, input_data: ScheduleCreateManuallyDTO):
@@ -21,16 +21,15 @@ def fill_schedule_manually(db, input_data: ScheduleCreateManuallyDTO):
 
     return new_line
 
-def autofill_schedule(db: Session, input_data: ScheduleCreateDTO):
 
-    module = module_service.get_by_name_and_type(db, input_data.module_name, input_data.class_type)
-    module_id = module.id
+def find_teacher(db: Session, input_data: ScheduleCreateDTO, module_id):
+
     teachers_list = teacher_service.get_teachers_by_module(db, module_id)
 
     for teacher in teachers_list:
-        teacher_busy = teacher_service.check_teacher_busy(db, teacher, input_data.weekday, input_data.lesson_number)
-        if teacher_busy:
-            teacher_busy_flag = teacher_busy.is_busy
+        teacher_in_busy_tbl = teacher_service.check_teacher_busy(db, teacher, input_data.weekday, input_data.lesson_number)
+        if teacher_in_busy_tbl:
+            teacher_busy_flag = teacher_in_busy_tbl.is_busy
         else:
             teacher_busy_flag = False
 
@@ -38,16 +37,19 @@ def autofill_schedule(db: Session, input_data: ScheduleCreateDTO):
             teacher_id = teacher
             teacher_service.set_teacher_busy(db, teacher_id, input_data.weekday, input_data.lesson_number)
             room_number = None
-            break
+            return (teacher_id, room_number)
 
         if teacher_busy_flag == True and teacher == teachers_list[-1]:
             join_groups_check = query_db_for_same_class(db, teachers_list, module_id, input_data)
             if join_groups_check == False:
-                return False
+                raise HTTPException(status_code=400, detail=f'''Все преподаватели указанного предмета в указанное время заняты, объединение групп невозможно.''')
             else:
                 (teacher_id, room_number) = join_groups_check
+                return join_groups_check
         else:
             continue
+
+def find_room(db: Session, input_data, room_number: int):
 
     if not room_number:
         try:
@@ -66,14 +68,18 @@ def autofill_schedule(db: Session, input_data: ScheduleCreateDTO):
         except:
             raise HTTPException(status_code=400, detail=f'''Все доступные кабинеты для указанного вида занятий в указанное время заняты.''')
 
+    return room_number
+
+
+def post_schedule(db: Session, input_data: ScheduleCreateDTO, module_id, room_number, teacher_id):
+
     new_line_dict = dict_of(input_data.semester, input_data.group_number,input_data.weekday, input_data.lesson_number, module_id, input_data.class_type, room_number, teacher_id)
     new_line = ScheduleModel(**new_line_dict)
-    db.add(new_line);
-    db.commit();
-    db.refresh(new_line);
+    db.add(new_line)
+    db.commit()
+    db.refresh(new_line)
 
     return new_line
-
 
 
 def query_db_for_same_class(db: Session, teachers_list: list, module_id, input_data):
@@ -91,12 +97,22 @@ def query_db_for_same_class(db: Session, teachers_list: list, module_id, input_d
     return False
 
 
+def make_schedule_output(db: Session, schedule_row, input_data):
 
+    schedule_output = dict_of(input_data.semester, input_data.group_number, input_data.weekday, input_data.lesson_number, input_data.class_type, schedule_row.room_number)
+    schedule_output['module_name']=input_data.module_name
+    teacher_full = teacher_service.get_by_id(db, schedule_row.teacher_id)
+    teacher = dict_of(teacher_full.first_name, teacher_full.second_name, teacher_full.last_name)
+    print('TEACHER OUT')
+    print(teacher)
+    schedule_output['teacher']=teacher
+    lesson_time = lesson_service.get_lesson_by_number(db, input_data.lesson_number).time
+    print('LESSON TIME')
+    print(lesson_time)
+    schedule_output['lesson_time'] = lesson_time
 
+    return schedule_output
 
-# -----------------------------------------------------------------
-# read functions
-# -----------------------------------------------------------------
 
 def check_schedule(db, input_data: ScheduleCreateManuallyDTO):
 

@@ -35,9 +35,5 @@ class TeacherDeleteDTO(TeacherCreateDTO):
 class TeacherModulesDTO(TeacherDTO):
     modules: List[ModuleDTO]
 
-class TeacherScheduleDTO(TeacherBaseDTO):
-    last_name: str;
-    first_name: str;
-    second_name: Optional[str]
-    class Config:
-        orm_mode = True;
+class TeacherInScheduleDTO(TeacherCreateDTO):
+    pass

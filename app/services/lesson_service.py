@@ -22,5 +22,5 @@ def delete(db, input_data):
     lesson = lesson_dao.get_by(db, input_data)
     return lesson_dao.delete(db, lesson.id)
 
-def get_time_by_number(db, lesson_number):
+def get_lesson_by_number(db, lesson_number):
     return lesson_dao.get_time_by_number(db, lesson_number)

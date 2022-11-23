@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from uuid import UUID
 
 from db.enums import *
-from .TeacherDTO import TeacherScheduleDTO
+from .TeacherDTO import TeacherInScheduleDTO
 
 # -----------------------------------------------------------------
 # schedule classes
@@ -53,9 +53,10 @@ class ScheduleOutDTO(ScheduleBaseDTO):
     module_name: str
     class_type: ClassTypesEnum
     room_number: int
-    teacher_first_name: str
-    teacher_second_name: str
-    teacher_last_name: str
+    teacher: Dict
+    # teacher_first_name: str
+    # teacher_second_name: str
+    # teacher_last_name: str
 
 class ScheduleGroupRequestDTO(ScheduleBaseDTO):
     semester: SemestersEnum;
@@ -79,7 +80,7 @@ class ScheduleClassDTO(ScheduleBaseDTO):
 #-----------------------
 
 class ScheduleClassForGroupDTO(ScheduleClassDTO):
-    teachers: TeacherScheduleDTO;
+    teachers: TeacherInScheduleDTO
 
 class ScheduleLessonForGroupDTO(ScheduleBaseDTO):
     number: int;

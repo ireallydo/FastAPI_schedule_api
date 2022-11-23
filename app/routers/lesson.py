@@ -41,9 +41,9 @@ class LessonView:
         response = lesson_service.get_all(self.db, skip=skip, limit=limit)
         return response
 
-    @router.get(ApiSpec.GET_LESSON_TIME_BY_NUMBER, status_code=200, response_model=LessonDTO)
-    def get_lesson_time_by_number(self, lesson_number: LessonsEnum):
-        response = lesson_service.get_time_by_number(self.db, lesson_number)
+    @router.get(ApiSpec.GET_LESSON_BY_NUMBER, status_code=200, response_model=LessonDTO)
+    def get_lesson_by_number(self, lesson_number: LessonsEnum):
+        response = lesson_service.get_lesson_by_number(self.db, lesson_number)
         return response
 
     @router.patch(ApiSpec.LESSONS, status_code=201, response_model=LessonDTO)

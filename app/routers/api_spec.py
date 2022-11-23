@@ -24,7 +24,7 @@ class ApiSpec(str, Enum):
     GROUP_BUSY = '/group_busy'
 
     LESSONS = '/lessons'
-    GET_LESSON_TIME_BY_NUMBER = '/lessons/{lesson_number}'
+    GET_LESSON_BY_NUMBER = '/lessons/{lesson_number}'
 
     ROOMS = '/rooms'
     ROOM_BUSY = '/room_busy'
