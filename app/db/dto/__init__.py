@@ -9,4 +9,3 @@ from .TeacherDTO import *
 from .TeacherBusyDTO import *
 from .UserDTO import *
 from .AuthDTO import *
-from .TeachersToModulesDTO import *

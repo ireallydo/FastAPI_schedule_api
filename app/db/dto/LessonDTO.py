@@ -10,12 +10,12 @@ class LessonBaseDTO(BaseModel):
     class Config:
         orm_mode = True
 
-class LessonDTO(LessonBaseDTO):
+class LessonCreateDTO(LessonBaseDTO):
     lesson_number: LessonsEnum
     time: str
 
-class LessonCreateDTO(LessonDTO):
-    pass
+class LessonDTO(LessonCreateDTO):
+    id: Union[UUID, str]
 
 class LessonSearchDTO(LessonBaseDTO):
     lesson_number: LessonsEnum

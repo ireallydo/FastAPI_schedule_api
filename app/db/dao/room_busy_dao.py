@@ -8,7 +8,7 @@ from db.dto import *
 from .base_dao import BaseDAO
 
 
-class RoomBusyDAO(BaseDAO[RoomBusyModel, RoomBusyDTO, None, None]):
+class RoomBusyDAO(BaseDAO[RoomBusyModel, RoomBusyRequestDTO, None, None]):
 
     def check_busy(self, db: Session, room_id, weekday, lesson):
         response = db.query(self.model).filter(self.model.room_id==room_id,

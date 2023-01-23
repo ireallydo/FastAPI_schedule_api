@@ -1,5 +1,5 @@
 from typing import List, Union, Dict, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Extra
 
 from uuid import UUID
 
@@ -15,8 +15,9 @@ class RoomBusyDTO(BaseModel):
         arbitrary_types_allowed=True
 
 class RoomBusyRequestDTO(RoomBusyDTO):
-    room_number: int
-
-class RoomBusyResponseDTO(RoomBusyDTO):
-    room_id: UUID
     is_busy: bool
+    class Config:
+        extra = Extra.allow
+
+class RoomBusyResponseDTO(RoomBusyRequestDTO):
+    room_id: Union[UUID, str]

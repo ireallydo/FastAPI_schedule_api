@@ -8,7 +8,7 @@ from db.dto import *
 from .base_dao import BaseDAO
 
 
-class RoomDAO(BaseDAO[RoomModel, RoomCreateDTO, RoomPatchDTO, RoomDeleteDTO]):
+class RoomDAO(BaseDAO[RoomModel, RoomCreateDTO, RoomPatchDTO, None]):
 
     def get_room_by_number(self, db: Session, room_number):
         response = db.query(self.model).filter(self.model.room_number==room_number).first()

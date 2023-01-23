@@ -15,11 +15,19 @@ class UserModel(BaseModel):
     login = Column('login', String(255), unique=True)
     email = Column('email', String(255), unique=True)
     password = Column('password',  String(255))
-    user_role = Column('user_role', Enum(UserRolesEnum))
+    # fields to be recognized as a teacher or a student
+    role = Column('user_role', Enum(UserRolesEnum))
+    # first_name = Column('first_name', String(255), nullable=False)
+    # second_name = Column('second_name', String(255))
+    # last_name = Column('last_name', String(255), nullable=False)
+    # birth_date = Column('birth_date', DateTime, nullable=False)
+
+    #for future check of active (or not blocked user)
+    blocked = Column('blocked', Boolean, default=False)
     is_active = Column('is_active', Boolean, default=True)
 
     created_at = Column('created_at', DateTime, default=datetime.utcnow)
     updated_at = Column('updated_at', DateTime, default=datetime.utcnow, onupdate=func.current_timestamp())
 
-    students = relationship('StudentModel', back_populates='users');
-    teachers = relationship('TeacherModel', back_populates='users');
+    # students = relationship('StudentModel', back_populates='users');
+    # teachers = relationship('TeacherModel', back_populates='users');

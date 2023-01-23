@@ -17,7 +17,7 @@ from .api_spec import ApiSpec
 from db.database import SessionLocal, engine
 
 
-router = APIRouter(tags=["group"])
+router = APIRouter(tags=["groups"])
 
 def get_db():
     db = SessionLocal()

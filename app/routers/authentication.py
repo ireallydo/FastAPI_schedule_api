@@ -43,13 +43,15 @@ class AuthView:
     def login(self, form_data: OAuth2PasswordRequestForm = Depends()):
         user = user_service.get_by_login(self.db, form_data.username)
         if not user:
-            raise HTTPException(status_code=400, detail='Неправильное имя пользователя или пароль')
+            raise HTTPException(status_code=400, detail='Incorrect login or password')
         if not utils.verify_password(form_data.password, user.password):
-            raise HTTPException(status_code=400, detail='Неправильное имя пользователя или пароль')
+            raise HTTPException(status_code=400, detail='Incorrect login or password')
 
         access_token = utils.create_access_token(user.email)
         refresh_token = utils.create_refresh_token(user.email)
         user_id = user.id
 
-        return {'access_token': access_token,
+        return {'user_id': user_id,
+                'login': user.login,
+                'access_token': access_token,
                 'refresh_token': refresh_token}

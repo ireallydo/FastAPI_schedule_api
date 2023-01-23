@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
 
-from services import schedule_service, group_service, module_service
+from services import schedule_service, group_service, module_service, teacher_service
 
 from db.models import *
 from db.dto import *
@@ -90,12 +90,33 @@ class ScheduleView:
         if the schedule for this group && semester && day && lesson already exists, returns error
         requires manual input of all data, does not support auto generation for fields'''
 
-        already_exists = schedule_service.check_schedule(self.db, input_data)
-        print('CHECKED!!')
-         # semester=input_data.semester, group=input_data.group, weekday=input_data.weekday, lesson_number=input_data.lesson_number)
-        if already_exists:
-            raise HTTPException(status_code=400, detail=f'''Schedule already exists! (Group: {input_data.group}; Weekday: {input_data.weekday}; Lesson: {input_data.lesson_number}; Semester: {input_data.semester}. If you want to change schedule - use change form, please!''');
-        return schedule_service.fill_schedule_manually(self.db, input_data);
+        # check if the group is busy at the provided date and time
+        group_busy_dict: GroupBusyDTO = dict_of(input_data.weekday, input_data.lesson_number, input_data.group_number)
+        group_in_busy_tbl = group_service.check_group_busy(self.db, group_busy_dict)
+        if group_in_busy_tbl:
+            group_busy_flag=group_in_busy_tbl.is_busy
+            if group_busy_flag == True:
+                raise HTTPException(status_code=400, detail=f'''Группа уже занята!''')
+
+        # get module id from module name
+        module = module_service.get_by_name_and_type(self.db, input_data.module_name, input_data.class_type)
+        module_id = module.id
+
+        # get teacher id from teacher data
+        if input_data.teacher.second_name:
+            second_name = input_data.teacher.second_name
+        else:
+            second_name = None
+        teacher_data = dict_of(input_data.teacher.first_name, second_name, input_data.teacher.last_name)
+        teacher_id = teacher_service.get_teacher_by(self.db, teacher_data).id
+
+        fill_data = dict_of(input_data.semester, input_data.weekday, input_data.lesson_number, input_data.class_type, input_data.group_number, input_data.room_number)
+        fill_data['module_id'] = module_id
+        fill_data['teacher_id'] = teacher_id
+
+        schedule_service.fill_schedule_manually(self.db, fill_data)
+
+        return ScheduleOutDTO(**input_data)
 
 
     #students and teachers

@@ -1,9 +1,10 @@
 from typing import List, Union, Dict, Optional
 from pydantic import BaseModel
+from datetime import datetime
 
 from uuid import UUID
 
-from db.enums import ClassTypesEnum, AcademicYearsEnum, WeekdaysEnum, LessonsEnum
+from db.enums import UserRolesEnum
 from db.dto import ModuleDTO
 
 
@@ -12,26 +13,33 @@ class UserBaseDTO(BaseModel):
         orm_mode = True
 
 class UserCreateDTO(UserBaseDTO):
+    role: UserRolesEnum
     login: str
     password: str
     email: str
+    registration_token: str
+    first_name: str
+    second_name: Optional[str]
+    last_name: str
+    birth_date: Union[str, datetime]
 
 class UserDTO(UserBaseDTO):
     id: UUID
     login: str
     email: str
-    is_active: bool
 
-class UserPatchDTO(UserCreateDTO):
-    login: str
-    password: str
+class UserProfileDTO(UserDTO):
+    is_active: bool
+    blocked: bool
+
+class UserPatchDTO(UserBaseDTO):
+    email: str
 
 class UserChangePasswordDTO(UserBaseDTO):
     password: str
 
-class UserDeactivateDTO(UserBaseDTO):
-    login: str
-    is_active: bool
+class UserBlockedDTO(UserBaseDTO):
+    blocked: bool
 
-class UserFullDTO(UserDTO):
-    password: str
+class UserDeleteDTO(UserBaseDTO):
+    is_active: bool

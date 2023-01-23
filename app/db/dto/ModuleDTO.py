@@ -1,5 +1,6 @@
 from typing import List, Union, Dict, Optional
 from pydantic import BaseModel
+from datetime import datetime
 
 from uuid import UUID
 
@@ -17,16 +18,17 @@ class ModuleCreateDTO(ModuleBaseDTO):
     class_type: ClassTypesEnum
     academic_year: AcademicYearsEnum
 
-class ModuleDTO(ModuleBaseDTO):
+class ModuleDTO(ModuleCreateDTO):
     id: Union[UUID, str]
-    module_name: str
-    class_type: ClassTypesEnum
-    academic_year: AcademicYearsEnum
 
-class ModulePatchDTO(ModuleBaseDTO):
-    module_name: Optional[str]
-    class_type: Optional[ClassTypesEnum]
-    academic_year: Optional[AcademicYearsEnum]
+class PupulateTeachersDTO(ModuleBaseDTO):
+    id: Union[UUID, str]
+    first_name: str
+    second_name: Optional[str]
+    last_name: str
+    birth_date: Union[str, datetime]
+    deleted_at: Union[str, datetime]
 
-class ModuleDeleteDTO(ModuleCreateDTO):
-    pass
+class ModuleTeachersDTO(ModuleBaseDTO):
+    id: Union[UUID, str]
+    teachers: List[PupulateTeachersDTO]

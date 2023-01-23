@@ -10,7 +10,7 @@ from .base_dao import BaseDAO
 
 class LessonDAO(BaseDAO[LessonModel, LessonCreateDTO, LessonPatchDTO, LessonDeleteDTO]):
 
-    def get_time_by_number(self, db: Session, lesson_number):
+    def get_by_number(self, db: Session, lesson_number):
         response = db.query(self.model).filter(self.model.lesson_number==lesson_number).first()
         return response
 

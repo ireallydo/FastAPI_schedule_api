@@ -11,17 +11,6 @@ from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 from services import teacher_service, module_service, room_service, group_service, lesson_service
 
 
-def fill_schedule_manually(db, input_data: ScheduleCreateManuallyDTO):
-    '''function for fully manual creation of schedule, has no specific checks or constraints'''
-
-    # input_data.weekday = translate_enum_weekday(db, input_data.weekday);
-    # input_data.class_type = translate_enum_class_type(db, input_data.class_type);
-
-    new_line = schedule_dao.fill_manually(db, input_data)
-
-    return new_line
-
-
 def find_teacher(db: Session, input_data: ScheduleCreateDTO, module_id):
 
     teachers_list = teacher_service.get_teachers_by_module(db, module_id)
@@ -114,11 +103,12 @@ def make_schedule_output(db: Session, schedule_row, input_data):
     return schedule_output
 
 
-def check_schedule(db, input_data: ScheduleCreateManuallyDTO):
+def fill_schedule_manually(db, input_data: ScheduleCreateManuallyDTO):
+    '''function for fully manual creation of schedule, has no specific checks or constraints'''
 
-    # db_weekday = translate_enum_weekday(input_data.weekday);
+    response = schedule_dao.fill_manually(db, input_data)
 
-    return schedule_dao.check_exists(db, input_data)
+    return response
 
 
 def get_schedule_by_group(db: Session, semester: SemestersEnum, group: int, skip: int = 0, limit: int = 100):

@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 
+from settings.settings import Settings
 from db.models import BaseModel
 from db.database import SessionLocal, engine
 from routers.api import api_router
 
+settings = Settings()
 
 app = FastAPI();
 app.include_router(api_router)
@@ -21,7 +23,7 @@ def startup():
 
 
 def main():
-    run(app, port=8000)
+    run(app, port=settings.PORT)
 
 
 if __name__ == "__main__":

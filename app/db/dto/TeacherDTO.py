@@ -1,5 +1,6 @@
 from typing import List, Union, Dict, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Extra
+from datetime import datetime
 
 from uuid import UUID
 
@@ -16,24 +17,42 @@ class TeacherCreateDTO(TeacherBaseDTO):
     first_name: str
     second_name: Optional[str]
     last_name: str
+    birth_date: Union[str, datetime]
+    class Config:
+        extra = Extra.allow
 
-class TeacherDTO(TeacherBaseDTO):
-    id: UUID
-    first_name: str
-    second_name: Optional[str]
-    last_name: str
+class TeacherDTO(TeacherCreateDTO):
+    id: Union[UUID, str]
+    registration_token: str
 
-class TeacherPatchDTO(TeacherBaseDTO):
-    first_name: Optional[str]
-    second_name: Optional[str]
-    last_name: Optional[str]
+class TeacherProfileDTO(TeacherCreateDTO):
+    id: Union[UUID, str]
+    created_at: Union[str, datetime]
+    updated_at: Union[str, datetime]
+    deleted_at: Union[str, datetime, None]
 
-class TeacherDeleteDTO(TeacherCreateDTO):
-    pass
+class TeacherDeleteDTO(TeacherBaseDTO):
+    deleted_at: Union[str, datetime]
 
 
 class TeacherModulesDTO(TeacherDTO):
     modules: List[ModuleDTO]
 
 class TeacherInScheduleDTO(TeacherCreateDTO):
+    pass
+
+
+
+
+class TeachersToModulesCreateDTO(TeacherBaseDTO):
+    modules_id: List[Union[str, UUID]]
+
+class TeachersToModulesDTO(TeacherBaseDTO):
+    teacher_id: Union[str, UUID]
+    modules: List[ModuleDTO]
+
+class GetTeachersModules(TeacherBaseDTO):
+    id: Union[str, UUID]
+
+class TeachersToModulesDeleteDTO(TeachersToModulesCreateDTO):
     pass

@@ -15,10 +15,7 @@ class RoomCreateDTO(RoomBaseDTO):
     class_type: ClassTypesEnum
 
 class RoomDTO(RoomCreateDTO):
-    pass
+    id: Union[UUID, str]
 
 class RoomPatchDTO(RoomBaseDTO):
     class_type: ClassTypesEnum
-
-class RoomDeleteDTO(RoomBaseDTO):
-    room_number: int

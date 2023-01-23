@@ -25,20 +25,28 @@ class BaseDAO(Generic[DBModelType, CreateDTOType, UpdateDTOType, DeleteDTOType])
         self.model = model
 
     def create(self, db: Session, input_data: CreateDTOType):
-        db_model = self.model
-        if type(input_data) is dict:
+        if type(input_data) is list:
+            for d in input_data:
+                new_line = self.model(**input_data)
+                db.add(new_line)
+                db.commit()
+                db.refresh(new_line)
+        elif type(input_data) is dict:
             new_line = self.model(**input_data)
+            db.add(new_line)
+            db.commit()
+            db.refresh(new_line)
         else:
             new_line = self.model(**input_data.dict())
-        db.add(new_line)
-        db.commit()
-        db.refresh(new_line)
-        print(new_line)
+            db.add(new_line)
+            db.commit()
+            db.refresh(new_line)
         return new_line
 
-    def get_all(self, db: Session, skip: int, limit: int):
+
+    def get_all_by(self, db: Session, skip: int, limit, input_data={}):
         db_model = self.model
-        response =  db.query(db_model).offset(skip).limit(limit).all()
+        response =  db.query(db_model).filter_by(**input_data).offset(skip).limit(limit).all()
         return response
 
     def get_by_id(self, db: Session, id):
@@ -53,17 +61,15 @@ class BaseDAO(Generic[DBModelType, CreateDTOType, UpdateDTOType, DeleteDTOType])
         return db_item
 
     def delete(self, db: Session, id: UUID):
-        db_model = self.model
-        db.query(db_model).filter(db_model.id==id).delete()
+        db.query(self.model).filter(self.model.id==id).delete()
         db.commit()
 
-    def patch(self, db: Session, patch_data, id):
-        update_dict=patch_data.dict()
-        update_obj = []
-        update_keys = update_dict.keys()
-        for key in update_keys:
-            print(key)
-            update_obj.append((getattr(self.model, key), update_dict[key]))
-        db.query(self.model).filter(self.model.id==id).update(update_obj,
+    def patch(self, db: Session, input_data, id):
+        print(input_data)
+        # update_obj = []
+        # update_keys = input_data.keys()
+        # for key in update_keys:
+        #     update_obj.append((getattr(self.model, key), input_data[key]))
+        db.query(self.model).filter(self.model.id==id).update(input_data,
         update_args={'preserve_parameter_order': True})
         db.commit()

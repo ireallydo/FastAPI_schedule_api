@@ -8,10 +8,10 @@ from db.dto import *
 from .base_dao import BaseDAO
 
 
-class ModuleDAO(BaseDAO[ModuleModel, ModuleCreateDTO, ModulePatchDTO, ModuleDeleteDTO]):
+class ModuleDAO(BaseDAO[ModuleModel, ModuleCreateDTO, None, None]):
 
-    def get_all_by_name(self, db: Session, module_name, skip, limit):
-        response = db.query(self.model).filter(self.model.module_name==module_name).offset(skip).limit(limit).all()
-        return response
+    def get_teachers(self, db, module_id):
+        return db.query(self.model).where(id=module_id).join(self.model.teachers).all()
+
 
 module_dao = ModuleDAO(ModuleModel)

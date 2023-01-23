@@ -3,6 +3,9 @@ from pathlib import Path
 
 class Settings(BaseSettings):
 
+    HOST: str = Field(..., env="HOST")
+    PORT: str = Field(..., env="PORT")
+
     DB_NAME: str = Field(..., env="DB_NAME")
     DB_USER: str = Field(..., env="DB_USER")
     DB_PASSWORD: str = Field(..., env="DB_PASSWORD")
@@ -13,6 +16,11 @@ class Settings(BaseSettings):
     TOKEN_ALGO: str = Field('HS256', env="TOKEN_ALGO")
     JWT_KEY: str = Field(..., env="JWT_KEY")
     JWT_REFRESH_KEY: str = Field(..., env="JWT_REFRESH_KEY")
+
+    #!TODO: separate
+    # settings for testing
+    TEST_PASSWORD: str = Field(..., env="TEST_PASSWORD")
+    
 
     class Config:
         env_file = Path(__file__).parents[1].joinpath(".env")

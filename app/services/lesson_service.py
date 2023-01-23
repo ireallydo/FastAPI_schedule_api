@@ -7,20 +7,20 @@ from db.dto import *
 from db.dao import lesson_dao
 from db.enums import LessonsEnum
 
-def create(db, input_data):
+def create_lesson(db, input_data):
     return lesson_dao.create(db, input_data)
 
 def get_all(db, skip, limit):
-    return lesson_dao.get_all(db, skip, limit)
+    return lesson_dao.get_all_by(db, skip, limit)
 
-def patch(db, search_data, patch_data):
-    lesson = lesson_dao.get_by(db, search_data)
-    lesson_dao.patch(db, patch_data, lesson.id)
-    return lesson_dao.get_by_id(db, lesson.id)
+def get_by_number(db, lesson_number):
+    return lesson_dao.get_by_number(db, lesson_number)
 
-def delete(db, input_data):
-    lesson = lesson_dao.get_by(db, input_data)
+def patch(db, lesson_number, input_data):
+    lesson = lesson_dao.get_by_number(db, lesson_number)
+    lesson_dao.patch(db, input_data, lesson.id)
+    return get_by_number(db, lesson_number)
+
+def delete(db, lesson_number):
+    lesson = lesson_dao.get_by_number(db, lesson_number)
     return lesson_dao.delete(db, lesson.id)
-
-def get_lesson_by_number(db, lesson_number):
-    return lesson_dao.get_time_by_number(db, lesson_number)

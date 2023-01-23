@@ -11,10 +11,10 @@ from db.enums import ClassTypesEnum, AcademicYearsEnum
 class ModuleModel(BaseModel):
     __tablename__ = 'tbl_modules'
 
-    id = Column("id", UUID(as_uuid=True), unique=True, primary_key=True, default=uuid4)
-    module_name = Column('module_name', String(255), nullable=False)
-    class_type = Column('class_type', Enum(ClassTypesEnum))
-    academic_year = Column('academic_year', Enum(AcademicYearsEnum), nullable=False)
+    id = Column("id", UUID(as_uuid=True), unique=True, nullable=False, default=uuid4)
+    module_name = Column('module_name', String(255), primary_key=True)
+    class_type = Column('class_type', Enum(ClassTypesEnum), primary_key=True)
+    academic_year = Column('academic_year', Enum(AcademicYearsEnum), primary_key=True)
 
     teachers = relationship('TeacherModel',
                            order_by='asc(TeacherModel.last_name)',

@@ -14,10 +14,7 @@ class TeacherBusyDTO(BaseModel):
         arbitrary_types_allowed=True
 
 class TeacherBusyRequestDTO(TeacherBusyDTO):
-    first_name: str
-    second_name: Optional[str]
-    last_name: str
-
-class TeacherBusyResponseDTO(TeacherBusyDTO):
-    teacher_id: UUID
     is_busy: bool
+
+class TeacherBusyResponseDTO(TeacherBusyRequestDTO):
+    teacher_id: UUID

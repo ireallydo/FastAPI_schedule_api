@@ -24,14 +24,14 @@ class ScheduleCreateDTO(ScheduleBaseDTO):
     class_type: ClassTypesEnum
 
 class ScheduleCreateManuallyDTO(ScheduleBaseDTO):
-    semester: SemestersEnum;
-    group_number: AcademicGroupsEnum;
-    weekday: WeekdaysEnum;
-    lesson_number: LessonsEnum;
-    module_id: UUID;
-    class_type: ClassTypesEnum;
-    room_number: int;
-    teacher_id: UUID;
+    semester: SemestersEnum
+    weekday: WeekdaysEnum
+    lesson_number: LessonsEnum
+    group_number: AcademicGroupsEnum
+    module_name: str
+    class_type: ClassTypesEnum
+    room_number: int
+    teacher: TeacherInScheduleDTO
 
 class ScheduleDTO(ScheduleBaseDTO):
     id: UUID;
