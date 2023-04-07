@@ -1,22 +1,24 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
-from fastapi import Depends
-
+from asyncio import sleep
+from db.models import BaseModel
 from settings import Settings
-
-# def get_settings():
-#     return Settings()
+from httpx import AsyncClient
 
 settings = Settings()
 
-db_connection_str = f"postgresql://"\
+db_connection_str = f"postgresql+asyncpg://"\
                  f"{settings.DB_USER}:{settings.DB_PASSWORD}@" \
                  f"{settings.DB_HOST}/{settings.DB_NAME}"
+# db_connection_str = 'mysql+mysqlconnector://superuser:password@localhost/test1';
+# db_connection_str = 'postgresql://postgres:3141592653589@postgresserver/test1'
+engine = create_async_engine(db_connection_str, echo=False, pool_pre_ping=True)
+SessionLocal = sessionmaker(engine, autocommit=False, autoflush=False, class_=AsyncSession)
+session = AsyncClient()
 
-#db_connection_str = 'mysql+mysqlconnector://superuser:password@localhost/test1';
-#db_connection_str = 'postgresql://postgres:3141592653589@postgresserver/test1'
 
-engine = create_engine(db_connection_str);
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine);
+async def init_db():
+    await sleep(5)
+    async with engine.begin() as connection:
+        # await connection.run_sync(BaseModel.metadata.drop_all)
+        await connection.run_sync(BaseModel.metadata.create_all)

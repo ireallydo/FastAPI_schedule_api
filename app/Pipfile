@@ -4,11 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+httpx = "*"
+loguru = "*"
 fastapi = "*"
 fastapi-utils = "*"
 sqlalchemy = "*"
 alembic = "*"
 alembic-autogen-check = "*"
+asyncpg = "*"
 psycopg2-binary = "*"
 sorcery = "*"
 python-multipart = "*"
@@ -16,6 +19,7 @@ passlib = "*"
 python-jose="*"
 RandomWords = "*"
 requests = "*"
+dependency_injector = "*"
 
 [dev-packages]
 

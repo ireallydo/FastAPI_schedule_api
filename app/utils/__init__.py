@@ -1,0 +1,1 @@
+from .rights_restriction import available_roles

@@ -1,9 +1,7 @@
-from typing import List, Union, Dict, Optional
+from typing import Union
 from pydantic import BaseModel, Extra
-
 from uuid import UUID
-
-from db.enums import LessonsEnum, WeekdaysEnum
+from db.enums import LessonsEnum, WeekdaysEnum, SemestersEnum
 
 
 class RoomBusyDTO(BaseModel):
@@ -12,12 +10,17 @@ class RoomBusyDTO(BaseModel):
 
     class Config:
         orm_mode = True
-        arbitrary_types_allowed=True
+        arbitrary_types_allowed = True
+
 
 class RoomBusyRequestDTO(RoomBusyDTO):
     is_busy: bool
-    class Config:
-        extra = Extra.allow
+    semester: SemestersEnum
+
 
 class RoomBusyResponseDTO(RoomBusyRequestDTO):
     room_id: Union[UUID, str]
+
+
+class RoomBusyCreateDTO(RoomBusyResponseDTO):
+    pass

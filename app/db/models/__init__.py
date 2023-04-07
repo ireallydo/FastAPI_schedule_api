@@ -10,3 +10,4 @@ from .TeacherBusyModel import *
 from .TeacherModel import *
 from .teachers_to_modules_association_table import *
 from .UserModel import *
+from .SessionModel import *

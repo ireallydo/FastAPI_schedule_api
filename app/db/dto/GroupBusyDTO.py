@@ -1,21 +1,24 @@
-from typing import List, Union, Dict, Optional
 from pydantic import BaseModel
+from db.enums import AcademicGroupsEnum, WeekdaysEnum, LessonsEnum, SemestersEnum
 
-from uuid import UUID
-
-from db.enums import AcademicGroupsEnum, WeekdaysEnum, LessonsEnum
 
 class GroupBusyDTO(BaseModel):
     weekday: WeekdaysEnum
-    lesson_number: LessonsEnum
+    lesson: LessonsEnum
 
     class Config:
         orm_mode = True
-        arbitrary_types_allowed=True
+        arbitrary_types_allowed = True
+
 
 class GroupBusyRequestDTO(GroupBusyDTO):
+    is_busy: bool
+    semester: SemestersEnum
+
+
+class GroupBusyResponseDTO(GroupBusyRequestDTO):
     group_number: AcademicGroupsEnum
 
-class GroupBusyResponseDTO(GroupBusyDTO):
-    group_number: AcademicGroupsEnum
-    is_busy: bool
+
+class GroupBusyCreateDTO(GroupBusyResponseDTO):
+    pass

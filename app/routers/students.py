@@ -1,67 +1,65 @@
-from typing import List, Union
-
+from typing import List
 from http import HTTPStatus
-from fastapi import APIRouter, Depends, HTTPException, Response
-from sqlalchemy.orm import Session
-
+from fastapi import APIRouter, Response
 from fastapi_utils.cbv import cbv
-
-from services import student_service
-
-from db.models import *
-from db.dto import *
-from db.enums import *
+from services.student_service import student_service
+from db.dto import CreateStudentsResp, StudentCreateDTO, StudentProfileDTO,\
+    StudentDTO, StudentPatchDTO
+from db.enums import AcademicGroupsEnum, AcademicYearsEnum
 from .api_spec import ApiSpec
-
-from db.database import SessionLocal, engine
+from mixins import AuthMixin
+from utils import available_roles
+from db.enums import UserRolesEnum as Roles
 
 
 router = APIRouter(tags=["students"])
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# TODO: exceptions for no data in db, like when there's no student by provided id
+
 
 @cbv(router)
-class StudentView:
-    db: Session = Depends(get_db)
+class StudentView(AuthMixin):
 
-    @router.post(ApiSpec.STUDENTS, status_code=HTTPStatus.CREATED, response_model=List[StudentDTO])
-    def create_students(self, input_data: List[StudentCreateDTO]):
-        response = student_service.create(self.db, input_data)
+    @router.post(ApiSpec.STUDENTS, status_code=HTTPStatus.OK, response_model=CreateStudentsResp)
+    @available_roles(role=Roles.ADMIN)
+    async def create_students(self, input_data: List[StudentCreateDTO]):
+        """takes a list of students
+        if the student is in the db ADN is not deleted (deleted_at id None) -> creates student
+        returns a dict of two keys: failed_to_register and registered_students"""
+        response = await student_service.create(input_data)
         return response
 
-    @router.get(ApiSpec.STUDENTS_DETAIL, status_code=HTTPStatus.OK, response_model=StudentProfileDTO)
-    def get_student_profile(self, user_id):
-        response = student_service.get_by_id(self.db, user_id)
-        pass
+    @router.get(ApiSpec.STUDENTS_DETAILS, status_code=HTTPStatus.OK, response_model=StudentProfileDTO)
+    @available_roles(role=Roles.ADMIN, self_action=True)
+    async def get_student_profile(self, user_id: str):
+        """returns full information about the student by id, including registration token"""
+        response = await student_service.get_by_id(user_id)
+        return response
 
     @router.get(ApiSpec.STUDENTS_BY_GROUP, status_code=HTTPStatus.OK, response_model=List[StudentDTO])
-    def get_students_by_group(self, group_number: AcademicGroupsEnum, skip: int = 0, limit: int = 100):
-        response = student_service.get_by_group(self.db, group_number, skip=skip, limit=limit)
+    @available_roles(role=Roles.ADMIN)
+    async def get_students_by_group(self, group_number: AcademicGroupsEnum, skip: int = 0, limit: int = None):
+        """return active (not deleted) students by group"""
+        response = await student_service.get_all_by(skip, limit, academic_group=group_number)
         return response
 
     @router.get(ApiSpec.STUDENTS_BY_YEAR, status_code=HTTPStatus.OK, response_model=List[StudentDTO])
-    def get_students_by_year(self, year_number: AcademicYearsEnum, skip: int = 0, limit: int = 100):
-        print(year_number)
-        response = student_service.get_by_year(self.db, year_number, skip=skip, limit=limit)
+    @available_roles(role=Roles.ADMIN)
+    async def get_students_by_year(self, year_number: AcademicYearsEnum, skip: int = 0, limit: int = None):
+        """return active (not deleted) students by year"""
+        response = await student_service.get_all_by(skip, limit, academic_year=year_number)
         return response
 
-    @router.patch(ApiSpec.STUDENTS_DETAIL, status_code=HTTPStatus.OK, response_model=StudentDTO)
-    def update_student(self, user_id, input_data: StudentPatchDTO):
-        response = student_service.patch(self.db, user_id, input_data)
+    @router.patch(ApiSpec.STUDENTS_DETAILS, status_code=HTTPStatus.OK, response_model=StudentDTO)
+    @available_roles(role=Roles.ADMIN)
+    async def update_student(self, user_id: str, input_data: StudentPatchDTO):
+        """update student group and/or year"""
+        response = await student_service.patch(user_id, input_data)
         return response
 
-    @router.delete(ApiSpec.STUDENTS_DETAIL, status_code=HTTPStatus.NO_CONTENT)
-    def delete_student(self, user_id):
-        student_service.delete(self.db, user_id)
+    @router.delete(ApiSpec.STUDENTS_DETAILS, status_code=HTTPStatus.NO_CONTENT)
+    @available_roles(role=Roles.ADMIN)
+    async def delete_student(self, user_id: str):
+        """updates student's deleted_at field with the current time stamp"""
+        await student_service.delete(user_id)
         return Response(status_code=HTTPStatus.NO_CONTENT)
-
-
-    # @router.get(ApiSpec.GET_STUDENT_BY_NAME, status_code=200, response_model=StudentDTO)
-    # def get_student_by_name(self, first_name: str, last_name: str, second_name: Union[str, None]=None):
-    #     response = student_service.get_by_name(self.db, first_name, second_name, last_name)
-    #     return response

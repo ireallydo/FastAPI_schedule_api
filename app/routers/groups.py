@@ -1,45 +1,22 @@
-from typing import List
-
-from fastapi import Depends, HTTPException
-from fastapi.responses import JSONResponse
-from sqlalchemy.orm import Session
-
 from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
-
-from services import group_service
-
-from db.models import *
-from db.dto import *
-from db.enums import *
+from db.enums import AcademicGroupsEnum
+from services.group_service import group_service
+from db.dto import GroupBusyResponseDTO, GroupBusyRequestDTO
 from .api_spec import ApiSpec
-
-from db.database import SessionLocal, engine
+from mixins import AuthMixin
+from utils import available_roles
+from db.enums import UserRolesEnum as Roles
 
 
 router = APIRouter(tags=["groups"])
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @cbv(router)
-class GroupBusyView:
-    db: Session = Depends(get_db)
+class GroupBusyView(AuthMixin):
 
     @router.post(ApiSpec.GROUP_BUSY, status_code=201, response_model=GroupBusyResponseDTO)
-    def post_group_busy(self, input_data: GroupBusyRequestDTO):
-        group_busy_db_entry = group_service.check_group_busy(self.db, input_data)
-        if group_busy_db_entry:
-            busy_flag=group_busy_db_entry.is_busy
-            if busy_flag:
-                raise HTTPException(status_code=400, detail=f'''Группа уже занята!''')
-            else:
-                group_service.set_group_busy(self.db, input_data)
-        else:
-            group_service.create_group_busy(self.db, input_data)
-        response = group_service.check_group_busy(self.db, input_data)
+    @available_roles(role=Roles.ADMIN)
+    async def set_group_busy(self, group_number: AcademicGroupsEnum, input_data: GroupBusyRequestDTO):
+        response = await group_service.set_group_busy(group_number, input_data)
         return response

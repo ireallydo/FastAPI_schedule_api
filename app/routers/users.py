@@ -1,68 +1,55 @@
-from typing import List
-
 from http import HTTPStatus
-from fastapi import APIRouter, Depends, HTTPException, Response
-from sqlalchemy.orm import Session
-
+from fastapi import APIRouter, HTTPException, Response
 from fastapi_utils.cbv import cbv
-
-from services import user_service
-
-from db.models import *
-from db.dto import *
-from db.enums import *
+from services.user_service import user_service
+from db.dto import UserProfileDTO, UserDTO,\
+    UserPatchDTO, UserChangePasswordDTO, UserBlockedDTO
 from .api_spec import ApiSpec
-
-from db.database import SessionLocal, engine
+from mixins import AuthMixin
+from utils import available_roles
+from db.enums import UserRolesEnum as Roles
 
 
 router = APIRouter(tags=["users"])
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @cbv(router)
-class UserView:
-    db: Session = Depends(get_db)
+class UserView(AuthMixin):
 
-    @router.post(ApiSpec.USERS, status_code=HTTPStatus.CREATED)
-    def create_user(self, input_data: UserCreateDTO):
-        response = user_service.create(self.db, input_data)
-        if response != None:
-            return Response(status_code=HTTPStatus.CREATED)
-        else:
-            raise HTTPException(status_code=400, detail="The user was not registered.")
-
-    @router.get(ApiSpec.USERS_DETAILES, status_code=HTTPStatus.OK, response_model=UserProfileDTO)
-    def get_user_profile(self, user_id):
-        response = user_service.get_profile(self.db, user_id)
+    @router.get(ApiSpec.USERS_DETAILS, status_code=HTTPStatus.OK, response_model=UserProfileDTO)
+    @available_roles(role=Roles.ADMIN, self_action=True)
+    async def get_user_profile(self, user_id: str):
+        response = await user_service.get_profile(user_id)
         return response
 
-    @router.patch(ApiSpec.USERS_DETAILES, status_code=HTTPStatus.OK, response_model=UserDTO)
-    def update_user(self, user_id, input_data: UserPatchDTO):
-        response = user_service.patch(self.db, user_id, input_data)
+    @router.patch(ApiSpec.USERS_DETAILS, status_code=HTTPStatus.OK, response_model=UserDTO)
+    @available_roles(role=Roles.STUDENT, self_action=True)
+    async def update_user(self, user_id: str, input_data: UserPatchDTO):
+        response = await user_service.patch(user_id, input_data)
         return response
 
     @router.patch(ApiSpec.USERS_PASSWORD, status_code=HTTPStatus.NO_CONTENT)
-    def change_password(self, user_id, input_data: UserChangePasswordDTO):
-        response = user_service.change_password(self.db, user_id, input_data)
+    @available_roles(role=Roles.STUDENT, self_action=True)
+    async def change_password(self, user_id: str, input_data: UserChangePasswordDTO):
+        """changes user password but does not break the current session"""
+        await user_service.change_password(user_id, input_data)
         return Response(status_code=HTTPStatus.NO_CONTENT)
 
     @router.patch(ApiSpec.USERS_BLOCK, status_code=HTTPStatus.NO_CONTENT)
-    def block_unblock_user(self, user_id, input_data: UserBlockedDTO):
-        response = user_service.block_unblock(self.db, user_id, input_data)
+    @available_roles(role=Roles.ADMIN)
+    async def block_unblock_user(self, user_id: str, input_data: UserBlockedDTO):
+        await user_service.patch(user_id, input_data)
         return Response(status_code=HTTPStatus.NO_CONTENT)
 
-    @router.delete(ApiSpec.USERS_DETAILES, status_code=HTTPStatus.NO_CONTENT)
-    def delete_user(self, user_id):
-        response = user_service.delete(self.db, user_id)
+    @router.delete(ApiSpec.USERS_DETAILS, status_code=HTTPStatus.NO_CONTENT)
+    @available_roles(role=Roles.ADMIN, self_action=True)
+    async def delete_user(self, user_id: str):
+        await user_service.delete_user(user_id)
         return Response(status_code=HTTPStatus.NO_CONTENT)
 
-    # @router.get(ApiSpec.USERS, status_code=200, response_model=List[UserDTO])
-    # def get_users(self, skip: int = 0, limit: int = 100):
-    #     response = user_service.get_all(self.db, skip=skip, limit=limit)
-    #     return response
+    @router.patch(ApiSpec.USERS_RESTORE, status_code=HTTPStatus.NO_CONTENT)
+    @available_roles(role=Roles.ADMIN)
+    async def restore_user(self, user_id: str):
+        """sets 'deleted' user is_active field to True"""
+        await user_service.restore_user(user_id)
+        return Response(status_code=HTTPStatus.NO_CONTENT)

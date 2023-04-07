@@ -12,6 +12,13 @@ class TokenPayload(BaseModel):
     sub: str = None
     exp: int = None
 
+
+class LoginRespDTO(BaseModel):
+    user_id: Union[str, UUID]
+    login: str
+    role: str
+    access_token: str
+    refresh_token: str
 # class SessionCreateDTO(BaseModel):
 #     user_id: UUID
 #     login: str
@@ -21,3 +28,8 @@ class TokenPayload(BaseModel):
 #
 # class SessionPatchDTO(BaseModel):
 #     expire_time: datetime
+
+class AuthHeadersDTO(BaseModel):
+    user_id: Union[str, UUID]
+    role: str
+    login: str

@@ -1,0 +1,76 @@
+[2023-03-24 22:21:56 +0100] [15903] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:21:56 +0100] [15903] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7f99a9f574c0>
+[2023-03-24 22:22:21 +0100] [15944] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:22:21 +0100] [15944] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7ff77a9d91c0>
+[2023-03-24 22:25:13 +0100] [16110] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:25:13 +0100] [16110] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7f2a64a0a280>
+[2023-03-24 22:28:15 +0100] [16284] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:28:15 +0100] [16284] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7ff8ab46d2b0>
+[2023-03-24 22:31:26 +0100] [16885] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:31:26 +0100] [16885] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7f9e66896160>
+[2023-03-24 22:32:01 +0100] [16955] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:32:01 +0100] [16955] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7f08cd34f3d0>
+[2023-03-24 22:32:39 +0100] [16998] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:32:39 +0100] [16998] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7f2a43575400>
+[2023-03-24 22:35:36 +0100] [17208] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:35:36 +0100] [17208] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7fad164c83d0>
+[2023-03-24 22:37:28 +0100] [17323] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:37:28 +0100] [17323] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7fd7caae1400>
+[2023-03-24 22:40:39 +0100] [17565] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:40:39 +0100] [17565] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7fea2aa000d0>
+[2023-03-24 22:40:39 +0100] [17565] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-03-24 22:40:39 +0100] [17565] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-03-24 22:40:40 +0100] [17565] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database <sqlalchemy.engine.result.ChunkedIteratorResult object at 0x7fea2ab551c0>
+[2023-03-24 22:42:48 +0100] [17703] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:42:48 +0100] [17703] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7fc8f0912040>
+[2023-03-24 22:42:48 +0100] [17703] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-03-24 22:42:48 +0100] [17703] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-03-24 22:43:18 +0100] [17750] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:43:18 +0100] [17750] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7f36596d20d0>
+[2023-03-24 22:43:18 +0100] [17750] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-03-24 22:43:18 +0100] [17750] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-03-24 22:50:17 +0100] [18230] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:50:17 +0100] [18230] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7f909a0d6af0>
+[2023-03-24 22:50:17 +0100] [18230] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-03-24 22:50:17 +0100] [18230] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-03-24 22:50:17 +0100] [18230] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database <db.models.UserModel.UserModel object at 0x7f909a22cdf0>
+[2023-03-24 22:51:20 +0100] [18370] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:51:20 +0100] [18370] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7f7426fbcb80>
+[2023-03-24 22:51:20 +0100] [18370] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-03-24 22:51:20 +0100] [18370] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'heroic'}
+[2023-03-24 22:51:20 +0100] [18370] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database None
+[2023-03-24 22:51:33 +0100] [18370] [INFO] [services.auth_service] AuthService: Login user
+[2023-03-24 22:51:33 +0100] [18370] [TRACE] [services.auth_service] AuthService: Login user with passed credentials: <fastapi.security.oauth2.OAuth2PasswordRequestForm object at 0x7f7427111b50>
+[2023-03-24 22:51:33 +0100] [18370] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-03-24 22:51:33 +0100] [18370] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-03-24 22:51:33 +0100] [18370] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database <db.models.UserModel.UserModel object at 0x7f7426e55c40>
+[2023-03-24 23:12:42 +0100] [19700] [INFO] [services.student_service] StudentService: Create students
+[2023-03-24 23:12:42 +0100] [19700] [TRACE] [services.student_service] StudentService: Register students with passed data [StudentCreateDTO(first_name='student_14', second_name='student_14', last_name='student_14', birth_date='28-02-2002', academic_year=<AcademicYearsEnum.THIRD: '3'>, academic_group=<AcademicGroupsEnum.SECOND_3: '302'>)]
+[2023-03-24 23:12:42 +0100] [19700] [DEBUG] [services.student_service] StudentService: Check if student already exists in db and is not deleted: first_name='student_14' second_name='student_14' last_name='student_14' birth_date='28-02-2002' academic_year=<AcademicYearsEnum.THIRD: '3'> academic_group=<AcademicGroupsEnum.SECOND_3: '302'>
+[2023-03-24 23:12:42 +0100] [19700] [INFO] [db.dao.base_dao] StudentModel DAO: Get all db entries by parameters
+[2023-03-24 23:12:42 +0100] [19700] [TRACE] [db.dao.base_dao] StudentModel DAO: Data passed to filter: skip: 0, limit: None, params: {'first_name': 'student_14', 'second_name': 'student_14', 'last_name': 'student_14', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0), 'academic_year': <AcademicYearsEnum.THIRD: '3'>, 'academic_group': <AcademicGroupsEnum.SECOND_3: '302'>}
+[2023-03-24 23:12:43 +0100] [19700] [DEBUG] [db.dao.base_dao] StudentModel DAO: received a response from the database []
+[2023-03-24 23:12:43 +0100] [19700] [DEBUG] [services.student_service] StudentService: Students to be registered after check: [StudentCreateDTO(first_name='student_14', second_name='student_14', last_name='student_14', birth_date=datetime.datetime(2002, 2, 28, 0, 0), academic_year=<AcademicYearsEnum.THIRD: '3'>, academic_group=<AcademicGroupsEnum.SECOND_3: '302'>, registration_token='Z_vlzhw_9gu_RA')]
+[2023-03-24 23:12:43 +0100] [19700] [INFO] [db.dao.base_dao] StudentModel DAO: Create db entry
+[2023-03-24 23:12:43 +0100] [19700] [TRACE] [db.dao.base_dao] StudentModel DAO: Data passed for creation: [StudentCreateDTO(first_name='student_14', second_name='student_14', last_name='student_14', birth_date=datetime.datetime(2002, 2, 28, 0, 0), academic_year=<AcademicYearsEnum.THIRD: '3'>, academic_group=<AcademicGroupsEnum.SECOND_3: '302'>, registration_token='Z_vlzhw_9gu_RA')]
+[2023-03-24 23:12:43 +0100] [19700] [DEBUG] [db.dao.base_dao] StudentModel DAO: Created entries in database: [{'id': UUID('9f0fe06f-aa99-4974-8daf-a8a50903b18b'), 'registration_token': 'Z_vlzhw_9gu_RA', 'registered_user': False, 'first_name': 'student_14', 'second_name': 'student_14', 'last_name': 'student_14', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0), 'academic_year': <AcademicYearsEnum.THIRD: '3'>, 'academic_group': <AcademicGroupsEnum.SECOND_3: '302'>, 'created_at': datetime.datetime(2023, 3, 24, 22, 12, 43, 467367), 'updated_at': datetime.datetime(2023, 3, 24, 22, 12, 43, 467385), 'deleted_at': None}]
+[2023-03-24 23:41:27 +0100] [21458] [INFO] [services.student_service] StudentService: Create students
+[2023-03-24 23:41:27 +0100] [21458] [TRACE] [services.student_service] StudentService: Register students with passed data [StudentCreateDTO(first_name='student_15', second_name='student_15', last_name='student_15', birth_date='28-02-2002', academic_year=<AcademicYearsEnum.THIRD: '3'>, academic_group=<AcademicGroupsEnum.SECOND_3: '302'>)]
+[2023-03-24 23:41:27 +0100] [21458] [DEBUG] [services.student_service] StudentService: Check if student already exists in db and is not deleted: first_name='student_15' second_name='student_15' last_name='student_15' birth_date='28-02-2002' academic_year=<AcademicYearsEnum.THIRD: '3'> academic_group=<AcademicGroupsEnum.SECOND_3: '302'>
+[2023-03-24 23:41:27 +0100] [21458] [INFO] [db.dao.base_dao] StudentModel DAO: Get all db entries by parameters
+[2023-03-24 23:41:27 +0100] [21458] [TRACE] [db.dao.base_dao] StudentModel DAO: Data passed to filter: skip: 0, limit: None, params: {'first_name': 'student_15', 'second_name': 'student_15', 'last_name': 'student_15', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0), 'academic_year': <AcademicYearsEnum.THIRD: '3'>, 'academic_group': <AcademicGroupsEnum.SECOND_3: '302'>}
+[2023-03-24 23:41:28 +0100] [21458] [DEBUG] [db.dao.base_dao] StudentModel DAO: received a response from the database []
+[2023-03-24 23:41:28 +0100] [21458] [DEBUG] [services.student_service] StudentService: Students to be registered after check: [StudentCreateDTO(first_name='student_15', second_name='student_15', last_name='student_15', birth_date=datetime.datetime(2002, 2, 28, 0, 0), academic_year=<AcademicYearsEnum.THIRD: '3'>, academic_group=<AcademicGroupsEnum.SECOND_3: '302'>, registration_token='63hK1BweyYhVvw')]
+[2023-03-24 23:41:28 +0100] [21458] [INFO] [db.dao.base_dao] StudentModel DAO: Create db entry
+[2023-03-24 23:41:28 +0100] [21458] [TRACE] [db.dao.base_dao] StudentModel DAO: Data passed for creation: [StudentCreateDTO(first_name='student_15', second_name='student_15', last_name='student_15', birth_date=datetime.datetime(2002, 2, 28, 0, 0), academic_year=<AcademicYearsEnum.THIRD: '3'>, academic_group=<AcademicGroupsEnum.SECOND_3: '302'>, registration_token='63hK1BweyYhVvw')]
+[2023-03-24 23:41:28 +0100] [21458] [DEBUG] [db.dao.base_dao] StudentModel DAO: Created entries in database: [{'id': UUID('23db359f-9913-4f22-8eed-6de99a16043d'), 'registration_token': '63hK1BweyYhVvw', 'registered_user': False, 'first_name': 'student_15', 'second_name': 'student_15', 'last_name': 'student_15', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0), 'academic_year': <AcademicYearsEnum.THIRD: '3'>, 'academic_group': <AcademicGroupsEnum.SECOND_3: '302'>, 'created_at': datetime.datetime(2023, 3, 24, 22, 41, 28, 658086), 'updated_at': datetime.datetime(2023, 3, 24, 22, 41, 28, 658090), 'deleted_at': None}]
+[2023-03-24 23:45:51 +0100] [21698] [INFO] [services.student_service] StudentService: Create students
+[2023-03-24 23:45:51 +0100] [21698] [TRACE] [services.student_service] StudentService: Register students with passed data [StudentCreateDTO(first_name='student_16', second_name=None, last_name='student_16', birth_date='28-02-2002', academic_year=<AcademicYearsEnum.SECOND: '2'>, academic_group=<AcademicGroupsEnum.SECOND_2: '202'>)]
+[2023-03-24 23:45:51 +0100] [21698] [DEBUG] [services.student_service] StudentService: Check if student already exists in db and is not deleted: first_name='student_16' second_name=None last_name='student_16' birth_date='28-02-2002' academic_year=<AcademicYearsEnum.SECOND: '2'> academic_group=<AcademicGroupsEnum.SECOND_2: '202'>
+[2023-03-24 23:45:51 +0100] [21698] [INFO] [db.dao.base_dao] StudentModel DAO: Get all db entries by parameters
+[2023-03-24 23:45:51 +0100] [21698] [TRACE] [db.dao.base_dao] StudentModel DAO: Data passed to filter: skip: 0, limit: None, params: {'first_name': 'student_16', 'second_name': None, 'last_name': 'student_16', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0), 'academic_year': <AcademicYearsEnum.SECOND: '2'>, 'academic_group': <AcademicGroupsEnum.SECOND_2: '202'>}
+[2023-03-24 23:45:52 +0100] [21698] [DEBUG] [db.dao.base_dao] StudentModel DAO: received a response from the database []
+[2023-03-24 23:45:52 +0100] [21698] [DEBUG] [services.student_service] StudentService: Students to be registered after check: [StudentCreateDTO(first_name='student_16', second_name=None, last_name='student_16', birth_date=datetime.datetime(2002, 2, 28, 0, 0), academic_year=<AcademicYearsEnum.SECOND: '2'>, academic_group=<AcademicGroupsEnum.SECOND_2: '202'>, registration_token='Up0BFpDWqUtb8w')]
+[2023-03-24 23:45:52 +0100] [21698] [INFO] [db.dao.base_dao] StudentModel DAO: Create db entry
+[2023-03-24 23:45:52 +0100] [21698] [TRACE] [db.dao.base_dao] StudentModel DAO: Data passed for creation: [StudentCreateDTO(first_name='student_16', second_name=None, last_name='student_16', birth_date=datetime.datetime(2002, 2, 28, 0, 0), academic_year=<AcademicYearsEnum.SECOND: '2'>, academic_group=<AcademicGroupsEnum.SECOND_2: '202'>, registration_token='Up0BFpDWqUtb8w')]
+[2023-03-24 23:45:52 +0100] [21698] [DEBUG] [db.dao.base_dao] StudentModel DAO: Created entries in database: [{'id': UUID('424f813a-9308-4b09-aaa2-0503b483f03d'), 'registration_token': 'Up0BFpDWqUtb8w', 'registered_user': False, 'first_name': 'student_16', 'second_name': None, 'last_name': 'student_16', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0), 'academic_year': <AcademicYearsEnum.SECOND: '2'>, 'academic_group': <AcademicGroupsEnum.SECOND_2: '202'>, 'created_at': datetime.datetime(2023, 3, 24, 22, 45, 52, 818419), 'updated_at': datetime.datetime(2023, 3, 24, 22, 45, 52, 818423), 'deleted_at': None}]

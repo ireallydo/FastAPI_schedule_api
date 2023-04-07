@@ -1,25 +1,51 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, func
-from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator
-from sorcery import dict_of
+from typing import Union
+from http import HTTPStatus
+from fastapi import HTTPException
+from db.models import GroupBusyModel
+from db.dto import GroupBusyRequestDTO, GroupBusyCreateDTO
+from db.dao import group_busy_dao, GroupBusyDAO
+from db.enums import AcademicGroupsEnum, WeekdaysEnum, LessonsEnum, SemestersEnum
+from loguru import logger
 
-from db.models import *
-from db.dto import *
-from db.dao import group_busy_dao
-from db.enums import WeekdaysEnum, LessonsEnum
+
+class GroupService:
+
+    def __init__(self, group_busy_dao: GroupBusyDAO):
+        self._group_busy_dao = group_busy_dao
+
+    async def check_group_busy(self, num: AcademicGroupsEnum,
+                               weekday: WeekdaysEnum,
+                               lesson: LessonsEnum,
+                               semester: SemestersEnum) -> Union[GroupBusyModel, None]:
+        group_busy = await self._group_busy_dao.get_by(
+            group_number=num,
+            weekday=weekday,
+            lesson=lesson,
+            semester=semester
+        )
+        return group_busy
+
+    async def set_group_busy(self, num: AcademicGroupsEnum, input_data: GroupBusyRequestDTO) -> GroupBusyModel:
+        logger.info("GroupService: Set group busy")
+        logger.trace(f"GroupService: Set group busy: group_number: {num}, data: {input_data}")
+        group_busy = await self.check_group_busy(num, input_data.weekday, input_data.lesson)
+        if group_busy is None:
+            obj = GroupBusyCreateDTO(
+                group_number=num,
+                weekday=input_data.weekday,
+                lesson=input_data.lesson,
+                semester=input_data.semester,
+                is_busy=input_data.is_busy
+            )
+            response = await self._group_busy_dao.create(obj)
+        else:
+            try:
+                assert (group_busy.is_busy != input_data.is_busy)
+                response = await self._group_busy_dao.patch_busy(input_data, num)
+            except AssertionError:
+                raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                    detail=f"The group is already set busy: {input_data.is_busy} at this time.")
+        return response
 
 
-def create_group_busy(db, input_data):
-    if type(input_data) is not dict:
-        input_data = input_data.dict()
-    input_data["is_busy"]=True
-    group_busy_dao.create(db, input_data)
-
-def set_group_busy(db, input_data):
-    group_busy_dao.set_busy(db, input_data)
-    return check_group_busy(db, input_data)
-
-def check_group_busy(db, input_data):
-    if type(input_data) is not dict:
-        input_data = input_data.dict()
-    group_busy = group_busy_dao.check_busy(db, input_data)
-    return group_busy
+group_service = GroupService(group_busy_dao)

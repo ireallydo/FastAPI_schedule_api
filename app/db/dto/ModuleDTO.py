@@ -21,7 +21,7 @@ class ModuleCreateDTO(ModuleBaseDTO):
 class ModuleDTO(ModuleCreateDTO):
     id: Union[UUID, str]
 
-class PupulateTeachersDTO(ModuleBaseDTO):
+class PopulateTeachersDTO(ModuleBaseDTO):
     id: Union[UUID, str]
     first_name: str
     second_name: Optional[str]
@@ -31,4 +31,4 @@ class PupulateTeachersDTO(ModuleBaseDTO):
 
 class ModuleTeachersDTO(ModuleBaseDTO):
     id: Union[UUID, str]
-    teachers: List[PupulateTeachersDTO]
+    teachers: List[PopulateTeachersDTO]

@@ -1,8 +1,8 @@
 from typing import List, Union, Dict, Optional
 from pydantic import BaseModel
-
+from sqlalchemy.dialects.postgresql import TIME
 from uuid import UUID
-
+from datetime import time
 from db.enums import LessonsEnum
 
 
@@ -10,9 +10,15 @@ class LessonBaseDTO(BaseModel):
     class Config:
         orm_mode = True
 
-class LessonCreateDTO(LessonBaseDTO):
+
+class LessonPatchDTO(LessonBaseDTO):
+    start_time: Union[str, time]
+    end_time: Union[str, time]
+
+
+class LessonCreateDTO(LessonPatchDTO):
     lesson_number: LessonsEnum
-    time: str
+
 
 class LessonDTO(LessonCreateDTO):
     id: Union[UUID, str]
@@ -20,11 +26,9 @@ class LessonDTO(LessonCreateDTO):
 class LessonSearchDTO(LessonBaseDTO):
     lesson_number: LessonsEnum
 
-class LessonPatchDTO(LessonBaseDTO):
-    time: str
 
-class LessonDeleteDTO(LessonBaseDTO):
-    lesson_number: LessonsEnum
+class LessonDeleteDTO(LessonSearchDTO):
+    pass
 
 class LessonScheduleDTO(LessonBaseDTO):
     pass

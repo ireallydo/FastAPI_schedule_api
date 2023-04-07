@@ -1,5 +1,7 @@
 from pydantic import BaseSettings, Field
 from pathlib import Path
+from datetime import timedelta
+
 
 class Settings(BaseSettings):
 
@@ -11,11 +13,15 @@ class Settings(BaseSettings):
     DB_PASSWORD: str = Field(..., env="DB_PASSWORD")
     DB_HOST: str = Field(..., env="DB_HOST")
 
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(60, env="ACCESS_TOKEN_EXPIRE_MINUTES")
-    REFRESH_TOKEN_EXPIRE_MINUTES:int = Field(60*24*7, env="REFRESH_TOKEN_EXPIRE_MINUTES")
+    ACCESS_TOKEN_EXPIRE_MINUTES: timedelta = Field(timedelta(minutes=5), env="ACCESS_TOKEN_EXPIRE_MINUTES")
+    REFRESH_TOKEN_EXPIRE_MINUTES: timedelta = Field(timedelta(days=2), env="REFRESH_TOKEN_EXPIRE_MINUTES")
     TOKEN_ALGO: str = Field('HS256', env="TOKEN_ALGO")
     JWT_KEY: str = Field(..., env="JWT_KEY")
     JWT_REFRESH_KEY: str = Field(..., env="JWT_REFRESH_KEY")
+
+    LOG_FILEPATH: str = Field("logs/app_log.log", env="LOG_FILEPATH")
+    LOG_ROTATION: int = Field(1, env="LOG_ROTATION")
+    LOG_RETENTION: int = Field(30, env="LOG_RETENTION")
 
     #!TODO: separate
     # settings for testing

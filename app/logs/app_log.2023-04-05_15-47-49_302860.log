@@ -1,0 +1,1255 @@
+[2023-04-05 15:47:49 +0200] [22435] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 15:47:49 +0200] [22435] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 15:47:49 +0200] [22435] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 15:47:49 +0200] [22435] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 15:47:49 +0200] [22435] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 15:47:49 +0200] [22435] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 15:47:49 +0200] [22435] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 15:47:49 +0200] [22435] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 15:47:49 +0200] [22435] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 13, 52, 49, 597489) refresh_expire_time=datetime.datetime(2023, 4, 7, 13, 47, 49, 597651) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MDI3NjksInN1YiI6ImFkbWluIn0.acSCMUwd9tiE5qW3VIOSdAClhoCpqWgnIfWmKFK8f3o' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4NzUyNjksInN1YiI6ImFkbWluIn0.1YmuzAP7pcC5nRx_yto0eVT1nVSVoc_zsOm4cWNI7Zg' blocked=False is_active=True
+[2023-04-05 15:47:49 +0200] [22435] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('e950102c-9be6-4338-876f-d5da0f07090b'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MDI3NjksInN1YiI6ImFkbWluIn0.acSCMUwd9tiE5qW3VIOSdAClhoCpqWgnIfWmKFK8f3o', 'access_expire_time': datetime.datetime(2023, 4, 5, 13, 52, 49, 597489), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4NzUyNjksInN1YiI6ImFkbWluIn0.1YmuzAP7pcC5nRx_yto0eVT1nVSVoc_zsOm4cWNI7Zg', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 13, 47, 49, 597651), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 13, 47, 49, 600897), 'updated_at': datetime.datetime(2023, 4, 5, 13, 47, 49, 600903)}
+[2023-04-05 15:47:51 +0200] [22435] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 15:47:51 +0200] [22435] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 15:47:51 +0200] [22435] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 15:47:51 +0200] [22435] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 15:47:51 +0200] [22435] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 15:47:51 +0200] [22435] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:47:51 +0200] [22435] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:47:51 +0200] [22435] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:47:53 +0200] [22435] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 15:49:56 +0200] [22757] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 15:49:56 +0200] [22757] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 15:49:56 +0200] [22757] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 15:49:56 +0200] [22757] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 15:49:56 +0200] [22757] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:49:56 +0200] [22757] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 15:49:56 +0200] [22757] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 15:49:56 +0200] [22757] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 15:49:56 +0200] [22757] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:49:56 +0200] [22757] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:49:57 +0200] [22757] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 15:49:57 +0200] [22757] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 15:49:57 +0200] [22757] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 15:57:08 +0200] [23283] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 15:57:26 +0200] [23283] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 15:57:26 +0200] [23283] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 15:57:26 +0200] [23283] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 15:57:26 +0200] [23283] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 15:57:26 +0200] [23283] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 15:57:27 +0200] [23283] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 15:57:27 +0200] [23283] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 15:57:27 +0200] [23283] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 15:57:27 +0200] [23283] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 14, 2, 27, 179496) refresh_expire_time=datetime.datetime(2023, 4, 7, 13, 57, 27, 179685) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MDMzNDcsInN1YiI6ImFkbWluIn0.-XOk1VdQXLC52nB1kVPhVzNBKtO2qao9jjj0kppUASI' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4NzU4NDcsInN1YiI6ImFkbWluIn0.UlaziJxcW9uxF6RSlcPDBPmSxixI3lFFuUJ_A6-oezw' blocked=False is_active=True
+[2023-04-05 15:57:27 +0200] [23283] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('59245414-0dc4-408e-81d3-f535bd361492'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MDMzNDcsInN1YiI6ImFkbWluIn0.-XOk1VdQXLC52nB1kVPhVzNBKtO2qao9jjj0kppUASI', 'access_expire_time': datetime.datetime(2023, 4, 5, 14, 2, 27, 179496), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4NzU4NDcsInN1YiI6ImFkbWluIn0.UlaziJxcW9uxF6RSlcPDBPmSxixI3lFFuUJ_A6-oezw', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 13, 57, 27, 179685), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 13, 57, 27, 184803), 'updated_at': datetime.datetime(2023, 4, 5, 13, 57, 27, 184812)}
+[2023-04-05 15:57:31 +0200] [23283] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 15:57:31 +0200] [23283] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 15:57:31 +0200] [23283] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 15:57:31 +0200] [23283] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 15:57:31 +0200] [23283] [INFO] [services.teacher_service] TeacherService: Get all not deleted teachers
+[2023-04-05 15:57:31 +0200] [23283] [INFO] [db.dao.base_dao] TeacherModel DAO: Get all db entries by parameters
+[2023-04-05 15:57:31 +0200] [23283] [TRACE] [db.dao.base_dao] TeacherModel DAO: Data passed to filter: skip: 0, limit: None, params: {}
+[2023-04-05 15:57:32 +0200] [23283] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 15:57:43 +0200] [23283] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 15:57:43 +0200] [23283] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 15:57:43 +0200] [23283] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 15:57:43 +0200] [23283] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 15:57:43 +0200] [23283] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 15:57:43 +0200] [23283] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:57:43 +0200] [23283] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:57:43 +0200] [23283] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 15:57:43 +0200] [23283] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 15:57:50 +0200] [23283] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 15:57:50 +0200] [23283] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 15:57:50 +0200] [23283] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 15:57:50 +0200] [23283] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 15:57:50 +0200] [23283] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 15:57:50 +0200] [23283] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5
+[2023-04-05 15:57:50 +0200] [23283] [INFO] [services.teacher_service] TeacherService: Get teacher by id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5
+[2023-04-05 15:57:50 +0200] [23283] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5
+[2023-04-05 15:57:50 +0200] [23283] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 16:31:18 +0200] [23283] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 16:31:21 +0200] [23283] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 16:31:21 +0200] [23283] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 16:31:21 +0200] [23283] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 16:31:21 +0200] [23283] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 16:31:21 +0200] [23283] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 16:31:21 +0200] [23283] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 16:31:21 +0200] [23283] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 16:31:21 +0200] [23283] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 16:31:21 +0200] [23283] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 14, 36, 21, 437797) refresh_expire_time=datetime.datetime(2023, 4, 7, 14, 31, 21, 437940) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MDUzODEsInN1YiI6ImFkbWluIn0.CFSkNnneXiiGjXgrBGVepvrBtFzng7u6mWjn0RozrWg' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4Nzc4ODEsInN1YiI6ImFkbWluIn0.kIMB-BAlaDfEQh8PuLFFbcvlebjomi1oV6zF91KZKXs' blocked=False is_active=True
+[2023-04-05 16:31:21 +0200] [23283] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('136669a0-6e84-4148-87b4-bd48f741e086'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MDUzODEsInN1YiI6ImFkbWluIn0.CFSkNnneXiiGjXgrBGVepvrBtFzng7u6mWjn0RozrWg', 'access_expire_time': datetime.datetime(2023, 4, 5, 14, 36, 21, 437797), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4Nzc4ODEsInN1YiI6ImFkbWluIn0.kIMB-BAlaDfEQh8PuLFFbcvlebjomi1oV6zF91KZKXs', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 14, 31, 21, 437940), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 14, 31, 21, 440010), 'updated_at': datetime.datetime(2023, 4, 5, 14, 31, 21, 440015)}
+[2023-04-05 16:31:24 +0200] [23283] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 16:31:24 +0200] [23283] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 16:31:24 +0200] [23283] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 16:31:24 +0200] [23283] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 16:31:24 +0200] [23283] [INFO] [services.module_service] ModuleService: Get module by id: cafb88f4-3bb9-4765-b0ea-8baed53f1ca1
+[2023-04-05 16:31:24 +0200] [23283] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 16:31:24 +0200] [23283] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': 'cafb88f4-3bb9-4765-b0ea-8baed53f1ca1'}
+[2023-04-05 16:31:24 +0200] [23283] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:21:21 +0200] [34188] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 19:21:21 +0200] [34188] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 19:21:21 +0200] [34188] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:21:21 +0200] [34188] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:21:21 +0200] [34188] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:21:21 +0200] [34188] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 19:21:21 +0200] [34188] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 19:21:21 +0200] [34188] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 19:21:21 +0200] [34188] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 17, 26, 21, 742284) refresh_expire_time=datetime.datetime(2023, 4, 7, 17, 21, 21, 742439) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTU1ODEsInN1YiI6ImFkbWluIn0.9wilWmOTvsAoUihammePNhZ7xAtizf8Si79BkoIYOWU' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODgwODEsInN1YiI6ImFkbWluIn0.s6z8o8ayEko1Ddu3meqej4dDmPyT8uMgvU1DjZxK6RY' blocked=False is_active=True
+[2023-04-05 19:21:21 +0200] [34188] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('59b738a5-4feb-4231-a618-1dfb046c868c'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTU1ODEsInN1YiI6ImFkbWluIn0.9wilWmOTvsAoUihammePNhZ7xAtizf8Si79BkoIYOWU', 'access_expire_time': datetime.datetime(2023, 4, 5, 17, 26, 21, 742284), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODgwODEsInN1YiI6ImFkbWluIn0.s6z8o8ayEko1Ddu3meqej4dDmPyT8uMgvU1DjZxK6RY', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 17, 21, 21, 742439), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 17, 21, 21, 745839), 'updated_at': datetime.datetime(2023, 4, 5, 17, 21, 21, 745844)}
+[2023-04-05 19:21:24 +0200] [34188] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:21:24 +0200] [34188] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:21:24 +0200] [34188] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:21:24 +0200] [34188] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:22:20 +0200] [34353] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:22:20 +0200] [34353] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:22:20 +0200] [34353] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:22:20 +0200] [34353] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:23:56 +0200] [34457] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:23:56 +0200] [34457] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:23:56 +0200] [34457] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:23:57 +0200] [34457] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:28:57 +0200] [34906] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 19:28:57 +0200] [34906] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 19:28:57 +0200] [34906] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:28:57 +0200] [34906] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:28:57 +0200] [34906] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:28:57 +0200] [34906] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 19:28:57 +0200] [34906] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 19:28:57 +0200] [34906] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 19:28:57 +0200] [34906] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 17, 33, 57, 501068) refresh_expire_time=datetime.datetime(2023, 4, 7, 17, 28, 57, 501290) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTYwMzcsInN1YiI6ImFkbWluIn0.J5174dp2J07LIV4TpMWLtnHBcXyTOtrsqeAt2YqtGr0' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODg1MzcsInN1YiI6ImFkbWluIn0.QDwQKW6Zpnp05TPZg-hmhsICcYjLynByWHi4KsbP5cE' blocked=False is_active=True
+[2023-04-05 19:28:57 +0200] [34906] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('692c3e83-80ac-4769-8325-28abb8fa9505'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTYwMzcsInN1YiI6ImFkbWluIn0.J5174dp2J07LIV4TpMWLtnHBcXyTOtrsqeAt2YqtGr0', 'access_expire_time': datetime.datetime(2023, 4, 5, 17, 33, 57, 501068), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODg1MzcsInN1YiI6ImFkbWluIn0.QDwQKW6Zpnp05TPZg-hmhsICcYjLynByWHi4KsbP5cE', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 17, 28, 57, 501290), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 17, 28, 57, 504995), 'updated_at': datetime.datetime(2023, 4, 5, 17, 28, 57, 505000)}
+[2023-04-05 19:29:03 +0200] [34906] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:29:03 +0200] [34906] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:29:03 +0200] [34906] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:29:03 +0200] [34906] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:29:03 +0200] [34906] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:29:03 +0200] [34906] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:29:03 +0200] [34906] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:29:06 +0200] [34906] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:29:31 +0200] [34977] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:29:31 +0200] [34977] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:29:31 +0200] [34977] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:29:31 +0200] [34977] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:29:31 +0200] [34977] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:29:31 +0200] [34977] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:29:31 +0200] [34977] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:29:34 +0200] [34977] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:29:45 +0200] [34977] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:29:45 +0200] [34977] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:29:45 +0200] [34977] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:29:45 +0200] [34977] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:29:45 +0200] [34977] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 19:29:45 +0200] [34977] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5
+[2023-04-05 19:29:45 +0200] [34977] [INFO] [services.teacher_service] TeacherService: Get teacher by id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5
+[2023-04-05 19:29:45 +0200] [34977] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5
+[2023-04-05 19:29:45 +0200] [34977] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 19:30:11 +0200] [34977] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:30:11 +0200] [34977] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:30:11 +0200] [34977] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:30:11 +0200] [34977] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:30:11 +0200] [34977] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 19:30:11 +0200] [34977] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 19:30:11 +0200] [34977] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 19:30:11 +0200] [34977] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 19:30:11 +0200] [34977] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 19:30:17 +0200] [34977] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:30:17 +0200] [34977] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:30:17 +0200] [34977] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:30:17 +0200] [34977] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:30:17 +0200] [34977] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:30:17 +0200] [34977] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:30:17 +0200] [34977] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:30:17 +0200] [34977] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:30:43 +0200] [34977] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:30:43 +0200] [34977] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:30:43 +0200] [34977] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:30:43 +0200] [34977] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:30:43 +0200] [34977] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:30:43 +0200] [34977] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:30:43 +0200] [34977] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:30:43 +0200] [34977] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:35:48 +0200] [35385] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 19:35:48 +0200] [35385] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 19:35:48 +0200] [35385] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:35:48 +0200] [35385] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:35:48 +0200] [35385] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:35:48 +0200] [35385] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 19:35:48 +0200] [35385] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 19:35:48 +0200] [35385] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 19:35:48 +0200] [35385] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 17, 40, 48, 445125) refresh_expire_time=datetime.datetime(2023, 4, 7, 17, 35, 48, 445342) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTY0NDgsInN1YiI6ImFkbWluIn0.bIN9V8zyzioa5-f_7xqjas8cGXry04xAYxTl20wKqeg' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODg5NDgsInN1YiI6ImFkbWluIn0.RIISjOfvPBaIf2o44eVKokgn55tg-KLVR9bH2f_q0LM' blocked=False is_active=True
+[2023-04-05 19:35:48 +0200] [35385] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('0edbfaa9-ca8c-4fae-8600-4d38fb56d202'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTY0NDgsInN1YiI6ImFkbWluIn0.bIN9V8zyzioa5-f_7xqjas8cGXry04xAYxTl20wKqeg', 'access_expire_time': datetime.datetime(2023, 4, 5, 17, 40, 48, 445125), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODg5NDgsInN1YiI6ImFkbWluIn0.RIISjOfvPBaIf2o44eVKokgn55tg-KLVR9bH2f_q0LM', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 17, 35, 48, 445342), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 17, 35, 48, 450430), 'updated_at': datetime.datetime(2023, 4, 5, 17, 35, 48, 450439)}
+[2023-04-05 19:35:51 +0200] [35385] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:35:51 +0200] [35385] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:35:51 +0200] [35385] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:35:51 +0200] [35385] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:35:51 +0200] [35385] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:35:51 +0200] [35385] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:35:51 +0200] [35385] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:35:54 +0200] [35385] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:45:08 +0200] [36752] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:45:11 +0200] [36752] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 19:45:11 +0200] [36752] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 19:45:11 +0200] [36752] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:45:11 +0200] [36752] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:45:11 +0200] [36752] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:45:11 +0200] [36752] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 19:45:11 +0200] [36752] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 19:45:11 +0200] [36752] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 19:45:11 +0200] [36752] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 17, 50, 11, 969574) refresh_expire_time=datetime.datetime(2023, 4, 7, 17, 45, 11, 969721) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTcwMTEsInN1YiI6ImFkbWluIn0.9nNEMY9KbXmG3lfqa9T84BgIr-P7Kxte9XqAVP0r_to' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODk1MTEsInN1YiI6ImFkbWluIn0.qSc7V4-m18SrPsnQDSKMgbSsGpbZmbLUxqaq54ia1gw' blocked=False is_active=True
+[2023-04-05 19:45:11 +0200] [36752] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('3db9fe55-1ba2-4f22-a280-7e39efac5ff7'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTcwMTEsInN1YiI6ImFkbWluIn0.9nNEMY9KbXmG3lfqa9T84BgIr-P7Kxte9XqAVP0r_to', 'access_expire_time': datetime.datetime(2023, 4, 5, 17, 50, 11, 969574), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODk1MTEsInN1YiI6ImFkbWluIn0.qSc7V4-m18SrPsnQDSKMgbSsGpbZmbLUxqaq54ia1gw', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 17, 45, 11, 969721), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 17, 45, 11, 972925), 'updated_at': datetime.datetime(2023, 4, 5, 17, 45, 11, 972929)}
+[2023-04-05 19:45:13 +0200] [36752] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:45:13 +0200] [36752] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:45:13 +0200] [36752] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:45:13 +0200] [36752] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:45:13 +0200] [36752] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:45:13 +0200] [36752] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:45:13 +0200] [36752] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:45:16 +0200] [36752] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:50:14 +0200] [37196] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:50:16 +0200] [37196] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 19:50:16 +0200] [37196] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 19:50:16 +0200] [37196] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:50:16 +0200] [37196] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:50:16 +0200] [37196] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:50:17 +0200] [37196] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 19:50:17 +0200] [37196] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 19:50:17 +0200] [37196] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 19:50:17 +0200] [37196] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 17, 55, 17, 202357) refresh_expire_time=datetime.datetime(2023, 4, 7, 17, 50, 17, 202500) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTczMTcsInN1YiI6ImFkbWluIn0.6SgVKmffOyfFtx2m9el5JWlgYWeAFw_w03TXzWlTRNY' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODk4MTcsInN1YiI6ImFkbWluIn0.XJBgSpObBiXVvBbyI-_EWgP_n50R9-W_enDxQprPVH0' blocked=False is_active=True
+[2023-04-05 19:50:17 +0200] [37196] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('a62e4d43-da88-4883-a1f3-1195fe1ff171'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTczMTcsInN1YiI6ImFkbWluIn0.6SgVKmffOyfFtx2m9el5JWlgYWeAFw_w03TXzWlTRNY', 'access_expire_time': datetime.datetime(2023, 4, 5, 17, 55, 17, 202357), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4ODk4MTcsInN1YiI6ImFkbWluIn0.XJBgSpObBiXVvBbyI-_EWgP_n50R9-W_enDxQprPVH0', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 17, 50, 17, 202500), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 17, 50, 17, 205868), 'updated_at': datetime.datetime(2023, 4, 5, 17, 50, 17, 205874)}
+[2023-04-05 19:50:19 +0200] [37196] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:50:19 +0200] [37196] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:50:19 +0200] [37196] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:50:19 +0200] [37196] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:50:19 +0200] [37196] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:50:19 +0200] [37196] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:50:19 +0200] [37196] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:50:22 +0200] [37196] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:57:58 +0200] [37866] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 19:57:58 +0200] [37866] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 19:57:58 +0200] [37866] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:57:58 +0200] [37866] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:57:58 +0200] [37866] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:57:59 +0200] [37866] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 19:57:59 +0200] [37866] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 19:57:59 +0200] [37866] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 19:57:59 +0200] [37866] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 18, 2, 59, 239893) refresh_expire_time=datetime.datetime(2023, 4, 7, 17, 57, 59, 240040) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTc3NzksInN1YiI6ImFkbWluIn0.NtUVUb2LzpoKdjGtWkoRX7sEjWs7ImfQ4_TTqRRRdVk' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4OTAyNzksInN1YiI6ImFkbWluIn0.DIG17dqGmwzw5-s_AyejK8Pz39Gs3Zt-kP4uosDAEkI' blocked=False is_active=True
+[2023-04-05 19:57:59 +0200] [37866] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('3e269d37-bdb7-4b50-8004-8587f3c4d119'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTc3NzksInN1YiI6ImFkbWluIn0.NtUVUb2LzpoKdjGtWkoRX7sEjWs7ImfQ4_TTqRRRdVk', 'access_expire_time': datetime.datetime(2023, 4, 5, 18, 2, 59, 239893), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4OTAyNzksInN1YiI6ImFkbWluIn0.DIG17dqGmwzw5-s_AyejK8Pz39Gs3Zt-kP4uosDAEkI', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 17, 57, 59, 240040), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 17, 57, 59, 243207), 'updated_at': datetime.datetime(2023, 4, 5, 17, 57, 59, 243213)}
+[2023-04-05 19:58:04 +0200] [37866] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:58:04 +0200] [37866] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:58:04 +0200] [37866] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:58:04 +0200] [37866] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:58:04 +0200] [37866] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:58:04 +0200] [37866] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:58:04 +0200] [37866] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:58:06 +0200] [37866] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:58:38 +0200] [37930] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:58:38 +0200] [37930] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:58:38 +0200] [37930] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:58:38 +0200] [37930] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:58:38 +0200] [37930] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:58:38 +0200] [37930] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:58:38 +0200] [37930] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:58:40 +0200] [37930] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:58:40 +0200] [37930] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 19:58:40 +0200] [37930] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 19:58:40 +0200] [37930] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 19:59:00 +0200] [37969] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 19:59:00 +0200] [37969] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 19:59:00 +0200] [37969] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 19:59:00 +0200] [37969] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 19:59:00 +0200] [37969] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 19:59:00 +0200] [37969] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 19:59:00 +0200] [37969] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 19:59:03 +0200] [37969] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 19:59:03 +0200] [37969] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 19:59:03 +0200] [37969] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 19:59:03 +0200] [37969] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:00:30 +0200] [38093] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:00:30 +0200] [38093] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:00:30 +0200] [38093] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:00:30 +0200] [38093] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:00:30 +0200] [38093] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 20:00:30 +0200] [38093] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 20:00:30 +0200] [38093] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 20:00:32 +0200] [38093] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 20:00:32 +0200] [38093] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:00:32 +0200] [38093] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:00:32 +0200] [38093] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:00:40 +0200] [38093] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:00:40 +0200] [38093] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:00:40 +0200] [38093] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:00:40 +0200] [38093] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:00:40 +0200] [38093] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 20:00:40 +0200] [38093] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:00:40 +0200] [38093] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:00:40 +0200] [38093] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:00:40 +0200] [38093] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:00:45 +0200] [38093] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:00:45 +0200] [38093] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:00:45 +0200] [38093] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:00:45 +0200] [38093] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:00:45 +0200] [38093] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 20:00:45 +0200] [38093] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:00:45 +0200] [38093] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:00:45 +0200] [38093] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:00:45 +0200] [38093] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:01:05 +0200] [38093] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:01:05 +0200] [38093] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:01:05 +0200] [38093] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:01:05 +0200] [38093] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:01:05 +0200] [38093] [INFO] [services.module_service] ModuleService: Get all modules
+[2023-04-05 20:01:05 +0200] [38093] [INFO] [db.dao.base_dao] ModuleModel DAO: Get all db entries by parameters
+[2023-04-05 20:01:05 +0200] [38093] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: skip: 0, limit: None, params: {}
+[2023-04-05 20:01:05 +0200] [38093] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 20:01:12 +0200] [38093] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:01:12 +0200] [38093] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:01:12 +0200] [38093] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:01:12 +0200] [38093] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:01:12 +0200] [38093] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 20:01:12 +0200] [38093] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 20:01:12 +0200] [38093] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 20:01:12 +0200] [38093] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 20:01:12 +0200] [38093] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:01:12 +0200] [38093] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:01:12 +0200] [38093] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:03:23 +0200] [38296] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:03:27 +0200] [38296] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 20:03:27 +0200] [38296] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 20:03:27 +0200] [38296] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:03:27 +0200] [38296] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:03:27 +0200] [38296] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:03:27 +0200] [38296] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 20:03:27 +0200] [38296] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 20:03:27 +0200] [38296] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 20:03:27 +0200] [38296] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 18, 8, 27, 397757) refresh_expire_time=datetime.datetime(2023, 4, 7, 18, 3, 27, 397948) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTgxMDcsInN1YiI6ImFkbWluIn0.2xdVG79gQuq5cxS1y9zQiuew0AQmXL7_nVBUHeXmCTM' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4OTA2MDcsInN1YiI6ImFkbWluIn0.FZeDpSFtJQfCEkvfhnfd-romW-YIVigO69K6b3g2AS8' blocked=False is_active=True
+[2023-04-05 20:03:27 +0200] [38296] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('a255d260-44f6-4448-9c60-3d27ce98ad57'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTgxMDcsInN1YiI6ImFkbWluIn0.2xdVG79gQuq5cxS1y9zQiuew0AQmXL7_nVBUHeXmCTM', 'access_expire_time': datetime.datetime(2023, 4, 5, 18, 8, 27, 397757), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4OTA2MDcsInN1YiI6ImFkbWluIn0.FZeDpSFtJQfCEkvfhnfd-romW-YIVigO69K6b3g2AS8', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 18, 3, 27, 397948), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 18, 3, 27, 401312), 'updated_at': datetime.datetime(2023, 4, 5, 18, 3, 27, 401317)}
+[2023-04-05 20:03:29 +0200] [38296] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:03:29 +0200] [38296] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:03:29 +0200] [38296] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:03:29 +0200] [38296] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:03:29 +0200] [38296] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 20:03:29 +0200] [38296] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 20:03:29 +0200] [38296] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 20:03:32 +0200] [38296] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 20:03:32 +0200] [38296] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:03:32 +0200] [38296] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:03:32 +0200] [38296] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:04:10 +0200] [38296] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:04:10 +0200] [38296] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:04:10 +0200] [38296] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:04:10 +0200] [38296] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:04:10 +0200] [38296] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 20:04:10 +0200] [38296] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:04:10 +0200] [38296] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:04:10 +0200] [38296] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:04:10 +0200] [38296] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:05:16 +0200] [38450] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:05:16 +0200] [38450] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:05:16 +0200] [38450] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:05:16 +0200] [38450] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:05:16 +0200] [38450] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 20:05:16 +0200] [38450] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 20:05:16 +0200] [38450] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 20:05:18 +0200] [38450] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 20:05:18 +0200] [38450] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:05:18 +0200] [38450] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:05:18 +0200] [38450] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:05:38 +0200] [38491] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:05:38 +0200] [38491] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:05:38 +0200] [38491] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:05:38 +0200] [38491] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:05:38 +0200] [38491] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 20:05:38 +0200] [38491] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 20:05:38 +0200] [38491] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 20:05:40 +0200] [38491] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 20:05:40 +0200] [38491] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:05:40 +0200] [38491] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:05:41 +0200] [38491] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:49:00 +0200] [41148] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 20:49:00 +0200] [41148] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 20:49:00 +0200] [41148] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:49:00 +0200] [41148] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:49:00 +0200] [41148] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:49:01 +0200] [41148] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 20:49:01 +0200] [41148] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 20:49:01 +0200] [41148] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 20:49:01 +0200] [41148] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 18, 54, 1, 194370) refresh_expire_time=datetime.datetime(2023, 4, 7, 18, 49, 1, 194523) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MjA4NDEsInN1YiI6ImFkbWluIn0.Pu3bsF8cUHf43vJSSpyxBKXPpiiV7u9mC6V-8qJBMLE' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4OTMzNDEsInN1YiI6ImFkbWluIn0.Y7vJYjTpmEoh-q32KlM4SuhGd-2YVM3omFc0lD8WMyI' blocked=False is_active=True
+[2023-04-05 20:49:01 +0200] [41148] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('40f9c2c2-8553-486e-aebd-fb5f7673d970'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MjA4NDEsInN1YiI6ImFkbWluIn0.Pu3bsF8cUHf43vJSSpyxBKXPpiiV7u9mC6V-8qJBMLE', 'access_expire_time': datetime.datetime(2023, 4, 5, 18, 54, 1, 194370), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4OTMzNDEsInN1YiI6ImFkbWluIn0.Y7vJYjTpmEoh-q32KlM4SuhGd-2YVM3omFc0lD8WMyI', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 18, 49, 1, 194523), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 18, 49, 1, 197663), 'updated_at': datetime.datetime(2023, 4, 5, 18, 49, 1, 197667)}
+[2023-04-05 20:49:06 +0200] [41148] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:49:06 +0200] [41148] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:49:06 +0200] [41148] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:49:06 +0200] [41148] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:49:06 +0200] [41148] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 20:49:06 +0200] [41148] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 20:49:06 +0200] [41148] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 20:49:09 +0200] [41148] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 20:49:09 +0200] [41148] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:49:09 +0200] [41148] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:49:09 +0200] [41148] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:50:06 +0200] [41242] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:50:06 +0200] [41242] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:50:06 +0200] [41242] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:50:06 +0200] [41242] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:50:06 +0200] [41242] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 20:50:06 +0200] [41242] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 20:50:06 +0200] [41242] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 20:50:09 +0200] [41242] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 20:50:09 +0200] [41242] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:50:09 +0200] [41242] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:50:09 +0200] [41242] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:53:13 +0200] [41477] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:53:13 +0200] [41477] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:53:13 +0200] [41477] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:53:13 +0200] [41477] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:53:13 +0200] [41477] [INFO] [services.module_service] ModuleService: Get module by id: 56308c92-78a6-4b5f-9a87-a30e4a5c7e16
+[2023-04-05 20:53:13 +0200] [41477] [INFO] [db.dao.base_dao] ModuleModel DAO: Get db entry by parameters
+[2023-04-05 20:53:13 +0200] [41477] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: params: {'id': '56308c92-78a6-4b5f-9a87-a30e4a5c7e16'}
+[2023-04-05 20:53:16 +0200] [41477] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 20:53:27 +0200] [41477] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:53:27 +0200] [41477] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:53:27 +0200] [41477] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:53:27 +0200] [41477] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:53:27 +0200] [41477] [INFO] [services.teacher_service] TeacherService: Get teacher modules
+[2023-04-05 20:53:27 +0200] [41477] [TRACE] [services.teacher_service] TeacherService: Get teacher modules: teacher_id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:53:27 +0200] [41477] [INFO] [services.teacher_service] TeacherService: Get teacher by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:53:27 +0200] [41477] [INFO] [db.dao.base_dao] TeacherModel DAO: Get db entry by id: e86be0c2-0f16-4b3a-9c2a-ad2aba954b27
+[2023-04-05 20:53:27 +0200] [41477] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 20:54:44 +0200] [41604] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:54:47 +0200] [41604] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 20:54:47 +0200] [41604] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 20:54:47 +0200] [41604] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:54:47 +0200] [41604] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:54:48 +0200] [41604] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:54:48 +0200] [41604] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 20:54:48 +0200] [41604] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 20:54:48 +0200] [41604] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 20:54:48 +0200] [41604] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 18, 59, 48, 283938) refresh_expire_time=datetime.datetime(2023, 4, 7, 18, 54, 48, 284082) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MjExODgsInN1YiI6ImFkbWluIn0.O4aoeFoqmE-l_2cww8wx9B1JBQLRNBCqMH3envK_wDY' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4OTM2ODgsInN1YiI6ImFkbWluIn0.tKitnG2we0c44KmECdbK1iHz13gg-bMpjPRapyj7Ecw' blocked=False is_active=True
+[2023-04-05 20:54:48 +0200] [41604] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('7197071f-be13-4f62-ba75-c838ea97dab1'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MjExODgsInN1YiI6ImFkbWluIn0.O4aoeFoqmE-l_2cww8wx9B1JBQLRNBCqMH3envK_wDY', 'access_expire_time': datetime.datetime(2023, 4, 5, 18, 59, 48, 283938), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA4OTM2ODgsInN1YiI6ImFkbWluIn0.tKitnG2we0c44KmECdbK1iHz13gg-bMpjPRapyj7Ecw', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 18, 54, 48, 284082), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 18, 54, 48, 287456), 'updated_at': datetime.datetime(2023, 4, 5, 18, 54, 48, 287462)}
+[2023-04-05 20:54:50 +0200] [41604] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 20:54:50 +0200] [41604] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 20:54:50 +0200] [41604] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 20:54:50 +0200] [41604] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 20:54:50 +0200] [41604] [INFO] [services.module_service] ModuleService: Get all modules
+[2023-04-05 20:54:50 +0200] [41604] [INFO] [db.dao.base_dao] ModuleModel DAO: Get all db entries by parameters
+[2023-04-05 20:54:50 +0200] [41604] [TRACE] [db.dao.base_dao] ModuleModel DAO: Data passed to filter: skip: 0, limit: None, params: {}
+[2023-04-05 20:54:53 +0200] [41604] [DEBUG] [db.dao.base_dao] ModuleModel DAO: received a response from the database
+[2023-04-05 23:11:08 +0200] [51594] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 23:11:08 +0200] [51594] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 23:11:08 +0200] [51594] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:11:08 +0200] [51594] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:11:08 +0200] [51594] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:11:08 +0200] [51594] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 23:11:08 +0200] [51594] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 23:11:08 +0200] [51594] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 23:11:08 +0200] [51594] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 21, 16, 8, 318806) refresh_expire_time=datetime.datetime(2023, 4, 7, 21, 11, 8, 318956) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MjkzNjgsInN1YiI6ImFkbWluIn0.D3-CBIYgRYN4WTZZFyyDEpKVwo0Q_PSBx6q3IhrSIBI' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDE4NjgsInN1YiI6ImFkbWluIn0.HZ30adHSWiZkrM1IDrIY4B1_VgOmhJhwtC9hfLcVKvY' blocked=False is_active=True
+[2023-04-05 23:11:08 +0200] [51594] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('ff8fed76-9fe4-438d-8f93-c55b0c23687c'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MjkzNjgsInN1YiI6ImFkbWluIn0.D3-CBIYgRYN4WTZZFyyDEpKVwo0Q_PSBx6q3IhrSIBI', 'access_expire_time': datetime.datetime(2023, 4, 5, 21, 16, 8, 318806), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDE4NjgsInN1YiI6ImFkbWluIn0.HZ30adHSWiZkrM1IDrIY4B1_VgOmhJhwtC9hfLcVKvY', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 21, 11, 8, 318956), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 21, 11, 8, 322020), 'updated_at': datetime.datetime(2023, 4, 5, 21, 11, 8, 322024)}
+[2023-04-05 23:11:11 +0200] [51594] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:11:11 +0200] [51594] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:11:11 +0200] [51594] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:11:11 +0200] [51594] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:11:11 +0200] [51594] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:11:11 +0200] [51594] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: c2d63ade-e62b-4a7a-87be-7e397a612f55, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True
+[2023-04-05 23:11:56 +0200] [51890] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:11:56 +0200] [51890] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:11:56 +0200] [51890] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:11:56 +0200] [51890] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:11:56 +0200] [51890] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:11:56 +0200] [51890] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: c2d63ade-e62b-4a7a-87be-7e397a612f55, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True
+[2023-04-05 23:13:23 +0200] [51973] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:13:23 +0200] [51973] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:13:23 +0200] [51973] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:13:23 +0200] [51973] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:13:23 +0200] [51973] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:13:23 +0200] [51973] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: c2d63ade-e62b-4a7a-87be-7e397a612f55, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True
+[2023-04-05 23:19:59 +0200] [52406] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 23:19:59 +0200] [52406] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 23:19:59 +0200] [52406] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:19:59 +0200] [52406] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:19:59 +0200] [52406] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:19:59 +0200] [52406] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 23:19:59 +0200] [52406] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 23:19:59 +0200] [52406] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 23:19:59 +0200] [52406] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 21, 24, 59, 448738) refresh_expire_time=datetime.datetime(2023, 4, 7, 21, 19, 59, 448914) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3Mjk4OTksInN1YiI6ImFkbWluIn0.4V_p_W7o0hjDMeX6qWRMwRv20SI-GkB_45NVlKN4qFs' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDIzOTksInN1YiI6ImFkbWluIn0.J95UW0kV55f-Y0JhBnPV4_KvzVF6XDHFPHWPLz7kt1I' blocked=False is_active=True
+[2023-04-05 23:19:59 +0200] [52406] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('a582f986-b927-4482-9d80-3c8a35201d1b'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3Mjk4OTksInN1YiI6ImFkbWluIn0.4V_p_W7o0hjDMeX6qWRMwRv20SI-GkB_45NVlKN4qFs', 'access_expire_time': datetime.datetime(2023, 4, 5, 21, 24, 59, 448738), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDIzOTksInN1YiI6ImFkbWluIn0.J95UW0kV55f-Y0JhBnPV4_KvzVF6XDHFPHWPLz7kt1I', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 21, 19, 59, 448914), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 21, 19, 59, 452400), 'updated_at': datetime.datetime(2023, 4, 5, 21, 19, 59, 452404)}
+[2023-04-05 23:20:01 +0200] [52406] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:20:01 +0200] [52406] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:20:01 +0200] [52406] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:20:01 +0200] [52406] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:20:01 +0200] [52406] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:20:01 +0200] [52406] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: c2d63ade-e62b-4a7a-87be-7e397a612f55, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True
+[2023-04-05 23:20:47 +0200] [52474] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:20:47 +0200] [52474] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:20:47 +0200] [52474] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:20:47 +0200] [52474] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:20:47 +0200] [52474] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:20:47 +0200] [52474] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: c2d63ade-e62b-4a7a-87be-7e397a612f55, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True
+[2023-04-05 23:20:47 +0200] [52474] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:20:47 +0200] [52474] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'c2d63ade-e62b-4a7a-87be-7e397a612f55', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.ONE: '1'>}
+[2023-04-05 23:20:48 +0200] [52474] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:24:20 +0200] [52735] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 23:24:20 +0200] [52735] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 23:24:20 +0200] [52735] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:24:20 +0200] [52735] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:24:20 +0200] [52735] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:24:20 +0200] [52735] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 23:24:20 +0200] [52735] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 23:24:20 +0200] [52735] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 23:24:20 +0200] [52735] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 21, 29, 20, 484842) refresh_expire_time=datetime.datetime(2023, 4, 7, 21, 24, 20, 485003) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MzAxNjAsInN1YiI6ImFkbWluIn0.i4id8Usp7-knsa_1h4NDNODJqLSlfIK22kMv_HpDdwc' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDI2NjAsInN1YiI6ImFkbWluIn0.2ydeLxl2blQ28K5XfA7NSZbAEfIiPva5h6XS6mdigOc' blocked=False is_active=True
+[2023-04-05 23:24:20 +0200] [52735] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('142ca70a-5f60-4034-b375-266a29944c2c'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MzAxNjAsInN1YiI6ImFkbWluIn0.i4id8Usp7-knsa_1h4NDNODJqLSlfIK22kMv_HpDdwc', 'access_expire_time': datetime.datetime(2023, 4, 5, 21, 29, 20, 484842), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDI2NjAsInN1YiI6ImFkbWluIn0.2ydeLxl2blQ28K5XfA7NSZbAEfIiPva5h6XS6mdigOc', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 21, 24, 20, 485003), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 21, 24, 20, 488481), 'updated_at': datetime.datetime(2023, 4, 5, 21, 24, 20, 488486)}
+[2023-04-05 23:24:23 +0200] [52735] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:24:23 +0200] [52735] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:24:23 +0200] [52735] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:24:23 +0200] [52735] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:24:23 +0200] [52735] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:24:23 +0200] [52735] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: c2d63ade-e62b-4a7a-87be-7e397a612f55, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True
+[2023-04-05 23:24:23 +0200] [52735] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:24:23 +0200] [52735] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'c2d63ade-e62b-4a7a-87be-7e397a612f55', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.ONE: '1'>}
+[2023-04-05 23:24:24 +0200] [52735] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:24:24 +0200] [52735] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Create db entry
+[2023-04-05 23:24:24 +0200] [52735] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed for creation: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True teacher_id=UUID('c2d63ade-e62b-4a7a-87be-7e397a612f55')
+[2023-04-05 23:25:06 +0200] [52735] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:25:06 +0200] [52735] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:25:06 +0200] [52735] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:25:06 +0200] [52735] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:25:06 +0200] [52735] [INFO] [services.teacher_service] TeacherService: Get all not deleted teachers
+[2023-04-05 23:25:06 +0200] [52735] [INFO] [db.dao.base_dao] TeacherModel DAO: Get all db entries by parameters
+[2023-04-05 23:25:06 +0200] [52735] [TRACE] [db.dao.base_dao] TeacherModel DAO: Data passed to filter: skip: 0, limit: None, params: {}
+[2023-04-05 23:25:08 +0200] [52735] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-05 23:25:23 +0200] [52735] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:25:23 +0200] [52735] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:25:23 +0200] [52735] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:25:23 +0200] [52735] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:25:23 +0200] [52735] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:25:23 +0200] [52735] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True
+[2023-04-05 23:25:23 +0200] [52735] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:25:23 +0200] [52735] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.ONE: '1'>}
+[2023-04-05 23:25:23 +0200] [52735] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:25:23 +0200] [52735] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Create db entry
+[2023-04-05 23:25:23 +0200] [52735] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed for creation: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True teacher_id=UUID('bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5')
+[2023-04-05 23:25:40 +0200] [52735] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:25:40 +0200] [52735] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:25:40 +0200] [52735] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:25:40 +0200] [52735] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:25:40 +0200] [52735] [INFO] [services.lesson_service] LessonService: Create lesson
+[2023-04-05 23:25:40 +0200] [52735] [TRACE] [services.lesson_service] LessonService: Create lesson with passed data start_time='12:15' end_time='13:00' lesson_number=<LessonsEnum.ONE: '1'>
+[2023-04-05 23:26:27 +0200] [52908] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:26:27 +0200] [52908] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:26:27 +0200] [52908] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:26:27 +0200] [52908] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:26:27 +0200] [52908] [INFO] [services.lesson_service] LessonService: Create lesson
+[2023-04-05 23:26:27 +0200] [52908] [TRACE] [services.lesson_service] LessonService: Create lesson with passed data start_time='12:15' end_time='13:00' lesson_number=<LessonsEnum.ONE: '1'>
+[2023-04-05 23:26:27 +0200] [52908] [DEBUG] [services.lesson_service] LessonService: Check if lesson with same number exists: 1
+[2023-04-05 23:26:27 +0200] [52908] [INFO] [db.dao.base_dao] LessonModel DAO: Get db entry by parameters
+[2023-04-05 23:26:27 +0200] [52908] [TRACE] [db.dao.base_dao] LessonModel DAO: Data passed to filter: params: {'lesson_number': <LessonsEnum.ONE: '1'>}
+[2023-04-05 23:26:27 +0200] [52908] [DEBUG] [db.dao.base_dao] LessonModel DAO: received a response from the database
+[2023-04-05 23:26:27 +0200] [52908] [DEBUG] [services.lesson_service] LessonService: Check if lesson within provided time scopes exists: 12:15:00 - 13:00:00
+[2023-04-05 23:26:27 +0200] [52908] [INFO] [db.dao.lesson_dao] LessonDAO: Get lessons within same time scopes
+[2023-04-05 23:26:27 +0200] [52908] [TRACE] [db.dao.lesson_dao] LessonDAO: Get db entries within provided time scopes: 12:15:00 - 13:00:00
+[2023-04-05 23:26:27 +0200] [52908] [DEBUG] [db.dao.lesson_dao] LessonDAO: received a response from the database []
+[2023-04-05 23:26:27 +0200] [52908] [INFO] [db.dao.base_dao] LessonModel DAO: Create db entry
+[2023-04-05 23:26:27 +0200] [52908] [TRACE] [db.dao.base_dao] LessonModel DAO: Data passed for creation: start_time=datetime.time(12, 15) end_time=datetime.time(13, 0) lesson_number=<LessonsEnum.ONE: '1'>
+[2023-04-05 23:26:28 +0200] [52908] [DEBUG] [db.dao.base_dao] LessonModel DAO: Created entry in database: {'id': UUID('116f36c8-c7be-4b7a-b2ac-fa860e5883e4'), 'lesson_number': <LessonsEnum.ONE: '1'>, 'start_time': datetime.time(12, 15), 'end_time': datetime.time(13, 0)}
+[2023-04-05 23:26:34 +0200] [52908] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:26:34 +0200] [52908] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:26:34 +0200] [52908] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:26:34 +0200] [52908] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:26:34 +0200] [52908] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:26:34 +0200] [52908] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True
+[2023-04-05 23:26:34 +0200] [52908] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:26:34 +0200] [52908] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.ONE: '1'>}
+[2023-04-05 23:26:34 +0200] [52908] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:26:34 +0200] [52908] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Create db entry
+[2023-04-05 23:26:34 +0200] [52908] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed for creation: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True teacher_id=UUID('bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5')
+[2023-04-05 23:27:26 +0200] [52995] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:27:26 +0200] [52995] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:27:26 +0200] [52995] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:27:26 +0200] [52995] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:27:26 +0200] [52995] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:27:26 +0200] [52995] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.ONE: '1'> is_busy=True
+[2023-04-05 23:27:26 +0200] [52995] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:27:26 +0200] [52995] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.ONE: '1'>}
+[2023-04-05 23:27:27 +0200] [52995] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:27:37 +0200] [52995] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:27:37 +0200] [52995] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:27:37 +0200] [52995] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:27:37 +0200] [52995] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:27:37 +0200] [52995] [INFO] [services.lesson_service] LessonService: Create lesson
+[2023-04-05 23:27:37 +0200] [52995] [TRACE] [services.lesson_service] LessonService: Create lesson with passed data start_time='12:15' end_time='13:00' lesson_number=<LessonsEnum.TWO: '2'>
+[2023-04-05 23:27:37 +0200] [52995] [DEBUG] [services.lesson_service] LessonService: Check if lesson with same number exists: 2
+[2023-04-05 23:27:37 +0200] [52995] [INFO] [db.dao.base_dao] LessonModel DAO: Get db entry by parameters
+[2023-04-05 23:27:37 +0200] [52995] [TRACE] [db.dao.base_dao] LessonModel DAO: Data passed to filter: params: {'lesson_number': <LessonsEnum.TWO: '2'>}
+[2023-04-05 23:27:37 +0200] [52995] [DEBUG] [db.dao.base_dao] LessonModel DAO: received a response from the database
+[2023-04-05 23:27:37 +0200] [52995] [DEBUG] [services.lesson_service] LessonService: Check if lesson within provided time scopes exists: 12:15:00 - 13:00:00
+[2023-04-05 23:27:37 +0200] [52995] [INFO] [db.dao.lesson_dao] LessonDAO: Get lessons within same time scopes
+[2023-04-05 23:27:37 +0200] [52995] [TRACE] [db.dao.lesson_dao] LessonDAO: Get db entries within provided time scopes: 12:15:00 - 13:00:00
+[2023-04-05 23:27:39 +0200] [52995] [DEBUG] [db.dao.lesson_dao] LessonDAO: received a response from the database [<db.models.LessonModel.LessonModel object at 0x7fe344751c10>]
+[2023-04-05 23:27:39 +0200] [52995] [INFO] [services.lesson_service] LessonService: Got existing lesson from db: <generator object LessonService.__check_lesson_time.<locals>.<genexpr> at 0x7fe344746510>
+[2023-04-05 23:27:46 +0200] [52995] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:27:46 +0200] [52995] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:27:46 +0200] [52995] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:27:46 +0200] [52995] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:27:46 +0200] [52995] [INFO] [services.lesson_service] LessonService: Create lesson
+[2023-04-05 23:27:46 +0200] [52995] [TRACE] [services.lesson_service] LessonService: Create lesson with passed data start_time='09:15' end_time='10:00' lesson_number=<LessonsEnum.TWO: '2'>
+[2023-04-05 23:27:46 +0200] [52995] [DEBUG] [services.lesson_service] LessonService: Check if lesson with same number exists: 2
+[2023-04-05 23:27:46 +0200] [52995] [INFO] [db.dao.base_dao] LessonModel DAO: Get db entry by parameters
+[2023-04-05 23:27:46 +0200] [52995] [TRACE] [db.dao.base_dao] LessonModel DAO: Data passed to filter: params: {'lesson_number': <LessonsEnum.TWO: '2'>}
+[2023-04-05 23:27:46 +0200] [52995] [DEBUG] [db.dao.base_dao] LessonModel DAO: received a response from the database
+[2023-04-05 23:27:46 +0200] [52995] [DEBUG] [services.lesson_service] LessonService: Check if lesson within provided time scopes exists: 09:15:00 - 10:00:00
+[2023-04-05 23:27:46 +0200] [52995] [INFO] [db.dao.lesson_dao] LessonDAO: Get lessons within same time scopes
+[2023-04-05 23:27:46 +0200] [52995] [TRACE] [db.dao.lesson_dao] LessonDAO: Get db entries within provided time scopes: 09:15:00 - 10:00:00
+[2023-04-05 23:27:46 +0200] [52995] [DEBUG] [db.dao.lesson_dao] LessonDAO: received a response from the database []
+[2023-04-05 23:27:46 +0200] [52995] [INFO] [db.dao.base_dao] LessonModel DAO: Create db entry
+[2023-04-05 23:27:46 +0200] [52995] [TRACE] [db.dao.base_dao] LessonModel DAO: Data passed for creation: start_time=datetime.time(9, 15) end_time=datetime.time(10, 0) lesson_number=<LessonsEnum.TWO: '2'>
+[2023-04-05 23:27:46 +0200] [52995] [DEBUG] [db.dao.base_dao] LessonModel DAO: Created entry in database: {'id': UUID('c80e0fe4-17f1-46a1-bffd-ef33e40a303e'), 'lesson_number': <LessonsEnum.TWO: '2'>, 'start_time': datetime.time(9, 15), 'end_time': datetime.time(10, 0)}
+[2023-04-05 23:27:58 +0200] [52995] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:27:58 +0200] [52995] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:27:58 +0200] [52995] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:27:58 +0200] [52995] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:27:58 +0200] [52995] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:27:58 +0200] [52995] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-05 23:27:58 +0200] [52995] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:27:58 +0200] [52995] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-05 23:27:58 +0200] [52995] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:27:58 +0200] [52995] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Create db entry
+[2023-04-05 23:27:58 +0200] [52995] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed for creation: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True teacher_id=UUID('bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5')
+[2023-04-05 23:27:58 +0200] [52995] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: Created entry in database: {'teacher_id': UUID('bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5'), 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>, 'is_busy': True}
+[2023-04-05 23:27:58 +0200] [52995] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5
+[2023-04-05 23:29:23 +0200] [53131] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:29:26 +0200] [53131] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 23:29:26 +0200] [53131] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 23:29:26 +0200] [53131] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:29:26 +0200] [53131] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:29:26 +0200] [53131] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:29:27 +0200] [53131] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 23:29:27 +0200] [53131] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 23:29:27 +0200] [53131] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 23:29:27 +0200] [53131] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 21, 34, 27, 99631) refresh_expire_time=datetime.datetime(2023, 4, 7, 21, 29, 27, 99788) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MzA0NjcsInN1YiI6ImFkbWluIn0.oov3R3EjRmbJzAz7ZiQMEab98HRW2XKW0dA9DA6ZZuI' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDI5NjcsInN1YiI6ImFkbWluIn0.T7KH7UnNFEtPk7QsKG7ig61a1bj_QJnsLGaWgA3cUlY' blocked=False is_active=True
+[2023-04-05 23:29:27 +0200] [53131] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('2bd502eb-cec0-412c-9231-c65e8a794664'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MzA0NjcsInN1YiI6ImFkbWluIn0.oov3R3EjRmbJzAz7ZiQMEab98HRW2XKW0dA9DA6ZZuI', 'access_expire_time': datetime.datetime(2023, 4, 5, 21, 34, 27, 99631), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDI5NjcsInN1YiI6ImFkbWluIn0.T7KH7UnNFEtPk7QsKG7ig61a1bj_QJnsLGaWgA3cUlY', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 21, 29, 27, 99788), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 21, 29, 27, 103486), 'updated_at': datetime.datetime(2023, 4, 5, 21, 29, 27, 103493)}
+[2023-04-05 23:29:29 +0200] [53131] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:29:29 +0200] [53131] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:29:29 +0200] [53131] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:29:29 +0200] [53131] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:29:29 +0200] [53131] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:29:29 +0200] [53131] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-05 23:29:29 +0200] [53131] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:29:29 +0200] [53131] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-05 23:29:30 +0200] [53131] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:31:06 +0200] [53269] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:31:06 +0200] [53269] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:31:06 +0200] [53269] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:31:06 +0200] [53269] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:31:06 +0200] [53269] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:31:06 +0200] [53269] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-05 23:31:06 +0200] [53269] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:31:06 +0200] [53269] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-05 23:31:07 +0200] [53269] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:31:07 +0200] [53269] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Update db entry
+[2023-04-05 23:31:07 +0200] [53269] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed for update: item_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-05 23:34:44 +0200] [53503] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-05 23:34:44 +0200] [53503] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-05 23:34:44 +0200] [53503] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:34:44 +0200] [53503] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:34:44 +0200] [53503] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:34:44 +0200] [53503] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-05 23:34:44 +0200] [53503] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-05 23:34:44 +0200] [53503] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-05 23:34:44 +0200] [53503] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 5, 21, 39, 44, 800991) refresh_expire_time=datetime.datetime(2023, 4, 7, 21, 34, 44, 801147) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MzA3ODQsInN1YiI6ImFkbWluIn0.IKVA2L9Nm0tiRqIAXiYK2FfQQgXXMb3aGU_EjKuQMCw' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDMyODQsInN1YiI6ImFkbWluIn0.mGRUMSCpEaAIRy5OlFFUokLZEuT-vKT4Yd7P9Ji1u7c' blocked=False is_active=True
+[2023-04-05 23:34:44 +0200] [53503] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('8e989247-bc65-4464-b0dd-428bb73ee99c'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MzA3ODQsInN1YiI6ImFkbWluIn0.IKVA2L9Nm0tiRqIAXiYK2FfQQgXXMb3aGU_EjKuQMCw', 'access_expire_time': datetime.datetime(2023, 4, 5, 21, 39, 44, 800991), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5MDMyODQsInN1YiI6ImFkbWluIn0.mGRUMSCpEaAIRy5OlFFUokLZEuT-vKT4Yd7P9Ji1u7c', 'refresh_expire_time': datetime.datetime(2023, 4, 7, 21, 34, 44, 801147), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 5, 21, 34, 44, 804327), 'updated_at': datetime.datetime(2023, 4, 5, 21, 34, 44, 804331)}
+[2023-04-05 23:34:59 +0200] [53503] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:34:59 +0200] [53503] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:34:59 +0200] [53503] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:34:59 +0200] [53503] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:34:59 +0200] [53503] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:34:59 +0200] [53503] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-05 23:34:59 +0200] [53503] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:34:59 +0200] [53503] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-05 23:35:00 +0200] [53503] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:35:00 +0200] [53503] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-05 23:35:19 +0200] [53564] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:35:19 +0200] [53564] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:35:19 +0200] [53564] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:35:19 +0200] [53564] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:35:19 +0200] [53564] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:35:19 +0200] [53564] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-05 23:35:19 +0200] [53564] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:35:19 +0200] [53564] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-05 23:35:20 +0200] [53564] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:35:20 +0200] [53564] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-05 23:35:20 +0200] [53564] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-05 23:35:55 +0200] [53609] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-05 23:35:55 +0200] [53609] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-05 23:35:55 +0200] [53609] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-05 23:35:55 +0200] [53609] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-05 23:35:55 +0200] [53609] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-05 23:35:55 +0200] [53609] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-05 23:35:55 +0200] [53609] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-05 23:35:55 +0200] [53609] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-05 23:35:56 +0200] [53609] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-05 23:35:56 +0200] [53609] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-05 23:35:56 +0200] [53609] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:40:21 +0200] [5196] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-06 12:40:21 +0200] [5196] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-06 12:40:21 +0200] [5196] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:40:21 +0200] [5196] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:40:21 +0200] [5196] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:40:21 +0200] [5196] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-06 12:40:21 +0200] [5196] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-06 12:40:21 +0200] [5196] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-06 12:40:21 +0200] [5196] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 6, 10, 45, 21, 815295) refresh_expire_time=datetime.datetime(2023, 4, 8, 10, 40, 21, 815486) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3Nzc5MjEsInN1YiI6ImFkbWluIn0.gj-Bk2K8uzXchZeNWsLCOVLAXscAvDd5YAqhocYBpUM' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTA0MjEsInN1YiI6ImFkbWluIn0.GfQ-c_0PEtpNWx4ePj27rlPuIScr-wEolRjR2LALz-A' blocked=False is_active=True
+[2023-04-06 12:40:21 +0200] [5196] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('04c05307-4e19-4e10-b42a-95a560b8b483'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3Nzc5MjEsInN1YiI6ImFkbWluIn0.gj-Bk2K8uzXchZeNWsLCOVLAXscAvDd5YAqhocYBpUM', 'access_expire_time': datetime.datetime(2023, 4, 6, 10, 45, 21, 815295), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTA0MjEsInN1YiI6ImFkbWluIn0.GfQ-c_0PEtpNWx4ePj27rlPuIScr-wEolRjR2LALz-A', 'refresh_expire_time': datetime.datetime(2023, 4, 8, 10, 40, 21, 815486), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 10, 40, 21, 818906), 'updated_at': datetime.datetime(2023, 4, 6, 10, 40, 21, 818910)}
+[2023-04-06 12:40:24 +0200] [5196] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:40:24 +0200] [5196] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:40:24 +0200] [5196] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:40:24 +0200] [5196] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:40:24 +0200] [5196] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:40:24 +0200] [5196] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:40:24 +0200] [5196] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:40:24 +0200] [5196] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:40:26 +0200] [5196] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:40:26 +0200] [5196] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 12:40:26 +0200] [5196] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:41:51 +0200] [5196] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:41:51 +0200] [5196] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:41:51 +0200] [5196] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:41:51 +0200] [5196] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:41:51 +0200] [5196] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:41:51 +0200] [5196] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 12:41:51 +0200] [5196] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:41:51 +0200] [5196] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:41:51 +0200] [5196] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:45:25 +0200] [6449] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:45:27 +0200] [6449] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-06 12:45:27 +0200] [6449] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-06 12:45:27 +0200] [6449] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:45:27 +0200] [6449] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:45:27 +0200] [6449] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:45:28 +0200] [6449] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-06 12:45:28 +0200] [6449] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-06 12:45:28 +0200] [6449] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-06 12:45:28 +0200] [6449] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 6, 10, 50, 28, 261633) refresh_expire_time=datetime.datetime(2023, 4, 8, 10, 45, 28, 261786) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3NzgyMjgsInN1YiI6ImFkbWluIn0.iIXLZw0_wkKWbJj4DvGAOYy_tfBxNGcqWuD37z9UNRE' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTA3MjgsInN1YiI6ImFkbWluIn0.vF0cstFgLLFDSl0hWeNdvpbH6j9ju8EyKuHebJi3Bvs' blocked=False is_active=True
+[2023-04-06 12:45:28 +0200] [6449] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('e49fe31b-7af0-4e24-8968-34d5a15a084c'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3NzgyMjgsInN1YiI6ImFkbWluIn0.iIXLZw0_wkKWbJj4DvGAOYy_tfBxNGcqWuD37z9UNRE', 'access_expire_time': datetime.datetime(2023, 4, 6, 10, 50, 28, 261633), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTA3MjgsInN1YiI6ImFkbWluIn0.vF0cstFgLLFDSl0hWeNdvpbH6j9ju8EyKuHebJi3Bvs', 'refresh_expire_time': datetime.datetime(2023, 4, 8, 10, 45, 28, 261786), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 10, 45, 28, 265118), 'updated_at': datetime.datetime(2023, 4, 6, 10, 45, 28, 265123)}
+[2023-04-06 12:45:31 +0200] [6449] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:45:31 +0200] [6449] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:45:31 +0200] [6449] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:45:31 +0200] [6449] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:45:31 +0200] [6449] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:45:31 +0200] [6449] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:45:31 +0200] [6449] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:45:31 +0200] [6449] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:45:32 +0200] [6449] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:45:32 +0200] [6449] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 12:45:32 +0200] [6449] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:45:37 +0200] [6449] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:45:37 +0200] [6449] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:45:37 +0200] [6449] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:45:37 +0200] [6449] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:45:37 +0200] [6449] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:45:37 +0200] [6449] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 12:45:37 +0200] [6449] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:45:37 +0200] [6449] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:45:37 +0200] [6449] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:51:10 +0200] [6703] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-06 12:51:10 +0200] [6703] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-06 12:51:10 +0200] [6703] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:51:10 +0200] [6703] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:51:10 +0200] [6703] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:51:10 +0200] [6703] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-06 12:51:10 +0200] [6703] [TRACE] [services.auth_service] AuthService: Create session with user: d890c287-300f-43bb-8cb4-e5d468df5e64
+[2023-04-06 12:51:10 +0200] [6703] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-06 12:51:10 +0200] [6703] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('d890c287-300f-43bb-8cb4-e5d468df5e64') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 6, 10, 56, 10, 393962) refresh_expire_time=datetime.datetime(2023, 4, 8, 10, 51, 10, 394118) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3Nzg1NzAsInN1YiI6ImFkbWluIn0.gj-vrFzzarhJJ5fDrkxaWrA39gDN87nu-85YOYv4iQY' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTEwNzAsInN1YiI6ImFkbWluIn0.oxv5h_bIbeB8FAFgZuC__Xzi-EGSpjXUCXfWKeJo2Fk' blocked=False is_active=True
+[2023-04-06 12:51:10 +0200] [6703] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('c95c3a94-3d30-4185-ba47-859c66639f40'), 'user_id': UUID('d890c287-300f-43bb-8cb4-e5d468df5e64'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3Nzg1NzAsInN1YiI6ImFkbWluIn0.gj-vrFzzarhJJ5fDrkxaWrA39gDN87nu-85YOYv4iQY', 'access_expire_time': datetime.datetime(2023, 4, 6, 10, 56, 10, 393962), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTEwNzAsInN1YiI6ImFkbWluIn0.oxv5h_bIbeB8FAFgZuC__Xzi-EGSpjXUCXfWKeJo2Fk', 'refresh_expire_time': datetime.datetime(2023, 4, 8, 10, 51, 10, 394118), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 10, 51, 10, 397688), 'updated_at': datetime.datetime(2023, 4, 6, 10, 51, 10, 397692)}
+[2023-04-06 12:51:17 +0200] [6703] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:51:17 +0200] [6703] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:51:17 +0200] [6703] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:51:17 +0200] [6703] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:51:17 +0200] [6703] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:51:17 +0200] [6703] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 12:51:17 +0200] [6703] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:51:17 +0200] [6703] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:51:18 +0200] [6703] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:51:36 +0200] [6703] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:51:36 +0200] [6703] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:51:36 +0200] [6703] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:51:36 +0200] [6703] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:51:36 +0200] [6703] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:51:36 +0200] [6703] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:51:36 +0200] [6703] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:51:36 +0200] [6703] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:51:36 +0200] [6703] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:51:36 +0200] [6703] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 12:51:36 +0200] [6703] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:52:36 +0200] [6818] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:52:36 +0200] [6818] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:52:36 +0200] [6818] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:52:36 +0200] [6818] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:52:36 +0200] [6818] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:52:36 +0200] [6818] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:52:36 +0200] [6818] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:52:36 +0200] [6818] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:52:37 +0200] [6818] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:52:37 +0200] [6818] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 12:52:37 +0200] [6818] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:52:37 +0200] [6818] [DEBUG] [db.dao.teacher_busy_dao] TeacherBusyDAO: Received updated entry from the database
+[2023-04-06 12:52:37 +0200] [6818] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:52:37 +0200] [6818] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5'}
+[2023-04-06 12:52:37 +0200] [6818] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:53:27 +0200] [6818] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:53:27 +0200] [6818] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:53:27 +0200] [6818] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:53:27 +0200] [6818] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:53:27 +0200] [6818] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:53:27 +0200] [6818] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:53:27 +0200] [6818] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:53:27 +0200] [6818] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:53:27 +0200] [6818] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:53:44 +0200] [6818] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:53:44 +0200] [6818] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:53:44 +0200] [6818] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:53:44 +0200] [6818] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:53:44 +0200] [6818] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:53:44 +0200] [6818] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 12:53:44 +0200] [6818] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:53:44 +0200] [6818] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:53:44 +0200] [6818] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:53:44 +0200] [6818] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 12:53:44 +0200] [6818] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 12:53:44 +0200] [6818] [DEBUG] [db.dao.teacher_busy_dao] TeacherBusyDAO: Received updated entry from the database
+[2023-04-06 12:53:44 +0200] [6818] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:53:44 +0200] [6818] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5'}
+[2023-04-06 12:53:44 +0200] [6818] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:53:55 +0200] [6818] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 12:53:55 +0200] [6818] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 12:53:55 +0200] [6818] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 12:53:55 +0200] [6818] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 12:53:55 +0200] [6818] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 12:53:55 +0200] [6818] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:53:55 +0200] [6818] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:53:55 +0200] [6818] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 12:53:55 +0200] [6818] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 12:53:55 +0200] [6818] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 12:53:55 +0200] [6818] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 12:53:55 +0200] [6818] [DEBUG] [db.dao.teacher_busy_dao] TeacherBusyDAO: Received updated entry from the database
+[2023-04-06 12:53:55 +0200] [6818] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 12:53:55 +0200] [6818] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': 'bd4219e8-2a0e-4a93-9fd3-ddb5b97455b5'}
+[2023-04-06 12:53:55 +0200] [6818] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:01:07 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Create db entry
+[2023-04-06 13:01:07 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed for creation: role='admin' login='admin' password='$2b$12$prXPUKWHO.ZhMDYbB7eqV.zEbrupRjmIBQ8xAxxIXaExgHw2Oz6Ry' email='userrrr@user' id=None
+[2023-04-06 13:01:07 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: Created entry in database: {'id': UUID('32b3751b-3fdd-4b9a-9a5a-f362c7ad741f'), 'login': 'admin', 'email': 'userrrr@user', 'password': '$2b$12$prXPUKWHO.ZhMDYbB7eqV.zEbrupRjmIBQ8xAxxIXaExgHw2Oz6Ry', 'role': 'admin', 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 11, 1, 7, 29242), 'updated_at': datetime.datetime(2023, 4, 6, 11, 1, 7, 29249)}
+[2023-04-06 13:01:09 +0200] [7162] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-06 13:01:09 +0200] [7162] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-06 13:01:09 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:01:09 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:01:09 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:01:09 +0200] [7162] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-06 13:01:09 +0200] [7162] [TRACE] [services.auth_service] AuthService: Create session with user: 32b3751b-3fdd-4b9a-9a5a-f362c7ad741f
+[2023-04-06 13:01:09 +0200] [7162] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-06 13:01:09 +0200] [7162] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('32b3751b-3fdd-4b9a-9a5a-f362c7ad741f') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 6, 11, 6, 9, 871102) refresh_expire_time=datetime.datetime(2023, 4, 8, 11, 1, 9, 871261) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3NzkxNjksInN1YiI6ImFkbWluIn0.K666ZqBbS0WJ3YqPa-vpqxSELUFsutvRCGXUfm2nU9Q' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTE2NjksInN1YiI6ImFkbWluIn0.1qcssAaW-hxblnfYoA3VkLdPOZ-6KDYd9UVvU-oBU74' blocked=False is_active=True
+[2023-04-06 13:01:09 +0200] [7162] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('151a3a5d-7205-4d00-bc8a-cef273f26ed0'), 'user_id': UUID('32b3751b-3fdd-4b9a-9a5a-f362c7ad741f'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3NzkxNjksInN1YiI6ImFkbWluIn0.K666ZqBbS0WJ3YqPa-vpqxSELUFsutvRCGXUfm2nU9Q', 'access_expire_time': datetime.datetime(2023, 4, 6, 11, 6, 9, 871102), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTE2NjksInN1YiI6ImFkbWluIn0.1qcssAaW-hxblnfYoA3VkLdPOZ-6KDYd9UVvU-oBU74', 'refresh_expire_time': datetime.datetime(2023, 4, 8, 11, 1, 9, 871261), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 11, 1, 9, 874249), 'updated_at': datetime.datetime(2023, 4, 6, 11, 1, 9, 874252)}
+[2023-04-06 13:01:19 +0200] [7162] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:01:19 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:01:19 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:01:19 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:01:19 +0200] [7162] [INFO] [services.teacher_service] TeacherService: Create teachers
+[2023-04-06 13:01:19 +0200] [7162] [TRACE] [services.teacher_service] TeacherService: Register teachers with passed data [TeacherCreateDTO(first_name='string1', second_name='string1', last_name='string', birth_date='28-02-2002'), TeacherCreateDTO(first_name='string3', second_name=None, last_name='string3', birth_date='28-02-2002')]
+[2023-04-06 13:01:19 +0200] [7162] [DEBUG] [services.teacher_service] TeacherService: Check if teacher already exists in db and is not deleted: first_name='string1' second_name='string1' last_name='string' birth_date='28-02-2002'
+[2023-04-06 13:01:19 +0200] [7162] [INFO] [db.dao.base_dao] TeacherModel DAO: Get all db entries by parameters
+[2023-04-06 13:01:19 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherModel DAO: Data passed to filter: skip: 0, limit: None, params: {'first_name': 'string1', 'second_name': 'string1', 'last_name': 'string', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0)}
+[2023-04-06 13:01:19 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-06 13:01:19 +0200] [7162] [DEBUG] [services.teacher_service] TeacherService: Check if teacher already exists in db and is not deleted: first_name='string3' second_name=None last_name='string3' birth_date='28-02-2002'
+[2023-04-06 13:01:19 +0200] [7162] [INFO] [db.dao.base_dao] TeacherModel DAO: Get all db entries by parameters
+[2023-04-06 13:01:19 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherModel DAO: Data passed to filter: skip: 0, limit: None, params: {'first_name': 'string3', 'second_name': None, 'last_name': 'string3', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0)}
+[2023-04-06 13:01:19 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherModel DAO: received a response from the database
+[2023-04-06 13:01:19 +0200] [7162] [DEBUG] [services.teacher_service] TeacherService: Teachers to be registered after check: [TeacherCreateDTO(first_name='string1', second_name='string1', last_name='string', birth_date=datetime.datetime(2002, 2, 28, 0, 0), registration_token='-805rA-q9VV0kQ'), TeacherCreateDTO(first_name='string3', second_name=None, last_name='string3', birth_date=datetime.datetime(2002, 2, 28, 0, 0), registration_token='hlrbUV31JEr6TQ')]
+[2023-04-06 13:01:19 +0200] [7162] [INFO] [db.dao.base_dao] TeacherModel DAO: Create db entry
+[2023-04-06 13:01:19 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherModel DAO: Data passed for creation: [TeacherCreateDTO(first_name='string1', second_name='string1', last_name='string', birth_date=datetime.datetime(2002, 2, 28, 0, 0), registration_token='-805rA-q9VV0kQ'), TeacherCreateDTO(first_name='string3', second_name=None, last_name='string3', birth_date=datetime.datetime(2002, 2, 28, 0, 0), registration_token='hlrbUV31JEr6TQ')]
+[2023-04-06 13:01:20 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherModel DAO: Created entries in database: [{'id': UUID('4cb39e2c-61a1-4371-aa3e-67d8d18fd970'), 'registration_token': '-805rA-q9VV0kQ', 'registered_user': False, 'first_name': 'string1', 'second_name': 'string1', 'last_name': 'string', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0), 'created_at': datetime.datetime(2023, 4, 6, 11, 1, 19, 441033), 'updated_at': datetime.datetime(2023, 4, 6, 11, 1, 19, 441037), 'deleted_at': None}, {'id': UUID('4aed4574-bb55-4fbe-b64b-70448fcb3d9c'), 'registration_token': 'hlrbUV31JEr6TQ', 'registered_user': False, 'first_name': 'string3', 'second_name': None, 'last_name': 'string3', 'birth_date': datetime.datetime(2002, 2, 28, 0, 0), 'created_at': datetime.datetime(2023, 4, 6, 11, 1, 20, 838116), 'updated_at': datetime.datetime(2023, 4, 6, 11, 1, 20, 838120), 'deleted_at': None}]
+[2023-04-06 13:01:20 +0200] [7162] [DEBUG] [services.teacher_service] TeacherService: Received the answer from database: [<db.models.TeacherModel.TeacherModel object at 0x7fe34d83bf40>, <db.models.TeacherModel.TeacherModel object at 0x7fe3504908e0>]
+[2023-04-06 13:01:30 +0200] [7162] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:01:30 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:01:30 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:01:30 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:01:30 +0200] [7162] [INFO] [services.lesson_service] LessonService: Create lesson
+[2023-04-06 13:01:30 +0200] [7162] [TRACE] [services.lesson_service] LessonService: Create lesson with passed data start_time='09:15' end_time='10:00' lesson_number=<LessonsEnum.TWO: '2'>
+[2023-04-06 13:01:30 +0200] [7162] [DEBUG] [services.lesson_service] LessonService: Check if lesson with same number exists: 2
+[2023-04-06 13:01:30 +0200] [7162] [INFO] [db.dao.base_dao] LessonModel DAO: Get db entry by parameters
+[2023-04-06 13:01:30 +0200] [7162] [TRACE] [db.dao.base_dao] LessonModel DAO: Data passed to filter: params: {'lesson_number': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:01:30 +0200] [7162] [DEBUG] [db.dao.base_dao] LessonModel DAO: received a response from the database
+[2023-04-06 13:01:30 +0200] [7162] [DEBUG] [services.lesson_service] LessonService: Check if lesson within provided time scopes exists: 09:15:00 - 10:00:00
+[2023-04-06 13:01:30 +0200] [7162] [INFO] [db.dao.lesson_dao] LessonDAO: Get lessons within same time scopes
+[2023-04-06 13:01:30 +0200] [7162] [TRACE] [db.dao.lesson_dao] LessonDAO: Get db entries within provided time scopes: 09:15:00 - 10:00:00
+[2023-04-06 13:01:30 +0200] [7162] [DEBUG] [db.dao.lesson_dao] LessonDAO: received a response from the database []
+[2023-04-06 13:01:30 +0200] [7162] [INFO] [db.dao.base_dao] LessonModel DAO: Create db entry
+[2023-04-06 13:01:30 +0200] [7162] [TRACE] [db.dao.base_dao] LessonModel DAO: Data passed for creation: start_time=datetime.time(9, 15) end_time=datetime.time(10, 0) lesson_number=<LessonsEnum.TWO: '2'>
+[2023-04-06 13:01:30 +0200] [7162] [DEBUG] [db.dao.base_dao] LessonModel DAO: Created entry in database: {'id': UUID('44eceb1a-0801-472c-b7f4-1056c8512e83'), 'lesson_number': <LessonsEnum.TWO: '2'>, 'start_time': datetime.time(9, 15), 'end_time': datetime.time(10, 0)}
+[2023-04-06 13:01:41 +0200] [7162] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:01:41 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:01:41 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:01:41 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:01:41 +0200] [7162] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 13:01:41 +0200] [7162] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:01:41 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:01:41 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:01:41 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:01:41 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Create db entry
+[2023-04-06 13:01:41 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed for creation: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False teacher_id=UUID('4cb39e2c-61a1-4371-aa3e-67d8d18fd970')
+[2023-04-06 13:01:41 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: Created entry in database: {'teacher_id': UUID('4cb39e2c-61a1-4371-aa3e-67d8d18fd970'), 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>, 'is_busy': False}
+[2023-04-06 13:01:41 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:01:41 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970'}
+[2023-04-06 13:01:41 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:01:48 +0200] [7162] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:01:48 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:01:48 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:01:48 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:01:48 +0200] [7162] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 13:01:48 +0200] [7162] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 13:01:48 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:01:48 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:01:48 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:01:48 +0200] [7162] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 13:01:48 +0200] [7162] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 13:01:48 +0200] [7162] [DEBUG] [db.dao.teacher_busy_dao] TeacherBusyDAO: Received updated entry from the database
+[2023-04-06 13:01:48 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:01:48 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970'}
+[2023-04-06 13:01:48 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:01:53 +0200] [7162] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:01:53 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:01:53 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:01:53 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:01:53 +0200] [7162] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 13:01:53 +0200] [7162] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 13:01:53 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:01:53 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:01:53 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:01:59 +0200] [7162] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:01:59 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:01:59 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:01:59 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:01:59 +0200] [7162] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 13:01:59 +0200] [7162] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:01:59 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:01:59 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:01:59 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:01:59 +0200] [7162] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 13:01:59 +0200] [7162] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:01:59 +0200] [7162] [DEBUG] [db.dao.teacher_busy_dao] TeacherBusyDAO: Received updated entry from the database
+[2023-04-06 13:01:59 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:01:59 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970'}
+[2023-04-06 13:01:59 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:02:07 +0200] [7162] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:02:07 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:02:07 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:02:07 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:02:07 +0200] [7162] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 13:02:07 +0200] [7162] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:02:07 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:02:07 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:02:07 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:02:14 +0200] [7162] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:02:14 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:02:14 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:02:14 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:02:14 +0200] [7162] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 13:02:14 +0200] [7162] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 13:02:14 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:02:14 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:02:14 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:02:14 +0200] [7162] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 13:02:14 +0200] [7162] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 13:02:14 +0200] [7162] [DEBUG] [db.dao.teacher_busy_dao] TeacherBusyDAO: Received updated entry from the database
+[2023-04-06 13:02:14 +0200] [7162] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:02:14 +0200] [7162] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970'}
+[2023-04-06 13:02:14 +0200] [7162] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:22:12 +0200] [7162] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-06 13:22:12 +0200] [7162] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-06 13:22:12 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:22:12 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:22:12 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:22:13 +0200] [7162] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-06 13:22:13 +0200] [7162] [TRACE] [services.auth_service] AuthService: Create session with user: 32b3751b-3fdd-4b9a-9a5a-f362c7ad741f
+[2023-04-06 13:22:13 +0200] [7162] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-06 13:22:13 +0200] [7162] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('32b3751b-3fdd-4b9a-9a5a-f362c7ad741f') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 6, 11, 27, 13, 209306) refresh_expire_time=datetime.datetime(2023, 4, 8, 11, 22, 13, 209451) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3ODA0MzMsInN1YiI6ImFkbWluIn0.tcxqgFfndI_vHoByAlN6BG51uQaYwzX6800Gmv6j5aI' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTI5MzMsInN1YiI6ImFkbWluIn0.wN50p4b9QiKUotzIKt_wKlM6wyK50tIwxLNtbXc-YtI' blocked=False is_active=True
+[2023-04-06 13:22:13 +0200] [7162] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('4927ce03-ea54-4c75-9b6a-9013055ce5e8'), 'user_id': UUID('32b3751b-3fdd-4b9a-9a5a-f362c7ad741f'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3ODA0MzMsInN1YiI6ImFkbWluIn0.tcxqgFfndI_vHoByAlN6BG51uQaYwzX6800Gmv6j5aI', 'access_expire_time': datetime.datetime(2023, 4, 6, 11, 27, 13, 209306), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTI5MzMsInN1YiI6ImFkbWluIn0.wN50p4b9QiKUotzIKt_wKlM6wyK50tIwxLNtbXc-YtI', 'refresh_expire_time': datetime.datetime(2023, 4, 8, 11, 22, 13, 209451), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 11, 22, 13, 211396), 'updated_at': datetime.datetime(2023, 4, 6, 11, 22, 13, 211400)}
+[2023-04-06 13:22:16 +0200] [7162] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:22:16 +0200] [7162] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:22:16 +0200] [7162] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:22:16 +0200] [7162] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:22:16 +0200] [7162] [INFO] [services.room_service] RoomService: Create room
+[2023-04-06 13:22:16 +0200] [7162] [TRACE] [services.room_service] RoomService: Create room with passed data room_number=102 class_type=<ClassTypesEnum.LABORATORY: 'laboratory'>
+[2023-04-06 13:22:16 +0200] [7162] [DEBUG] [services.room_service] RoomService: Check if room with same number exists: 102
+[2023-04-06 13:22:16 +0200] [7162] [INFO] [db.dao.base_dao] RoomModel DAO: Get db entry by parameters
+[2023-04-06 13:22:16 +0200] [7162] [TRACE] [db.dao.base_dao] RoomModel DAO: Data passed to filter: params: {'room_number': 102}
+[2023-04-06 13:22:16 +0200] [7162] [DEBUG] [db.dao.base_dao] RoomModel DAO: received a response from the database
+[2023-04-06 13:22:16 +0200] [7162] [INFO] [db.dao.base_dao] RoomModel DAO: Create db entry
+[2023-04-06 13:22:16 +0200] [7162] [TRACE] [db.dao.base_dao] RoomModel DAO: Data passed for creation: room_number=102 class_type=<ClassTypesEnum.LABORATORY: 'laboratory'>
+[2023-04-06 13:22:16 +0200] [7162] [DEBUG] [db.dao.base_dao] RoomModel DAO: Created entry in database: {'id': UUID('774cd0de-33ef-4531-ae6e-c3d7e31214f8'), 'room_number': 102, 'class_type': <ClassTypesEnum.LABORATORY: 'laboratory'>}
+[2023-04-06 13:35:42 +0200] [8660] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:35:45 +0200] [8660] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-06 13:35:45 +0200] [8660] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-06 13:35:45 +0200] [8660] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:35:45 +0200] [8660] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:35:45 +0200] [8660] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:35:46 +0200] [8660] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-06 13:35:46 +0200] [8660] [TRACE] [services.auth_service] AuthService: Create session with user: 32b3751b-3fdd-4b9a-9a5a-f362c7ad741f
+[2023-04-06 13:35:46 +0200] [8660] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-06 13:35:46 +0200] [8660] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('32b3751b-3fdd-4b9a-9a5a-f362c7ad741f') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 6, 11, 40, 46, 182611) refresh_expire_time=datetime.datetime(2023, 4, 8, 11, 35, 46, 182810) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3ODEyNDYsInN1YiI6ImFkbWluIn0.J8gqJI0tuQZk3_5fIpEXXh2zQvzyEDuv0stFCG-wyfg' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTM3NDYsInN1YiI6ImFkbWluIn0.AC7-A3MLII8DmGGr0k_YG85-ADdf0prJZcO0_0f-FDY' blocked=False is_active=True
+[2023-04-06 13:35:46 +0200] [8660] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('21872a48-4b4e-4b54-a070-238241529690'), 'user_id': UUID('32b3751b-3fdd-4b9a-9a5a-f362c7ad741f'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3ODEyNDYsInN1YiI6ImFkbWluIn0.J8gqJI0tuQZk3_5fIpEXXh2zQvzyEDuv0stFCG-wyfg', 'access_expire_time': datetime.datetime(2023, 4, 6, 11, 40, 46, 182611), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTM3NDYsInN1YiI6ImFkbWluIn0.AC7-A3MLII8DmGGr0k_YG85-ADdf0prJZcO0_0f-FDY', 'refresh_expire_time': datetime.datetime(2023, 4, 8, 11, 35, 46, 182810), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 11, 35, 46, 187541), 'updated_at': datetime.datetime(2023, 4, 6, 11, 35, 46, 187550)}
+[2023-04-06 13:36:27 +0200] [8723] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:36:27 +0200] [8723] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:36:27 +0200] [8723] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:36:27 +0200] [8723] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:36:27 +0200] [8723] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 13:36:27 +0200] [8723] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 13:36:27 +0200] [8723] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:36:27 +0200] [8723] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:36:28 +0200] [8723] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:36:35 +0200] [8723] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:36:35 +0200] [8723] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:36:35 +0200] [8723] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:36:35 +0200] [8723] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:36:35 +0200] [8723] [INFO] [services.teacher_service] TeacherService: Set teacher busy
+[2023-04-06 13:36:35 +0200] [8723] [TRACE] [services.teacher_service] TeacherService: Set teacher busy: teacher_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:36:35 +0200] [8723] [INFO] [db.dao.base_dao] TeacherBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:36:35 +0200] [8723] [TRACE] [db.dao.base_dao] TeacherBusyModel DAO: Data passed to filter: params: {'teacher_id': '4cb39e2c-61a1-4371-aa3e-67d8d18fd970', 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:36:35 +0200] [8723] [DEBUG] [db.dao.base_dao] TeacherBusyModel DAO: received a response from the database
+[2023-04-06 13:36:35 +0200] [8723] [INFO] [db.dao.teacher_busy_dao] TeacherBusyDAO: Update db entry
+[2023-04-06 13:36:35 +0200] [8723] [TRACE] [db.dao.teacher_busy_dao] TeacherBusyDAO: Data passed for update: item_id: 4cb39e2c-61a1-4371-aa3e-67d8d18fd970, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:36:35 +0200] [8723] [DEBUG] [db.dao.teacher_busy_dao] TeacherBusyDAO: Received updated entry from the database
+[2023-04-06 13:37:30 +0200] [8812] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:37:30 +0200] [8812] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:37:30 +0200] [8812] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:37:30 +0200] [8812] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:37:30 +0200] [8812] [INFO] [services.room_service] RoomService: Set room busy
+[2023-04-06 13:37:30 +0200] [8812] [TRACE] [services.room_service] RoomService: Set room busy: room_number: 102, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:38:15 +0200] [8867] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:38:15 +0200] [8867] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:38:15 +0200] [8867] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:38:15 +0200] [8867] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:38:15 +0200] [8867] [INFO] [services.room_service] RoomService: Set room busy
+[2023-04-06 13:38:15 +0200] [8867] [TRACE] [services.room_service] RoomService: Set room busy: room_number: 102, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 13:38:15 +0200] [8867] [INFO] [services.room_service] RoomService: Get room by number
+[2023-04-06 13:38:15 +0200] [8867] [TRACE] [services.room_service] RoomService: Get room by number: 102
+[2023-04-06 13:38:15 +0200] [8867] [INFO] [db.dao.base_dao] RoomModel DAO: Get db entry by parameters
+[2023-04-06 13:38:15 +0200] [8867] [TRACE] [db.dao.base_dao] RoomModel DAO: Data passed to filter: params: {'room_number': 102}
+[2023-04-06 13:38:16 +0200] [8867] [DEBUG] [db.dao.base_dao] RoomModel DAO: received a response from the database
+[2023-04-06 13:38:16 +0200] [8867] [INFO] [db.dao.base_dao] RoomBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:38:16 +0200] [8867] [TRACE] [db.dao.base_dao] RoomBusyModel DAO: Data passed to filter: params: {'room_id': UUID('774cd0de-33ef-4531-ae6e-c3d7e31214f8'), 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:38:16 +0200] [8867] [DEBUG] [db.dao.base_dao] RoomBusyModel DAO: received a response from the database
+[2023-04-06 13:38:16 +0200] [8867] [INFO] [db.dao.base_dao] RoomBusyModel DAO: Create db entry
+[2023-04-06 13:38:16 +0200] [8867] [TRACE] [db.dao.base_dao] RoomBusyModel DAO: Data passed for creation: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True room_id=UUID('774cd0de-33ef-4531-ae6e-c3d7e31214f8')
+[2023-04-06 13:38:16 +0200] [8867] [DEBUG] [db.dao.base_dao] RoomBusyModel DAO: Created entry in database: {'room_id': UUID('774cd0de-33ef-4531-ae6e-c3d7e31214f8'), 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>, 'is_busy': True}
+[2023-04-06 13:38:41 +0200] [8867] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:38:41 +0200] [8867] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:38:41 +0200] [8867] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:38:41 +0200] [8867] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:38:41 +0200] [8867] [INFO] [services.room_service] RoomService: Set room busy
+[2023-04-06 13:38:41 +0200] [8867] [TRACE] [services.room_service] RoomService: Set room busy: room_number: 102, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 13:38:41 +0200] [8867] [INFO] [services.room_service] RoomService: Get room by number
+[2023-04-06 13:38:41 +0200] [8867] [TRACE] [services.room_service] RoomService: Get room by number: 102
+[2023-04-06 13:38:41 +0200] [8867] [INFO] [db.dao.base_dao] RoomModel DAO: Get db entry by parameters
+[2023-04-06 13:38:41 +0200] [8867] [TRACE] [db.dao.base_dao] RoomModel DAO: Data passed to filter: params: {'room_number': 102}
+[2023-04-06 13:38:41 +0200] [8867] [DEBUG] [db.dao.base_dao] RoomModel DAO: received a response from the database
+[2023-04-06 13:38:41 +0200] [8867] [INFO] [db.dao.base_dao] RoomBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:38:41 +0200] [8867] [TRACE] [db.dao.base_dao] RoomBusyModel DAO: Data passed to filter: params: {'room_id': UUID('774cd0de-33ef-4531-ae6e-c3d7e31214f8'), 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:38:41 +0200] [8867] [DEBUG] [db.dao.base_dao] RoomBusyModel DAO: received a response from the database
+[2023-04-06 13:38:51 +0200] [8867] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:38:51 +0200] [8867] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:38:51 +0200] [8867] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:38:51 +0200] [8867] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:38:51 +0200] [8867] [INFO] [services.room_service] RoomService: Set room busy
+[2023-04-06 13:38:51 +0200] [8867] [TRACE] [services.room_service] RoomService: Set room busy: room_number: 102, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:38:51 +0200] [8867] [INFO] [services.room_service] RoomService: Get room by number
+[2023-04-06 13:38:51 +0200] [8867] [TRACE] [services.room_service] RoomService: Get room by number: 102
+[2023-04-06 13:38:51 +0200] [8867] [INFO] [db.dao.base_dao] RoomModel DAO: Get db entry by parameters
+[2023-04-06 13:38:51 +0200] [8867] [TRACE] [db.dao.base_dao] RoomModel DAO: Data passed to filter: params: {'room_number': 102}
+[2023-04-06 13:38:51 +0200] [8867] [DEBUG] [db.dao.base_dao] RoomModel DAO: received a response from the database
+[2023-04-06 13:38:51 +0200] [8867] [INFO] [db.dao.base_dao] RoomBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:38:51 +0200] [8867] [TRACE] [db.dao.base_dao] RoomBusyModel DAO: Data passed to filter: params: {'room_id': UUID('774cd0de-33ef-4531-ae6e-c3d7e31214f8'), 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:38:51 +0200] [8867] [DEBUG] [db.dao.base_dao] RoomBusyModel DAO: received a response from the database
+[2023-04-06 13:38:51 +0200] [8867] [INFO] [db.dao.room_busy_dao] RoomBusyDAO: Update db entry
+[2023-04-06 13:38:51 +0200] [8867] [TRACE] [db.dao.room_busy_dao] RoomBusyDAO: Data passed for update: item_id: 774cd0de-33ef-4531-ae6e-c3d7e31214f8, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:38:51 +0200] [8867] [DEBUG] [db.dao.room_busy_dao] RoomBusyDAO: Received updated entry from the database
+[2023-04-06 13:39:04 +0200] [8867] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 13:39:04 +0200] [8867] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 13:39:04 +0200] [8867] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 13:39:04 +0200] [8867] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 13:39:04 +0200] [8867] [INFO] [services.room_service] RoomService: Set room busy
+[2023-04-06 13:39:04 +0200] [8867] [TRACE] [services.room_service] RoomService: Set room busy: room_number: 102, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 13:39:04 +0200] [8867] [INFO] [services.room_service] RoomService: Get room by number
+[2023-04-06 13:39:04 +0200] [8867] [TRACE] [services.room_service] RoomService: Get room by number: 102
+[2023-04-06 13:39:04 +0200] [8867] [INFO] [db.dao.base_dao] RoomModel DAO: Get db entry by parameters
+[2023-04-06 13:39:04 +0200] [8867] [TRACE] [db.dao.base_dao] RoomModel DAO: Data passed to filter: params: {'room_number': 102}
+[2023-04-06 13:39:04 +0200] [8867] [DEBUG] [db.dao.base_dao] RoomModel DAO: received a response from the database
+[2023-04-06 13:39:04 +0200] [8867] [INFO] [db.dao.base_dao] RoomBusyModel DAO: Get db entry by parameters
+[2023-04-06 13:39:04 +0200] [8867] [TRACE] [db.dao.base_dao] RoomBusyModel DAO: Data passed to filter: params: {'room_id': UUID('774cd0de-33ef-4531-ae6e-c3d7e31214f8'), 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 13:39:04 +0200] [8867] [DEBUG] [db.dao.base_dao] RoomBusyModel DAO: received a response from the database
+[2023-04-06 14:06:45 +0200] [10341] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:06:49 +0200] [10341] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-06 14:06:49 +0200] [10341] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-06 14:06:49 +0200] [10341] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:06:49 +0200] [10341] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:06:49 +0200] [10341] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:06:49 +0200] [10341] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-06 14:06:49 +0200] [10341] [TRACE] [services.auth_service] AuthService: Create session with user: 32b3751b-3fdd-4b9a-9a5a-f362c7ad741f
+[2023-04-06 14:06:49 +0200] [10341] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-06 14:06:49 +0200] [10341] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('32b3751b-3fdd-4b9a-9a5a-f362c7ad741f') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 6, 12, 11, 49, 614828) refresh_expire_time=datetime.datetime(2023, 4, 8, 12, 6, 49, 614972) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3ODMxMDksInN1YiI6ImFkbWluIn0.bcrhs6v0x9KRYSTE_hENKVep9ME4AnpiV-vDUSNGJBc' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTU2MDksInN1YiI6ImFkbWluIn0.EkCgYI1KA_W34xYAQawgAjs7llSxfWQzxhnDtNRdLoY' blocked=False is_active=True
+[2023-04-06 14:06:49 +0200] [10341] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('fa95e878-7ed1-4e49-ac83-7685d358a052'), 'user_id': UUID('32b3751b-3fdd-4b9a-9a5a-f362c7ad741f'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3ODMxMDksInN1YiI6ImFkbWluIn0.bcrhs6v0x9KRYSTE_hENKVep9ME4AnpiV-vDUSNGJBc', 'access_expire_time': datetime.datetime(2023, 4, 6, 12, 11, 49, 614828), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTU2MDksInN1YiI6ImFkbWluIn0.EkCgYI1KA_W34xYAQawgAjs7llSxfWQzxhnDtNRdLoY', 'refresh_expire_time': datetime.datetime(2023, 4, 8, 12, 6, 49, 614972), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 12, 6, 49, 618363), 'updated_at': datetime.datetime(2023, 4, 6, 12, 6, 49, 618367)}
+[2023-04-06 14:06:54 +0200] [10341] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:06:54 +0200] [10341] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:06:54 +0200] [10341] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:06:54 +0200] [10341] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:07:47 +0200] [10469] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:07:47 +0200] [10469] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:07:47 +0200] [10469] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:07:47 +0200] [10469] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:09:14 +0200] [10555] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:09:14 +0200] [10555] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:09:14 +0200] [10555] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:09:14 +0200] [10555] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:09:37 +0200] [10597] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:09:37 +0200] [10597] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:09:37 +0200] [10597] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:09:37 +0200] [10597] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:09:37 +0200] [10597] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:09:37 +0200] [10597] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 14:09:37 +0200] [10597] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:09:37 +0200] [10597] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:10:46 +0200] [10690] [INFO] [db.dao.base_dao] UserModel DAO: Create db entry
+[2023-04-06 14:10:46 +0200] [10690] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed for creation: role='admin' login='admin' password='$2b$12$SkyQypYLfv9mZlXCk1R0su5BDUOfAELZwZJRmHnbOJOShq7Adynve' email='userrrr@user' id=None
+[2023-04-06 14:10:46 +0200] [10690] [DEBUG] [db.dao.base_dao] UserModel DAO: Created entry in database: {'id': UUID('efd97175-e187-4ce7-9a4a-286992943857'), 'login': 'admin', 'email': 'userrrr@user', 'password': '$2b$12$SkyQypYLfv9mZlXCk1R0su5BDUOfAELZwZJRmHnbOJOShq7Adynve', 'role': 'admin', 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 12, 10, 46, 481287), 'updated_at': datetime.datetime(2023, 4, 6, 12, 10, 46, 481292)}
+[2023-04-06 14:10:48 +0200] [10690] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-06 14:10:48 +0200] [10690] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-06 14:10:48 +0200] [10690] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:10:48 +0200] [10690] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:10:48 +0200] [10690] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:10:48 +0200] [10690] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-06 14:10:48 +0200] [10690] [TRACE] [services.auth_service] AuthService: Create session with user: efd97175-e187-4ce7-9a4a-286992943857
+[2023-04-06 14:10:48 +0200] [10690] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-06 14:10:48 +0200] [10690] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('efd97175-e187-4ce7-9a4a-286992943857') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 6, 12, 15, 48, 974559) refresh_expire_time=datetime.datetime(2023, 4, 8, 12, 10, 48, 974706) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3ODMzNDgsInN1YiI6ImFkbWluIn0.rXy6WMhAQo51IcbHIo_YrSvYEwrNOVsqmguHMxzmBFU' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTU4NDgsInN1YiI6ImFkbWluIn0.5p-UEDELIZNLgJ5DrjEg8OiVm_x4SfcGP2E5CybIpYI' blocked=False is_active=True
+[2023-04-06 14:10:48 +0200] [10690] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('326681d1-a5d9-461e-a3b1-bcdf5a704bf0'), 'user_id': UUID('efd97175-e187-4ce7-9a4a-286992943857'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3ODMzNDgsInN1YiI6ImFkbWluIn0.rXy6WMhAQo51IcbHIo_YrSvYEwrNOVsqmguHMxzmBFU', 'access_expire_time': datetime.datetime(2023, 4, 6, 12, 15, 48, 974559), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5NTU4NDgsInN1YiI6ImFkbWluIn0.5p-UEDELIZNLgJ5DrjEg8OiVm_x4SfcGP2E5CybIpYI', 'refresh_expire_time': datetime.datetime(2023, 4, 8, 12, 10, 48, 974706), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 6, 12, 10, 48, 977267), 'updated_at': datetime.datetime(2023, 4, 6, 12, 10, 48, 977271)}
+[2023-04-06 14:10:54 +0200] [10690] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:10:54 +0200] [10690] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:10:54 +0200] [10690] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:10:54 +0200] [10690] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:10:54 +0200] [10690] [INFO] [services.lesson_service] LessonService: Create lesson
+[2023-04-06 14:10:54 +0200] [10690] [TRACE] [services.lesson_service] LessonService: Create lesson with passed data start_time='09:15' end_time='10:00' lesson_number=<LessonsEnum.TWO: '2'>
+[2023-04-06 14:10:54 +0200] [10690] [DEBUG] [services.lesson_service] LessonService: Check if lesson with same number exists: 2
+[2023-04-06 14:10:54 +0200] [10690] [INFO] [db.dao.base_dao] LessonModel DAO: Get db entry by parameters
+[2023-04-06 14:10:54 +0200] [10690] [TRACE] [db.dao.base_dao] LessonModel DAO: Data passed to filter: params: {'lesson_number': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:10:54 +0200] [10690] [DEBUG] [db.dao.base_dao] LessonModel DAO: received a response from the database
+[2023-04-06 14:10:54 +0200] [10690] [DEBUG] [services.lesson_service] LessonService: Check if lesson within provided time scopes exists: 09:15:00 - 10:00:00
+[2023-04-06 14:10:54 +0200] [10690] [INFO] [db.dao.lesson_dao] LessonDAO: Get lessons within same time scopes
+[2023-04-06 14:10:54 +0200] [10690] [TRACE] [db.dao.lesson_dao] LessonDAO: Get db entries within provided time scopes: 09:15:00 - 10:00:00
+[2023-04-06 14:10:54 +0200] [10690] [DEBUG] [db.dao.lesson_dao] LessonDAO: received a response from the database []
+[2023-04-06 14:10:54 +0200] [10690] [INFO] [db.dao.base_dao] LessonModel DAO: Create db entry
+[2023-04-06 14:10:54 +0200] [10690] [TRACE] [db.dao.base_dao] LessonModel DAO: Data passed for creation: start_time=datetime.time(9, 15) end_time=datetime.time(10, 0) lesson_number=<LessonsEnum.TWO: '2'>
+[2023-04-06 14:10:55 +0200] [10690] [DEBUG] [db.dao.base_dao] LessonModel DAO: Created entry in database: {'id': UUID('7b3f373f-e0d7-49d4-bf91-94592bb75d0a'), 'lesson_number': <LessonsEnum.TWO: '2'>, 'start_time': datetime.time(9, 15), 'end_time': datetime.time(10, 0)}
+[2023-04-06 14:11:09 +0200] [10690] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:11:09 +0200] [10690] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:11:09 +0200] [10690] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:11:09 +0200] [10690] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:11:09 +0200] [10690] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:11:09 +0200] [10690] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 14:11:09 +0200] [10690] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:11:09 +0200] [10690] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:11:09 +0200] [10690] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: received a response from the database
+[2023-04-06 14:11:09 +0200] [10690] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Create db entry
+[2023-04-06 14:11:09 +0200] [10690] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed for creation: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> group_number=<AcademicGroupsEnum.FIRST_1: '101'>
+[2023-04-06 14:11:09 +0200] [10690] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: Created entry in database: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>, 'is_busy': False}
+[2023-04-06 14:11:22 +0200] [10690] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:11:22 +0200] [10690] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:11:22 +0200] [10690] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:11:22 +0200] [10690] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:11:22 +0200] [10690] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:11:22 +0200] [10690] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 14:11:22 +0200] [10690] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:11:22 +0200] [10690] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:11:22 +0200] [10690] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: received a response from the database
+[2023-04-06 14:11:22 +0200] [10690] [INFO] [db.dao.group_busy_dao] GroupBusyDAO: Update db entry
+[2023-04-06 14:11:22 +0200] [10690] [TRACE] [db.dao.group_busy_dao] GroupBusyDAO: Data passed for update: group_number: 101, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 14:11:22 +0200] [10690] [DEBUG] [db.dao.group_busy_dao] GroupBusyDAO: Received updated entry from the database
+[2023-04-06 14:11:25 +0200] [10690] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:11:25 +0200] [10690] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:11:25 +0200] [10690] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:11:25 +0200] [10690] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:11:25 +0200] [10690] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:11:25 +0200] [10690] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 14:11:25 +0200] [10690] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:11:25 +0200] [10690] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:11:25 +0200] [10690] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: received a response from the database
+[2023-04-06 14:11:35 +0200] [10690] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:11:35 +0200] [10690] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:11:35 +0200] [10690] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:11:35 +0200] [10690] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:11:35 +0200] [10690] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:11:35 +0200] [10690] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 14:11:35 +0200] [10690] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:11:35 +0200] [10690] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:11:35 +0200] [10690] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: received a response from the database
+[2023-04-06 14:11:35 +0200] [10690] [INFO] [db.dao.group_busy_dao] GroupBusyDAO: Update db entry
+[2023-04-06 14:11:35 +0200] [10690] [TRACE] [db.dao.group_busy_dao] GroupBusyDAO: Data passed for update: group_number: 101, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 14:11:35 +0200] [10690] [DEBUG] [db.dao.group_busy_dao] GroupBusyDAO: Received updated entry from the database
+[2023-04-06 14:12:01 +0200] [10793] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:12:01 +0200] [10793] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:12:01 +0200] [10793] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:12:01 +0200] [10793] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:12:01 +0200] [10793] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:12:01 +0200] [10793] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 14:12:01 +0200] [10793] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:12:01 +0200] [10793] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:12:02 +0200] [10793] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: received a response from the database
+[2023-04-06 14:12:17 +0200] [10793] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:12:17 +0200] [10793] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:12:17 +0200] [10793] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:12:17 +0200] [10793] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:12:17 +0200] [10793] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:12:17 +0200] [10793] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 14:12:17 +0200] [10793] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:12:17 +0200] [10793] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:12:17 +0200] [10793] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: received a response from the database
+[2023-04-06 14:12:17 +0200] [10793] [INFO] [db.dao.group_busy_dao] GroupBusyDAO: Update db entry
+[2023-04-06 14:12:17 +0200] [10793] [TRACE] [db.dao.group_busy_dao] GroupBusyDAO: Data passed for update: group_number: 101, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 14:12:17 +0200] [10793] [DEBUG] [db.dao.group_busy_dao] GroupBusyDAO: Received updated entry from the database
+[2023-04-06 14:12:23 +0200] [10793] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:12:23 +0200] [10793] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:12:23 +0200] [10793] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:12:23 +0200] [10793] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:12:23 +0200] [10793] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:12:23 +0200] [10793] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=True
+[2023-04-06 14:12:23 +0200] [10793] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:12:23 +0200] [10793] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:12:23 +0200] [10793] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: received a response from the database
+[2023-04-06 14:12:35 +0200] [10793] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:12:35 +0200] [10793] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:12:35 +0200] [10793] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:12:35 +0200] [10793] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:12:35 +0200] [10793] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:12:35 +0200] [10793] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 14:12:35 +0200] [10793] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:12:35 +0200] [10793] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:12:35 +0200] [10793] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: received a response from the database
+[2023-04-06 14:12:35 +0200] [10793] [INFO] [db.dao.group_busy_dao] GroupBusyDAO: Update db entry
+[2023-04-06 14:12:35 +0200] [10793] [TRACE] [db.dao.group_busy_dao] GroupBusyDAO: Data passed for update: group_number: 101, patch_data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 14:12:35 +0200] [10793] [DEBUG] [db.dao.group_busy_dao] GroupBusyDAO: Received updated entry from the database
+[2023-04-06 14:12:45 +0200] [10793] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-06 14:12:45 +0200] [10793] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-06 14:12:45 +0200] [10793] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-06 14:12:45 +0200] [10793] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-06 14:12:45 +0200] [10793] [INFO] [services.group_service] GroupService: Set group busy
+[2023-04-06 14:12:45 +0200] [10793] [TRACE] [services.group_service] GroupService: Set group busy: group_number: 101, data: weekday=<WeekdaysEnum.MONDAY: 'Monday'> lesson=<LessonsEnum.TWO: '2'> is_busy=False
+[2023-04-06 14:12:45 +0200] [10793] [INFO] [db.dao.base_dao] GroupBusyModel DAO: Get db entry by parameters
+[2023-04-06 14:12:45 +0200] [10793] [TRACE] [db.dao.base_dao] GroupBusyModel DAO: Data passed to filter: params: {'group_number': <AcademicGroupsEnum.FIRST_1: '101'>, 'weekday': <WeekdaysEnum.MONDAY: 'Monday'>, 'lesson': <LessonsEnum.TWO: '2'>}
+[2023-04-06 14:12:45 +0200] [10793] [DEBUG] [db.dao.base_dao] GroupBusyModel DAO: received a response from the database

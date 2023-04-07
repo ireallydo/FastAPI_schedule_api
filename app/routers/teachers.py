@@ -1,72 +1,76 @@
 from typing import List
 from http import HTTPStatus
-
-from fastapi import APIRouter, Depends, HTTPException, Response
-from sqlalchemy.orm import Session
-
+from fastapi import APIRouter, Response, Request
 from fastapi_utils.cbv import cbv
-
-from services import teacher_service
-
-from db.models import *
-from db.dto import *
-from db.enums import *
+from services.teacher_service import teacher_service
+from services.module_service import module_service
+from db.dto import CreateTeachersResponse, TeacherCreateDTO, TeacherDTO,\
+    TeacherProfileDTO, TeacherBusyResponseDTO, TeacherBusyRequestDTO,\
+    TeacherWithModulesDTO, TeacherCreateModulesDTO, TeacherDeleteModuleDTO, TeacherModulesDTO
 from .api_spec import ApiSpec
-
-from db.database import SessionLocal, engine
+from mixins import AuthMixin
+from utils import available_roles
+from db.enums import UserRolesEnum as Roles
 
 
 router = APIRouter(tags=["teachers"])
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @cbv(router)
-class TeacherView:
-    db: Session = Depends(get_db)
+class TeacherView(AuthMixin):
 
-    @router.post(ApiSpec.TEACHERS, status_code=HTTPStatus.CREATED, response_model=List[TeacherDTO])
-    def post_teacher(self, input_data: List[TeacherCreateDTO]):
-        response = teacher_service.create(self.db, input_data)
+    @router.post(ApiSpec.TEACHERS, status_code=HTTPStatus.CREATED, response_model=CreateTeachersResponse)
+    @available_roles(role=Roles.ADMIN)
+    async def create_teachers(self, input_data: List[TeacherCreateDTO]):
+        """takes a list of teachers
+        if the teacher is in the db ADN is not deleted (deleted_at id None) -> creates teacher
+        returns a dict of two keys: failed_to_register and registered_teachers"""
+        response = await teacher_service.create(input_data)
         return response
 
     @router.get(ApiSpec.TEACHERS, status_code=HTTPStatus.OK, response_model=List[TeacherDTO])
-    def get_teachers(self, skip: int=0, limit=None):
-        response = teacher_service.get_all(self.db, skip, limit)
+    @available_roles(role=Roles.ADMIN)
+    async def get_all_teachers(self, skip: int = 0, limit: int = None):
+        """get all active (deleted_at is None) teachers"""
+        response = await teacher_service.get_all(skip, limit)
         return response
 
-    @router.get(ApiSpec.TEACHERS_DETAIL, status_code=HTTPStatus.OK, response_model=TeacherProfileDTO)
-    def get_teacher_profile(self, user_id):
-        response = teacher_service.get_profile(self.db, user_id)
+    @router.get(ApiSpec.TEACHERS_DETAILS, status_code=HTTPStatus.OK, response_model=TeacherProfileDTO)
+    @available_roles(role=Roles.ADMIN, self_action=True)
+    async def get_teacher_profile(self, user_id: str):
+        """returns full information about the teacher by id, including registration token"""
+        response = await teacher_service.get_by_id(user_id)
         return response
 
-    @router.delete(ApiSpec.TEACHERS_DETAIL, status_code=HTTPStatus.NO_CONTENT)
-    def delete_teacher(self, user_id):
-        teacher_service.delete(self.db, user_id)
+    @router.delete(ApiSpec.TEACHERS_DETAILS, status_code=HTTPStatus.NO_CONTENT)
+    @available_roles(role=Roles.ADMIN)
+    async def delete_teacher(self, user_id: str):
+        """updates teacher's deleted_at field with the current time stamp"""
+        await teacher_service.delete(user_id)
         return Response(status_code=HTTPStatus.NO_CONTENT)
 
-
-    @router.post(ApiSpec.TEACHERS_BUSY, status_code=HTTPStatus.OK, response_model=TeacherBusyResponseDTO)
-    def set_teacher_busy(self, user_id, input_data: TeacherBusyRequestDTO):
-        response = teacher_service.set_teacher_busy(self.db, user_id, input_data)
+    @router.post(ApiSpec.TEACHERS_MODULES, status_code=HTTPStatus.OK, response_model=TeacherWithModulesDTO)
+    @available_roles(role=Roles.ADMIN)
+    async def create_teachers_modules(self, user_id: str, input_data: TeacherCreateModulesDTO):
+        modules = [await module_service.get_by_id(module_id) for module_id in input_data.modules_id]
+        response = await teacher_service.create_teacher_modules(user_id, modules)
         return response
 
-
-    @router.post(ApiSpec.TEACHERS_MODULES, status_code=HTTPStatus.OK, response_model=TeachersToModulesDTO)
-    def create_teachers_modules(self, user_id, input_data: TeachersToModulesCreateDTO):
-        response = teacher_service.create_modules(self.db, user_id, input_data)
-        return response
-
-    @router.get(ApiSpec.TEACHERS_MODULES, status_code=HTTPStatus.OK, response_model=TeachersToModulesDTO)
-    def get_teachers_modules(self, user_id):
-        response = teacher_to_module_service.get_modules(self.db, user_id)
+    @router.get(ApiSpec.TEACHERS_MODULES, status_code=HTTPStatus.OK, response_model=List[TeacherModulesDTO])
+    @available_roles(role=Roles.TEACHER, self_action=True)
+    async def get_teachers_modules(self, user_id: str):
+        response = await teacher_service.get_modules(user_id)
         return response
 
     @router.delete(ApiSpec.TEACHERS_MODULES, status_code=HTTPStatus.NO_CONTENT)
-    def delete_teachers_modules(self, user_id, input_data: TeachersToModulesDeleteDTO):
-        teacher_to_module_service.delete_association(self.db, user_id, input_data)
+    @available_roles(role=Roles.ADMIN)
+    async def delete_teachers_module(self, user_id: str, input_data: TeacherDeleteModuleDTO):
+        module = await module_service.get_by_id(input_data.module_id)
+        await teacher_service.delete_teacher_module(user_id, module)
         return Response(status_code=HTTPStatus.NO_CONTENT)
+
+    @router.post(ApiSpec.TEACHERS_BUSY, status_code=HTTPStatus.OK, response_model=TeacherBusyResponseDTO)
+    @available_roles(role=Roles.ADMIN)
+    async def set_teacher_busy(self, user_id, input_data: TeacherBusyRequestDTO):
+        response = await teacher_service.set_teacher_busy(user_id, input_data)
+        return response

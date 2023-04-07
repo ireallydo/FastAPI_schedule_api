@@ -1,25 +1,24 @@
 from fastapi import FastAPI
-
 from settings.settings import Settings
-from db.models import BaseModel
-from db.database import SessionLocal, engine
+from db.database import init_db, session
 from routers.api import api_router
+from utils.logger import setup_logger
 
 settings = Settings()
 
-app = FastAPI();
+app = FastAPI()
 app.include_router(api_router)
 
-def get_db():
-    db = SessionLocal();
-    try:
-        yield db;
-    finally:
-        db.close();
 
 @app.on_event("startup")
-def startup():
-    BaseModel.metadata.create_all(bind=engine)
+async def startup():
+    setup_logger(settings)
+    await init_db()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await session.aclose()
 
 
 def main():

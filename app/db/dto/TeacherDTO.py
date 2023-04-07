@@ -18,12 +18,20 @@ class TeacherCreateDTO(TeacherBaseDTO):
     second_name: Optional[str]
     last_name: str
     birth_date: Union[str, datetime]
+
     class Config:
         extra = Extra.allow
+
 
 class TeacherDTO(TeacherCreateDTO):
     id: Union[UUID, str]
     registration_token: str
+
+
+class CreateTeachersResponse(TeacherBaseDTO):
+    failed_to_register: Optional[dict]
+    registered_teachers: List[TeacherDTO]
+
 
 class TeacherProfileDTO(TeacherCreateDTO):
     id: Union[UUID, str]
@@ -31,28 +39,34 @@ class TeacherProfileDTO(TeacherCreateDTO):
     updated_at: Union[str, datetime]
     deleted_at: Union[str, datetime, None]
 
+
 class TeacherDeleteDTO(TeacherBaseDTO):
     deleted_at: Union[str, datetime]
 
 
-class TeacherModulesDTO(TeacherDTO):
-    modules: List[ModuleDTO]
+class TeacherModulesDTO(TeacherBaseDTO):
+    id: Optional[Union[UUID, str]]
+    module_name: Optional[str]
+    class_type: Optional[ClassTypesEnum]
+    academic_year: Optional[AcademicYearsEnum]
+
 
 class TeacherInScheduleDTO(TeacherCreateDTO):
     pass
 
 
-
-
-class TeachersToModulesCreateDTO(TeacherBaseDTO):
+class TeacherCreateModulesDTO(TeacherBaseDTO):
     modules_id: List[Union[str, UUID]]
 
-class TeachersToModulesDTO(TeacherBaseDTO):
+
+class TeacherWithModulesDTO(TeacherBaseDTO):
     teacher_id: Union[str, UUID]
     modules: List[ModuleDTO]
 
-class GetTeachersModules(TeacherBaseDTO):
-    id: Union[str, UUID]
 
-class TeachersToModulesDeleteDTO(TeachersToModulesCreateDTO):
-    pass
+class TeacherDeleteModuleDTO(TeacherBaseDTO):
+    module_id: Union[str, UUID]
+
+
+class TeacherSetRegisteredDTO(TeacherBaseDTO):
+    registered_user: bool

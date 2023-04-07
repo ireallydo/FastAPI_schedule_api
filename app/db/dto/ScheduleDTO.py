@@ -1,10 +1,10 @@
 from typing import List, Union, Dict
 from pydantic import BaseModel
-
 from uuid import UUID
-
-from db.enums import *
+from db.enums import SemestersEnum, WeekdaysEnum, LessonsEnum, AcademicGroupsEnum, ClassTypesEnum
 from .TeacherDTO import TeacherInScheduleDTO
+from .LessonDTO import LessonCreateDTO
+from .ModuleDTO import ModuleCreateDTO, ModuleDTO
 
 # -----------------------------------------------------------------
 # schedule classes
@@ -20,89 +20,90 @@ class ScheduleCreateDTO(ScheduleBaseDTO):
     weekday: WeekdaysEnum
     lesson_number: LessonsEnum
     group_number: AcademicGroupsEnum
-    module_name: str
-    class_type: ClassTypesEnum
+    module_id: Union[str, UUID]
 
-class ScheduleCreateManuallyDTO(ScheduleBaseDTO):
+
+class ScheduleCreateManuallyDTO(ScheduleCreateDTO):
+    room_number: int
+    teacher_id: Union[str, UUID]
+
+
+class ScheduleDTO(ScheduleBaseDTO):
+    id: UUID
     semester: SemestersEnum
+    group_number: AcademicGroupsEnum
     weekday: WeekdaysEnum
     lesson_number: LessonsEnum
-    group_number: AcademicGroupsEnum
-    module_name: str
+    module_id: UUID
     class_type: ClassTypesEnum
+    room_number: int
+    teacher_id: UUID
+
+
+class ScheduleOutDTO(ScheduleBaseDTO):
+    id: Union[str, UUID]
+    semester: SemestersEnum
+    group_number: AcademicGroupsEnum
+    weekday: WeekdaysEnum
+    lesson: LessonCreateDTO
+    module: ModuleCreateDTO
     room_number: int
     teacher: TeacherInScheduleDTO
 
-class ScheduleDTO(ScheduleBaseDTO):
-    id: UUID;
-    semester: SemestersEnum;
-    group_number: AcademicGroupsEnum;
-    weekday: WeekdaysEnum;
-    lesson_number: LessonsEnum;
-    module_id: UUID;
-    class_type: ClassTypesEnum;
-    room_number: int;
-    teacher_id: UUID;
-
-class ScheduleOutDTO(ScheduleBaseDTO):
-    semester: SemestersEnum
-    group_number: AcademicGroupsEnum
-    weekday: WeekdaysEnum
-    lesson_number: LessonsEnum
-    lesson_time: str
-    module_name: str
-    class_type: ClassTypesEnum
-    room_number: int
-    teacher: Dict
-    # teacher_first_name: str
-    # teacher_second_name: str
-    # teacher_last_name: str
 
 class ScheduleGroupRequestDTO(ScheduleBaseDTO):
-    semester: SemestersEnum;
-    group: int;
+    semester: SemestersEnum
+    group: int
+
+
+class BusyDTO(ScheduleBaseDTO):
+    is_busy: bool
+    weekday: WeekdaysEnum
+    lesson: LessonsEnum
+    semester: SemestersEnum
+
 
 class SchedulePatchDTO(ScheduleBaseDTO):
     pass
+
+
 class ScheduleDeleteDTO(ScheduleBaseDTO):
     pass
-#----------------------
 
-class ScheduleModuleDTO(ScheduleBaseDTO):
-    name: str;
 
-class ScheduleClassDTO(ScheduleBaseDTO):
-    #teacher_id: int; # for testing
-    modules: ScheduleModuleDTO;
-    class_type: str;
-    room: int;
+class ClassesGroupDTO(ScheduleBaseDTO):
+    schedule_id: Union[str, UUID]
+    lesson: LessonCreateDTO
+    module: ModuleDTO
+    room_number: int
+    teacher: TeacherInScheduleDTO
 
-#-----------------------
 
-class ScheduleClassForGroupDTO(ScheduleClassDTO):
-    teachers: TeacherInScheduleDTO
+class WeekdaysGroupDTO(ScheduleBaseDTO):
+    weekday: WeekdaysEnum
+    classes: List[ClassesGroupDTO]
 
-class ScheduleLessonForGroupDTO(ScheduleBaseDTO):
-    number: int;
-    time: str;
-    schedule: List[ScheduleClassForGroupDTO];
+class GroupScheduleDTO(ScheduleBaseDTO):
+    semester: SemestersEnum
+    group_number: int
+    schedule: List[WeekdaysGroupDTO]
 
-class ScheduleGroupResponseDTO(ScheduleBaseDTO):
-    name: str;
-    lessons: List[ScheduleLessonForGroupDTO];
 
-#------------------------
+class ClassesTeacherDTO(ScheduleBaseDTO):
+    lesson: LessonCreateDTO
+    module: ModuleDTO
+    room_number: int
+    groups: List[AcademicGroupsEnum]
 
-class ScheduleClassForTeacherDTO(ScheduleClassDTO):
-    group: int;
 
-class ScheduleLessonForTeacherDTO(ScheduleBaseDTO):
-    number: int;
-    time: str;
-    schedule: List[ScheduleClassForTeacherDTO];
+class WeekdaysTeacherDTO(ScheduleBaseDTO):
+    weekday: WeekdaysEnum
+    classes: List[ClassesTeacherDTO]
 
-class ScheduleTeacherResponseDTO(ScheduleBaseDTO):
-    name: str;
-    lessons: List[ScheduleLessonForTeacherDTO];
 
-#-----------------------
+class TeacherScheduleDTO(ScheduleBaseDTO):
+    semester: SemestersEnum
+    teacher: TeacherInScheduleDTO
+    schedule: List[WeekdaysTeacherDTO]
+
+
