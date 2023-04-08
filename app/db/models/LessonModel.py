@@ -1,9 +1,10 @@
-from sqlalchemy import Column, DateTime, Enum
+from sqlalchemy import Column, Enum
 from sqlalchemy.dialects.postgresql import UUID, TIME
 from uuid import uuid4
 from sqlalchemy.orm import relationship
 from db.models import BaseModel
 from db.enums import LessonsEnum
+
 
 class LessonModel(BaseModel):
     __tablename__ = 'tbl_lessons'

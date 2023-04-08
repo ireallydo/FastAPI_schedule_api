@@ -27,6 +27,20 @@ class ScheduleService:
         self._lesson_service = lesson_service
         self._module_service = module_service
 
+    @staticmethod
+    async def __make_resp_obj(schedule: ScheduleModel) -> ScheduleOutDTO:
+        response_obj = ScheduleOutDTO(
+            id=schedule.id,
+            semester=schedule.semester,
+            group_number=schedule.group_number,
+            weekday=schedule.weekday,
+            lesson=schedule.lessons,
+            module=schedule.modules,
+            room_number=schedule.room_number,
+            teacher=schedule.teachers
+        )
+        return response_obj
+
     async def create_auto(self, item: ScheduleCreateDTO) -> ScheduleOutDTO:
         logger.info("ScheduleService: Create schedule automatically")
         logger.trace(f"ScheduleService: Create schedule automatically with passed data: {item}")
@@ -68,7 +82,7 @@ class ScheduleService:
                         teacher_id=teacher.id
                     )
                     schedule = await self._schedule_dao.create(schedule_obj)
-                    return await self.__make_out_obj(schedule)
+                    return await self.__make_resp_obj(schedule)
         # if didn't find any free teacher, or room,
         # find if there's the same module at this time in the schedule
         same_schedule = await self._schedule_dao.get_by(
@@ -99,7 +113,7 @@ class ScheduleService:
                 teacher_id=same_schedule.teacher_id
             )
             schedule = await self._schedule_dao.create(schedule_obj)
-            return await self.__make_out_obj(schedule)
+            return await self.__make_resp_obj(schedule)
 
     async def create_manually(self, item: ScheduleCreateManuallyDTO) -> ScheduleOutDTO:
         logger.info("ScheduleService: Create schedule manually")
@@ -113,12 +127,12 @@ class ScheduleService:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
                                 detail='Room class type does not match module class type.')
         # check if room is busy
-        room_busy = await self._room_service.check_room_busy(room.id, item.weekday, item.lesson, item.semester)
+        room_busy = await self._room_service.check_room_busy(room.id, item.weekday, item.lesson_number, item.semester)
         if room_busy is not None and room_busy.is_busy:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
                                 detail='Room is already busy at provided time.')
         # check if teacher can be assigned to the module
-        teacher_modules = await self._teacher_service.get_modules(teacher_id)
+        teacher_modules = await self._teacher_service.get_modules(item.teacher_id)
         if teacher_modules:
             module_ids = [str(mod.id) for mod in teacher_modules]
             if item.module_id not in module_ids:
@@ -128,7 +142,7 @@ class ScheduleService:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
                                 detail='Teacher cannot be assigned to the module.')
         # check if teacher is busy
-        teacher_busy = await self._teacher_service.check_teacher_busy(teacher_id,
+        teacher_busy = await self._teacher_service.check_teacher_busy(item.teacher_id,
                                                                       item.weekday,
                                                                       item.lesson_number,
                                                                       item.semester)
@@ -136,19 +150,15 @@ class ScheduleService:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
                                 detail='Teacher is already busy at provided time.')
         # if all checks are passed - set group, room and teacher busy and create schedule
-        # set teacher busy
         busy = BusyDTO(
             is_busy=True,
             weekday=item.weekday,
             lesson=item.lesson_number,
             semester=item.semester
         )
-        await self._teacher_service.set_teacher_busy(teacher_id, busy)
-        # set group busy
+        await self._teacher_service.set_teacher_busy(item.teacher_id, busy)
         await self._group_service.set_group_busy(item.group_number, busy)
-        # set room busy
         await self._room_service.set_room_busy(item.room_number, busy)
-        # use teacher and room to make a schedule
         schedule_obj = ScheduleCreateManuallyDTO(
             semester=item.semester,
             weekday=item.weekday,
@@ -159,7 +169,7 @@ class ScheduleService:
             teacher_id=item.teacher_id
         )
         schedule = await self._schedule_dao.create(schedule_obj)
-        return await self.__make_out_obj(schedule)
+        return await self.__make_resp_obj(schedule)
 
     async def check_for_schedule(self, item: Any) -> NoReturn:
         logger.info("ScheduleService: Check if provided lesson is in db and group is not busy")
@@ -173,19 +183,6 @@ class ScheduleService:
         if group_busy is not None and group_busy.is_busy:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
                                 detail='The group is already busy at provided time.')
-
-    async def __make_out_obj(self, schedule: ScheduleModel) -> ScheduleOutDTO:
-        response_obj = ScheduleOutDTO(
-            id=schedule.id,
-            semester=schedule.semester,
-            group_number=schedule.group_number,
-            weekday=schedule.weekday,
-            lesson=schedule.lessons,
-            module=schedule.modules,
-            room_number=schedule.room_number,
-            teacher=schedule.teachers
-        )
-        return response_obj
 
     async def get_all_by(self, *args, **kwargs):
         logger.info("ScheduleService: Get all schedule entries by parameters")

@@ -1,5 +1,5 @@
 from db.models.TeacherModel import TeacherModel
-from db.dto import *
+from db.dto import TeacherCreateDTO
 from .base_dao import BaseDAO
 from loguru import logger
 

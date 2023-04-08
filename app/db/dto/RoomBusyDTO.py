@@ -1,5 +1,5 @@
 from typing import Union
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 from uuid import UUID
 from db.enums import LessonsEnum, WeekdaysEnum, SemestersEnum
 

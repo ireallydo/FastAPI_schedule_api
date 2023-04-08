@@ -1,12 +1,10 @@
-from sqlalchemy import Column, func, ForeignKey, String, DateTime, Enum, Boolean
-from sqlalchemy.dialects.postgresql import UUID, BOOLEAN, INTEGER
+from sqlalchemy import Column, func, String, DateTime, Enum, Boolean
+from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
 from uuid import uuid4
-from sqlalchemy.orm import relationship
-
 from db.models import BaseModel, UserModel
-
 from db.enums import AcademicYearsEnum, AcademicGroupsEnum
+
 
 class StudentModel(BaseModel):
     __tablename__ = 'tbl_students'
@@ -25,5 +23,3 @@ class StudentModel(BaseModel):
 
     def dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-
-    # users = relationship('UserModel', back_populates='students', uselist=False)

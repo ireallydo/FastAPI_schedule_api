@@ -1,9 +1,5 @@
-from sqlalchemy.orm import Session
-
-from fastapi import Depends, FastAPI, HTTPException
-
 from db.models.UserModel import UserModel
-from db.dto import *
+from db.dto import UserCreateDTO, UserPatchDTO
 from .base_dao import BaseDAO
 
 

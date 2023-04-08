@@ -1,4 +1,4 @@
-from sqlalchemy import Column, func, String, DateTime, Enum, Boolean
+from sqlalchemy import Column, func, String, DateTime
 from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
 from uuid import uuid4
@@ -15,9 +15,6 @@ class SessionModel(BaseModel):
     access_expire_time = Column('access_expire_time', DateTime)
     refresh_token = Column('refresh_token', String(255))
     refresh_expire_time = Column('refresh_expire_time', DateTime)
-    # for future check of active (or not blocked user)
-    blocked = Column('blocked', Boolean, default=False)
-    is_active = Column('is_active', Boolean, default=True)
     created_at = Column('created_at', DateTime, default=datetime.utcnow)
     updated_at = Column('updated_at', DateTime, default=datetime.utcnow, onupdate=func.current_timestamp())
 

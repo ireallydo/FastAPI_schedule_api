@@ -1,12 +1,12 @@
-from typing import List, Union, Dict, Optional
+from typing import Union
 from pydantic import BaseModel
-
 from uuid import UUID
-from datetime import datetime
+
 
 class TokenSchema(BaseModel):
     access_token: str
     refresh_token: str
+
 
 class TokenPayload(BaseModel):
     sub: str = None
@@ -19,15 +19,7 @@ class LoginRespDTO(BaseModel):
     role: str
     access_token: str
     refresh_token: str
-# class SessionCreateDTO(BaseModel):
-#     user_id: UUID
-#     login: str
-#     expire_time: datetime
-#     access_token: str
-#     refresh_token: str
-#
-# class SessionPatchDTO(BaseModel):
-#     expire_time: datetime
+
 
 class AuthHeadersDTO(BaseModel):
     user_id: Union[str, UUID]

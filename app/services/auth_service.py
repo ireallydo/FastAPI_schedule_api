@@ -16,8 +16,8 @@ class AuthService:
     async def __create_session(self, user: UserModel) -> SessionModel:
         logger.info("AuthService: Create session")
         logger.trace(f"AuthService: Create session with user: {user.id}")
-        access_token, access_expire_time = utils.create_access_token(user.login)
-        refresh_token, refresh_expire_time = utils.create_refresh_token(user.login)
+        access_token, access_expire_time = await utils.create_access_token(user.login)
+        refresh_token, refresh_expire_time = await utils.create_refresh_token(user.login)
         session_obj = SessionCreateDTO(
             user_id=user.id,
             login=user.login,
@@ -33,7 +33,7 @@ class AuthService:
         return session
 
     async def login_user(self, form_data) -> LoginRespDTO:
-        logger.info(f"AuthService: Login user")
+        logger.info("AuthService: Login user")
         logger.trace(f"AuthService: Login user: {form_data.username}")
         user = await user_service.get_by_login(form_data.username)
         if user is None:

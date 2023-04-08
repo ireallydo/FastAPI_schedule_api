@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Union
 from pydantic import BaseModel
 from uuid import UUID
 from db.enums import SemestersEnum, WeekdaysEnum, LessonsEnum, AcademicGroupsEnum, ClassTypesEnum
@@ -6,14 +6,12 @@ from .TeacherDTO import TeacherInScheduleDTO
 from .LessonDTO import LessonCreateDTO
 from .ModuleDTO import ModuleCreateDTO, ModuleDTO
 
-# -----------------------------------------------------------------
-# schedule classes
-# -----------------------------------------------------------------
 
 class ScheduleBaseDTO(BaseModel):
     class Config:
-        orm_mode = True;
-        arbitrary_types_allowed=True
+        orm_mode = True
+        arbitrary_types_allowed = True
+
 
 class ScheduleCreateDTO(ScheduleBaseDTO):
     semester: SemestersEnum
@@ -63,14 +61,6 @@ class BusyDTO(ScheduleBaseDTO):
     semester: SemestersEnum
 
 
-class SchedulePatchDTO(ScheduleBaseDTO):
-    pass
-
-
-class ScheduleDeleteDTO(ScheduleBaseDTO):
-    pass
-
-
 class ClassesGroupDTO(ScheduleBaseDTO):
     schedule_id: Union[str, UUID]
     lesson: LessonCreateDTO
@@ -82,6 +72,7 @@ class ClassesGroupDTO(ScheduleBaseDTO):
 class WeekdaysGroupDTO(ScheduleBaseDTO):
     weekday: WeekdaysEnum
     classes: List[ClassesGroupDTO]
+
 
 class GroupScheduleDTO(ScheduleBaseDTO):
     semester: SemestersEnum
@@ -105,5 +96,3 @@ class TeacherScheduleDTO(ScheduleBaseDTO):
     semester: SemestersEnum
     teacher: TeacherInScheduleDTO
     schedule: List[WeekdaysTeacherDTO]
-
-

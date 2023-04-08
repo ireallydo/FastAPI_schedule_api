@@ -1,12 +1,7 @@
-from typing import List
 from http import HTTPStatus
-from fastapi import HTTPException, APIRouter, Response
-from fastapi.responses import JSONResponse
+from fastapi import APIRouter, Response
 from fastapi_utils.cbv import cbv
-
 from services.schedule_service import schedule_service
-# group_service, module_service, teacher_service
-
 from db.dto import *
 from .api_spec import ApiSpec
 from mixins import AuthMixin

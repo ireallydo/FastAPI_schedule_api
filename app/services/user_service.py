@@ -53,7 +53,8 @@ class UserService:
                                 detail="User is already registered. Please contact administration.")
         elif not user.is_active:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
-                                detail="User was registered and deleted. Please contact administration to restore user.")
+                                detail="User was registered and deleted.\
+                                 Please contact administration to restore user.")
         else:
             try:
                 assert (item.registration_token == user.registration_token)
@@ -72,8 +73,7 @@ class UserService:
         response = await self._user_dao.get_by_id(user_id)
         if response is None:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
-                                detail=f"User with provided id does not exist.",
-                                headers={"WWW-Authenticate": "Bearer"})
+                                detail=f"User with provided id does not exist.")
         return response
 
     async def patch(self, user_id: str, patch_data: Union[UserPatchDTO, UserBlockedDTO]) -> UserModel:
@@ -116,39 +116,6 @@ class UserService:
             patch_data = UserDeleteDTO(is_active=True)
             await self._user_dao.patch(patch_data, user_id)
 
-    # elif item.role == 'teacher':
-    #     teacher = self._teacher_dao.get_by(check_data)
-    #     if teacher.registered_user:
-    #         raise HTTPException(status_code=403,
-    #                             detail="User for this teacher is already registered. Please contact administration.")
-    #     else:
-    #         try:
-    #             assert (item.registration_token == teacher.registration_token)
-    #             create_data = UserCreateDTO(**(item.dict().update(dict(id=student.id))))
-    #             # input_data = dict_of(student.id, input_data.login, password, input_data.email, input_data.role)
-    #         except AssertionError:
-    #             raise HTTPException(status_code=403, detail="Registration token for provided user is incorrect")
-
-
-    # async def get_profile(self, user_id):
-    #     return user_dao.get_by_id(db, user_id)
-    #
-    # async def patch(self, user_id, input_data):
-    #     patch_data = [(k, v) for k, v in input_data.dict().items()]
-    #     user_dao.patch(db, patch_data, user_id)
-    #     return user_dao.get_by_id(db, user_id)
-    #
-    # async def change_password(self, user_id, input_data):
-    #     input_data.password = utils.hash_password(input_data.password)
-    #     patch(db, user_id, input_data)
-    #
-    # async def block_unblock(self, user_id, input_data):
-    #     patch(db, user_id, input_data)
-    #
-    # async def delete(self, user_id):
-    #     input_data = ('is_active', False)
-    #     patch(db, user_id, input_data)
-
     @staticmethod
     async def get_by_login(login):
         user = await user_dao.get_by(login=login)
@@ -156,15 +123,3 @@ class UserService:
 
 
 user_service = UserService(user_dao, student_service, teacher_service)
-# def get_all(db, skip, limit):
-#     return user_dao.get_all(db, skip, limit)
-#
-#
-# def get_user_by_id(user_id: int):
-#     return user_dao.get_by_id(db=db, user_id=user_id)
-#
-# def get_user_by_email(email:str):
-#     return user_dao.get_by_email(db=db, email=email)
-#
-# def get_users(skip: int = 0, limit: int = 100):
-#     return user_dao.get_(db=db, skip=0, int=100)

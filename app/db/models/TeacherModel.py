@@ -1,11 +1,11 @@
-from sqlalchemy import Column, func, ForeignKey, String, DateTime, Enum, Boolean
-from sqlalchemy.dialects.postgresql import UUID, BOOLEAN, INTEGER
+from sqlalchemy import Column, func, String, DateTime, Boolean
+from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
 from uuid import uuid4
 from sqlalchemy.orm import relationship
-
 from db.models import BaseModel, ModuleModel, UserModel, ScheduleModel
 from db.models.teachers_to_modules_association_table import teachers_to_modules_association
+
 
 class TeacherModel(BaseModel):
     __tablename__ = 'tbl_teachers'
@@ -25,11 +25,6 @@ class TeacherModel(BaseModel):
                            secondary=teachers_to_modules_association,
                            back_populates='teachers',
                            lazy='subquery')
-
-    # users = relationship('UserModel', back_populates='teachers', uselist=False);
-    schedule = relationship('ScheduleModel',
-                            back_populates='teachers',
-                            lazy='subquery')
 
     def dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}

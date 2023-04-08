@@ -1,11 +1,13 @@
-from typing import List, NoReturn
+from typing import List, NoReturn, Union
+from uuid import UUID
 from http import HTTPStatus
 from fastapi import HTTPException
 from datetime import datetime
 import secrets
-from db.models import TeacherModel, ModuleModel
+from db.enums import LessonsEnum, SemestersEnum, WeekdaysEnum
+from db.models import TeacherModel, ModuleModel, TeacherBusyModel
 from db.dto import TeacherCreateDTO, TeacherDeleteDTO, TeacherWithModulesDTO,\
-    TeacherBusyCreateDTO, TeacherSetRegisteredDTO
+    TeacherBusyCreateDTO, TeacherSetRegisteredDTO, BusyDTO, TeacherBusyRequestDTO
 from db.dao import teacher_dao, TeacherDAO, teacher_busy_dao, TeacherBusyDAO
 from loguru import logger
 
@@ -21,7 +23,7 @@ class TeacherService:
         if not -> makes a token for further user registration and creates a teacher
         returns both teachers failed to register and registered teachers
         if the teacher in the db and is not deleted - returns as failed to register"""
-        logger.info(f"TeacherService: Create teachers")
+        logger.info("TeacherService: Create teachers")
         logger.trace(f"TeacherService: Register teachers with passed data {input_data}")
         teachers_to_create = []
         failed_creation = {}
@@ -47,17 +49,17 @@ class TeacherService:
         return response
 
     async def set_registered(self, user_id: str, reg_flag: bool) -> NoReturn:
-        logger.info(f"TeacherService: Set teacher registered_user field")
+        logger.info("TeacherService: Set teacher registered_user field")
         logger.trace(f"TeacherService: Patch teacher with id: {user_id} - set registered_user: {reg_flag}")
         patch_data = TeacherSetRegisteredDTO(
             registered_user=reg_flag
         )
         await self._teacher_dao.patch(patch_data, user_id)
 
-    async def get_all(self, skip, limit) -> list:
+    async def get_all(self, *args) -> list:
         """gets all teachers who are not deleted (deleted_at is None)"""
-        logger.info(f"TeacherService: Get all not deleted teachers")
-        resp = await self._teacher_dao.get_all_by(skip, limit)
+        logger.info("TeacherService: Get all not deleted teachers")
+        resp = await self._teacher_dao.get_all_by(*args)
         response = [teacher for teacher in resp if teacher.deleted_at is None]
         return response
 
@@ -68,14 +70,14 @@ class TeacherService:
     async def delete(self, user_id: str) -> NoReturn:
         """sets deleted_at column value equal to utcnow time;
         doesn't remove raw from the table"""
-        logger.info(f"TeacherService: Delete teacher (mark student as deleted)")
+        logger.info("TeacherService: Delete teacher (mark student as deleted)")
         patch_data = TeacherDeleteDTO(deleted_at=datetime.utcnow())
         logger.trace(f"TeacherService: Patch teacher with id: {user_id} - with following data: {patch_data}")
         await self._teacher_dao.patch(patch_data, user_id)
 
-    async def create_teacher_modules(self, user_id: str, modules: list):
+    async def create_teacher_modules(self, user_id: str, modules: list) -> TeacherWithModulesDTO:
         """adds modules that are not in teacher modules to teacher modules"""
-        logger.info(f"TeacherService: Create teacher modules")
+        logger.info("TeacherService: Create teacher modules")
         logger.trace(f"TeacherService: Create teacher modules: teacher_id: {user_id}")
         teacher = await self.get_by_id(user_id)
         mod_ids = [module.id for module in teacher.modules]
@@ -94,18 +96,19 @@ class TeacherService:
         return resp
 
     async def get_modules(self, user_id: str) -> list:
-        logger.info(f"TeacherService: Get teacher modules")
+        logger.info("TeacherService: Get teacher modules")
         logger.trace(f"TeacherService: Get teacher modules: teacher_id: {user_id}")
         teacher = await self.get_by_id(user_id)
         modules = teacher.modules
         return modules
 
     async def delete_teacher_module(self, user_id, module: ModuleModel) -> NoReturn:
-        logger.info(f"TeacherService: Delete teacher module")
+        logger.info("TeacherService: Delete teacher module")
         logger.trace(f"TeacherService: Delete teacher modules: teacher_id: {user_id}, module_id: {module.id}")
         await self._teacher_dao.delete_teacher_module(user_id, module)
 
-    async def check_teacher_busy(self, user_id, weekday, lesson, semester):
+    async def check_teacher_busy(self, user_id: Union[str, UUID], weekday: WeekdaysEnum,
+                                 lesson: LessonsEnum, semester: SemestersEnum) -> TeacherBusyModel:
         teacher_busy = await self._teacher_busy_dao.get_by(
             teacher_id=user_id,
             weekday=weekday,
@@ -114,10 +117,11 @@ class TeacherService:
         )
         return teacher_busy
 
-    async def set_teacher_busy(self, user_id, input_data):
-        logger.info(f"TeacherService: Set teacher busy")
+    async def set_teacher_busy(self, user_id: Union[str, UUID],
+                               input_data: Union[BusyDTO, TeacherBusyRequestDTO]) -> TeacherBusyModel:
+        logger.info("TeacherService: Set teacher busy")
         logger.trace(f"TeacherService: Set teacher busy: teacher_id: {user_id}, data: {input_data}")
-        teacher_busy = await self.check_teacher_busy(user_id, input_data.weekday, input_data.lesson)
+        teacher_busy = await self.check_teacher_busy(user_id, input_data.weekday, input_data.lesson, input_data.semester)
         if teacher_busy is None:
             obj = TeacherBusyCreateDTO(
                 teacher_id=user_id,

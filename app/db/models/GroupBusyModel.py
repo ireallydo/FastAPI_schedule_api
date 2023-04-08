@@ -1,10 +1,5 @@
-from sqlalchemy import Column, ForeignKey, Unicode, DateTime, Enum, Boolean
-from sqlalchemy.dialects.postgresql import UUID, BOOLEAN, INTEGER
-from uuid import uuid4
-from sqlalchemy.orm import relationship
-
+from sqlalchemy import Column, Enum, Boolean
 from db.models import BaseModel
-
 from db.enums import AcademicGroupsEnum, WeekdaysEnum, LessonsEnum, SemestersEnum
 
 

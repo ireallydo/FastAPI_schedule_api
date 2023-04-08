@@ -1,5 +1,5 @@
-from sqlalchemy import Column, ForeignKey, Unicode, DateTime, Enum, Boolean, Integer
-from sqlalchemy.dialects.postgresql import UUID, BOOLEAN, INTEGER
+from sqlalchemy import Column, Enum, Integer
+from sqlalchemy.dialects.postgresql import UUID
 from uuid import uuid4
 from sqlalchemy.orm import relationship
 from db.models import BaseModel, teachers_to_modules_association_table

@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from fastapi import APIRouter, HTTPException, Response
+from fastapi import APIRouter, Response
 from fastapi_utils.cbv import cbv
 from services.user_service import user_service
 from db.dto import UserProfileDTO, UserDTO,\

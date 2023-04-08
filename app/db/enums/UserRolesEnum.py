@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class UserRolesEnum(Enum):
     STUDENT = 0, "student"
     TEACHER = 1, "teacher"

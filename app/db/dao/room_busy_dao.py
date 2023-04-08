@@ -1,4 +1,3 @@
-from sqlalchemy.orm import Session
 from sqlalchemy import update, select
 from db.models.RoomBusyModel import RoomBusyModel
 from db.dto import RoomBusyCreateDTO, RoomBusyRequestDTO
@@ -26,19 +25,6 @@ class RoomBusyDAO(BaseDAO[RoomBusyModel, RoomBusyCreateDTO, None, None]):
             resp = resp.scalar()
             logger.debug(f"RoomBusyDAO: Received updated entry from the database")
             return resp
-
-
-    def check_busy(self, db: Session, room_id, weekday, lesson):
-        response = db.query(self.model).filter(self.model.room_id==room_id,
-                                            self.model.weekday==weekday,
-                                            self.model.lesson==lesson).first()
-        return response
-
-
-    def get_spare_room(self, db:Session, weekday, lesson):
-        return db.query(self.model).filter(self.model.weekday==weekday,
-                                    self.model.lesson==lesson,
-                                    self.model.is_busy==False).first()
 
 
 room_busy_dao = RoomBusyDAO(RoomBusyModel)

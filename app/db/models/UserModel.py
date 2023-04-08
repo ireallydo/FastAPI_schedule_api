@@ -1,4 +1,4 @@
-from sqlalchemy import Column, func, String, DateTime, Enum, Boolean
+from sqlalchemy import Column, func, String, DateTime, Boolean
 from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
 from uuid import uuid4
@@ -12,7 +12,6 @@ class UserModel(BaseModel):
     email = Column('email', String(255), unique=True)
     password = Column('password',  String(255))
     role = Column('role', String(255))
-    #for future check of active (or not blocked user)
     blocked = Column('blocked', Boolean, default=False)
     is_active = Column('is_active', Boolean, default=True)
     created_at = Column('created_at', DateTime, default=datetime.utcnow)
@@ -21,6 +20,3 @@ class UserModel(BaseModel):
     def dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
-
-    # students = relationship('StudentModel', back_populates='users');
-    # teachers = relationship('TeacherModel', back_populates='users');

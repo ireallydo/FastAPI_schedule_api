@@ -25,12 +25,10 @@ async def get_auth_headers(request: Request) -> AuthHeadersDTO:
         token_data = TokenPayload(**payload)
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=HTTPStatus.UNAUTHORIZED,
-                            detail="Unauthorized",
-                            headers={"WWW-Authenticate": "Bearer"})
+                            detail="Unauthorized")
     except jwt.JWTError:
         raise HTTPException(status_code=HTTPStatus.FORBIDDEN,
-                            detail="Could not validate credentials",
-                            headers={"WWW-Authenticate": "Bearer"})
+                            detail="Could not validate credentials")
     user = await user_service.get_by_login(token_data.sub)
     if not user.is_active:
         raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,

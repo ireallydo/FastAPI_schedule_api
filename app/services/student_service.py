@@ -3,7 +3,7 @@ from fastapi import HTTPException
 from http import HTTPStatus
 from typing import List, NoReturn
 from db.models import StudentModel
-from db.dto import *
+from db.dto import StudentCreateDTO, StudentSetRegisteredDTO, StudentPatchDTO, StudentDeleteDTO
 from db.dao import student_dao, StudentDAO
 from datetime import datetime
 from loguru import logger
@@ -18,7 +18,7 @@ class StudentService:
         if not -> makes a token for further user registration and creates a student
         returns both students failed to register and registered students
         if the student in the db and is not deleted - returns as failed to register"""
-        logger.info(f"StudentService: Create students")
+        logger.info("StudentService: Create students")
         logger.trace(f"StudentService: Register students with passed data {input_data}")
         students_to_create = []
         failed_creation = {}
@@ -50,7 +50,7 @@ class StudentService:
 
     async def get_all_by(self, *args, **kwargs) -> list:
         """gets all students who are not deleted (deleted_at is None) by arguments"""
-        logger.info(f"StudentService: Get all not deleted students with given parameters")
+        logger.info("StudentService: Get all not deleted students with given parameters")
         logger.trace(f"StudentService: Get all not deleted student with parameters: {kwargs}")
         resp = await self._student_dao.get_all_by(*args, **kwargs)
         response = [student for student in resp if student.deleted_at is None]
@@ -61,12 +61,11 @@ class StudentService:
         response = await self._student_dao.get_by_id(user_id)
         if response is None:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
-                                detail=f"Student with provided id does not exist.",
-                                headers={"WWW-Authenticate": "Bearer"})
+                                detail=f"Student with provided id does not exist.")
         return response
 
     async def set_registered(self, user_id: str, reg_flag: bool) -> NoReturn:
-        logger.info(f"StudentService: Set student registered_user field")
+        logger.info("StudentService: Set student registered_user field")
         logger.trace(f"StudentService: Patch student with id: {user_id} - set registered_user: {reg_flag}")
         patch_data = StudentSetRegisteredDTO(
             registered_user=reg_flag
@@ -82,7 +81,7 @@ class StudentService:
     async def delete(self, user_id: str) -> NoReturn:
         """sets deleted_at column value equal to utcnow time;
         doesn't remove raw from the table"""
-        logger.info(f"StudentService: Delete student (mark student as deleted)")
+        logger.info("StudentService: Delete student (mark student as deleted)")
         patch_data = StudentDeleteDTO(deleted_at=datetime.utcnow())
         logger.trace(f"StudentService: Patch student with id: {user_id} - with following data: {patch_data}")
         await self._student_dao.patch(patch_data, user_id)

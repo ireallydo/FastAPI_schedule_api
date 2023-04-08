@@ -1,8 +1,10 @@
-from typing import NoReturn, List
+from typing import NoReturn, List, Union
+from uuid import UUID
 from http import HTTPStatus
 from fastapi import HTTPException
+from db.enums import LessonsEnum, SemestersEnum, WeekdaysEnum, ClassTypesEnum
 from db.models import RoomModel, RoomBusyModel
-from db.dto import RoomCreateDTO, RoomPatchDTO, RoomBusyRequestDTO, RoomBusyCreateDTO
+from db.dto import RoomCreateDTO, RoomPatchDTO, RoomBusyRequestDTO, RoomBusyCreateDTO, BusyDTO
 from db.dao import room_dao, RoomDAO, room_busy_dao, RoomBusyDAO
 from loguru import logger
 
@@ -56,19 +58,22 @@ class RoomService:
         room = await self.get_by_number(num)
         await self._room_dao.delete(room.id)
 
-    async def get_free_room(self, class_type, weekday, lesson, semester):
+    async def get_free_room(self, class_type: ClassTypesEnum, weekday: WeekdaysEnum,
+                            lesson: LessonsEnum, semester: SemestersEnum) -> Union[RoomModel, NoReturn]:
         """checks if there are free rooms of the provided class type, returns one"""
+        logger.info("RoomService: Get free room")
         rooms: List[RoomModel] = await self._room_dao.get_all_by(class_type=class_type)
         if not rooms:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
-                                detail="There are no registered rooms to hold a class of provided type: {class_type}",
-                                headers={"WWW-Authenticate": "Bearer"})
+                                detail="There are no registered rooms to hold a class of provided type: {class_type}")
         for room in rooms:
             room_busy = await self.check_room_busy(room.id, weekday, lesson, semester)
             if room_busy is None or not room_busy.is_busy:
                 return room
 
-    async def check_room_busy(self, room_id, weekday, lesson, semester):
+    async def check_room_busy(self, room_id: Union[str, UUID], weekday: WeekdaysEnum,
+                              lesson: LessonsEnum, semester: SemestersEnum) -> RoomBusyModel:
+        logger.info("RoomService: Check room busy")
         room_busy = await self._room_busy_dao.get_by(
             room_id=room_id,
             weekday=weekday,
@@ -77,7 +82,7 @@ class RoomService:
         )
         return room_busy
 
-    async def set_room_busy(self, num: int, input_data: RoomBusyRequestDTO) -> RoomBusyModel:
+    async def set_room_busy(self, num: int, input_data: Union[BusyDTO, RoomBusyRequestDTO]) -> RoomBusyModel:
         logger.info("RoomService: Set room busy")
         logger.trace(f"RoomService: Set room busy: room_number: {num}, data: {input_data}")
         room = await self.get_by_number(num)
@@ -102,49 +107,3 @@ class RoomService:
 
 
 room_service = RoomService(room_dao, room_busy_dao)
-
-
-
-# def check_room_busy(db, room_id, weekday, lesson):
-#     room_busy = room_busy_dao.check_busy(db, room_id, weekday, lesson)
-#     return room_busy
-#
-# def get_spare_room(db, weekday, lesson):
-#     spare_room = room_busy_dao.get_spare_room(db, weekday, lesson)
-#     return spare_room.id
-#
-# def create_room_busy(db, room_id, weekday, lesson):
-#     input_data = dict_of(room_id, weekday, lesson)
-#     input_data["is_busy"]=True
-#     room_busy_dao.create(db, input_data)
-#     return check_room_busy(db, room_id, weekday, lesson)
-#
-# def set_room_busy(db, room_id, weekday, lesson):
-#     room_busy_dao.set_busy(db, room_id, weekday, lesson)
-#     return check_room_busy(db, room_id, weekday, lesson)
-#
-# def count_rooms_in_table(db):
-#     count_busy = 0
-#     for room in get_all_busy(db, 0, 100):
-#         count_busy += 1
-#     count_room = 0
-#     for room in get_all(db, 0, 100):
-#         count_room += 1
-#     return count_busy < count_room
-#
-# def get_rooms_by_class_type(db, class_type):
-#     result = room_dao.get_rooms_by_class_type(db, class_type)
-#     return result
-
-
-# def get_room_number_by_id(room_id: int):
-#     '''takes a room id and returns correspondig room number'''
-#     request_room_number = room_dao.get_by_id(room_id)
-#     room_number = request_room_number[0][0]
-#     return room_number
-
-# def check_room_busy(db, room_id, weekday, lesson):
-#
-#     db_request = room_dao.check_busy(weekday, lesson)
-#
-#     return db_request.room_id

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordRequestForm
 from fastapi_utils.cbv import cbv
 from services.auth_service import auth_service
 from db.models import *
@@ -8,7 +8,6 @@ from .api_spec import ApiSpec
 
 
 router = APIRouter(tags=["authentication"])
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login", scheme_name="JWT")
 
 
 @cbv(router)

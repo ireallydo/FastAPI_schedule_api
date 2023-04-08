@@ -14,8 +14,6 @@ from db.enums import UserRolesEnum as Roles
 
 router = APIRouter(tags=["students"])
 
-# TODO: exceptions for no data in db, like when there's no student by provided id
-
 
 @cbv(router)
 class StudentView(AuthMixin):
@@ -23,9 +21,6 @@ class StudentView(AuthMixin):
     @router.post(ApiSpec.STUDENTS, status_code=HTTPStatus.OK, response_model=CreateStudentsResp)
     @available_roles(role=Roles.ADMIN)
     async def create_students(self, input_data: List[StudentCreateDTO]):
-        """takes a list of students
-        if the student is in the db ADN is not deleted (deleted_at id None) -> creates student
-        returns a dict of two keys: failed_to_register and registered_students"""
         response = await student_service.create(input_data)
         return response
 

@@ -1,4 +1,4 @@
-from typing import NoReturn, Any
+from typing import NoReturn
 from fastapi import HTTPException
 from http import HTTPStatus
 from db.models import LessonModel
@@ -14,19 +14,21 @@ class LessonService:
     def __init__(self, lesson_dao: LessonDAO):
         self._lesson_dao = lesson_dao
 
-    async def __convert_lesson_time(self, item: LessonBaseDTO) -> Any:
+    @staticmethod
+    async def __convert_lesson_time(item: LessonBaseDTO) -> LessonBaseDTO:
+        logger.info("LessonService: Convert lesson time")
         item.start_time = datetime.strptime(item.start_time, '%H:%M').time()
         item.end_time = datetime.strptime(item.end_time, '%H:%M').time()
         return item
 
     async def __check_lesson_time(self, item: LessonBaseDTO) -> NoReturn:
-        logger.debug(f"LessonService: Check if lesson within provided time scopes exists: {item.start_time} - {item.end_time}")
+        logger.debug(f"LessonService:\
+         Check if lesson within provided time scopes exists: {item.start_time} - {item.end_time}")
         in_db = await self._lesson_dao.get_same_time_scopes(item.start_time, item.end_time)
         if in_db:
-            logger.info(f"LessonService: Got existing lesson from db: {r.dict() for r in in_db}")
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
-                                detail=f"Lesson within provided time scopes already exists: {item.start_time} - {item.end_time}",
-                                headers={"WWW-Authenticate": "Bearer"})
+                                detail=f"Lesson within provided time scopes\
+                                 already exists: {item.start_time} - {item.end_time}")
 
     async def create_lesson(self, item: LessonCreateDTO) -> LessonModel:
         """creates lesson if the lesson with the same number and within the same time scopes does not exist"""
@@ -38,8 +40,7 @@ class LessonService:
         if in_db:
             logger.info(f"LessonService: Got existing lesson from db: {in_db}")
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
-                                detail=f"Lesson with provided number already exists: {item.lesson_number}",
-                                headers={"WWW-Authenticate": "Bearer"})
+                                detail=f"Lesson with provided number already exists: {item.lesson_number}")
         await self.__check_lesson_time(item)
         response = await self._lesson_dao.create(item)
         return response
@@ -57,8 +58,7 @@ class LessonService:
         response = await self._lesson_dao.get_by(lesson_number=num)
         if response is None:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
-                                detail="Lesson with provided number does not exist.",
-                                headers={"WWW-Authenticate": "Bearer"})
+                                detail="Lesson with provided number does not exist.")
         return response
 
     async def patch(self, num: LessonsEnum, patch_data: LessonPatchDTO) -> LessonModel:

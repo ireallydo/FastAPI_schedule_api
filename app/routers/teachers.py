@@ -1,6 +1,6 @@
 from typing import List
 from http import HTTPStatus
-from fastapi import APIRouter, Response, Request
+from fastapi import APIRouter, Response
 from fastapi_utils.cbv import cbv
 from services.teacher_service import teacher_service
 from services.module_service import module_service
@@ -22,9 +22,6 @@ class TeacherView(AuthMixin):
     @router.post(ApiSpec.TEACHERS, status_code=HTTPStatus.CREATED, response_model=CreateTeachersResponse)
     @available_roles(role=Roles.ADMIN)
     async def create_teachers(self, input_data: List[TeacherCreateDTO]):
-        """takes a list of teachers
-        if the teacher is in the db ADN is not deleted (deleted_at id None) -> creates teacher
-        returns a dict of two keys: failed_to_register and registered_teachers"""
         response = await teacher_service.create(input_data)
         return response
 

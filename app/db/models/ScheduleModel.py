@@ -9,7 +9,6 @@ from db.enums import LessonsEnum, WeekdaysEnum, SemestersEnum, AcademicGroupsEnu
 
 class ScheduleModel(BaseModel):
     __tablename__ = 'schedule'
-
     id = Column("id", UUID(as_uuid=True), unique=True, primary_key=True, default=uuid4)
     semester = Column('semester', Enum(SemestersEnum))
     group_number = Column('group_number', Enum(AcademicGroupsEnum))

@@ -5,13 +5,12 @@ from db.models import BaseModel
 from settings import Settings
 from httpx import AsyncClient
 
+
 settings = Settings()
 
 db_connection_str = f"postgresql+asyncpg://"\
                  f"{settings.DB_USER}:{settings.DB_PASSWORD}@" \
                  f"{settings.DB_HOST}/{settings.DB_NAME}"
-# db_connection_str = 'mysql+mysqlconnector://superuser:password@localhost/test1';
-# db_connection_str = 'postgresql://postgres:3141592653589@postgresserver/test1'
 engine = create_async_engine(db_connection_str, echo=False, pool_pre_ping=True)
 SessionLocal = sessionmaker(engine, autocommit=False, autoflush=False, class_=AsyncSession)
 session = AsyncClient()

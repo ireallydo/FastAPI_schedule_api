@@ -1,6 +1,5 @@
-from fastapi import HTTPException
 from db.models.SessionModel import SessionModel
-from db.dto import *
+from db.dto import SessionCreateDTO, SessionPatchDTO
 from .base_dao import BaseDAO
 
 

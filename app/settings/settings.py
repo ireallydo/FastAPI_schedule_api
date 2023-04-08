@@ -23,11 +23,6 @@ class Settings(BaseSettings):
     LOG_ROTATION: int = Field(1, env="LOG_ROTATION")
     LOG_RETENTION: int = Field(30, env="LOG_RETENTION")
 
-    #!TODO: separate
-    # settings for testing
-    TEST_PASSWORD: str = Field(..., env="TEST_PASSWORD")
-    
-
     class Config:
         env_file = Path(__file__).parents[1].joinpath(".env")
         env_file_encoding = "utf-8"

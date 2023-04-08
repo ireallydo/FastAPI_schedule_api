@@ -5,6 +5,7 @@ from .base_dao import BaseDAO
 from db.enums import AcademicGroupsEnum
 from loguru import logger
 
+
 class GroupBusyDAO(BaseDAO[GroupBusyModel, GroupBusyCreateDTO, None, None]):
 
     async def patch_busy(self, patch_data: GroupBusyRequestDTO, group_number: AcademicGroupsEnum) -> GroupBusyModel:
@@ -26,19 +27,5 @@ class GroupBusyDAO(BaseDAO[GroupBusyModel, GroupBusyCreateDTO, None, None]):
             logger.debug(f"GroupBusyDAO: Received updated entry from the database")
             return resp
 
+
 group_busy_dao = GroupBusyDAO(GroupBusyModel)
-
-
-# def set_busy(db: Session, group_id: int, weekday: str, lesson: int):
-#     db.query(GroupBusyModel).filter(GroupBusyModel.group_id==group_id,
-#                                              GroupBusyModel.weekday==weekday,
-#                                              GroupBusyModel.lesson==lesson).update({'is_busy': True}, synchronize_session="fetch");
-#     db.commit();
-#
-# def check_busy(db:Session, group_number: int, weekday: WeekdaysEnum, lesson_number: int):
-#     return db.query(GroupBusyModel.is_busy).where(GroupBusyModel.group_id==group_id,
-#                                                            GroupBusyModel.weekday==db_weekday,
-#                                                            GroupBusyModel.lesson==lesson_number).all();
-#
-#
-# #group_dao = GroupDao()

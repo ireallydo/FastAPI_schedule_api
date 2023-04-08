@@ -1,4 +1,5 @@
-from enum import Enum;
+from enum import Enum
+
 
 class SemestersEnum(str, Enum):
     FIRST = 1

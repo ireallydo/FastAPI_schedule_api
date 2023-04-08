@@ -1,13 +1,10 @@
-from sqlalchemy.orm import Session
-
-from fastapi import Depends, FastAPI, HTTPException
-
 from db.models.ScheduleModel import ScheduleModel
-from db.enums import LessonsEnum, WeekdaysEnum
-from db.dto import *
+from db.dto import ScheduleCreateDTO
 from .base_dao import BaseDAO
 
-class ScheduleDAO(BaseDAO[ScheduleModel, ScheduleCreateDTO, SchedulePatchDTO, ScheduleDeleteDTO]):
+
+class ScheduleDAO(BaseDAO[ScheduleModel, ScheduleCreateDTO, None, None]):
     pass
+
 
 schedule_dao = ScheduleDAO(ScheduleModel)

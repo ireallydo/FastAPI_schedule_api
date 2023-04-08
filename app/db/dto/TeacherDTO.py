@@ -1,9 +1,7 @@
-from typing import List, Union, Dict, Optional
+from typing import List, Union, Optional
 from pydantic import BaseModel, Extra
 from datetime import datetime
-
 from uuid import UUID
-
 from db.enums import ClassTypesEnum, AcademicYearsEnum, WeekdaysEnum, LessonsEnum
 from db.dto import ModuleDTO
 
@@ -11,7 +9,8 @@ from db.dto import ModuleDTO
 class TeacherBaseDTO(BaseModel):
     class Config:
         orm_mode = True
-        arbitrary_types_allowed=True
+        arbitrary_types_allowed = True
+
 
 class TeacherCreateDTO(TeacherBaseDTO):
     first_name: str
