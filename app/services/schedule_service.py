@@ -61,7 +61,8 @@ class ScheduleService:
             for teacher in all_teachers:
                 teacher_busy = await self._teacher_service.check_teacher_busy(teacher.id,
                                                                               item.weekday,
-                                                                              item.lesson_number)
+                                                                              item.lesson_number,
+                                                                              item.semester)
                 if teacher_busy is None or not teacher_busy.is_busy:
                     busy = BusyDTO(
                         is_busy=True,

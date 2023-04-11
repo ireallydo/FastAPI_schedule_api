@@ -76,6 +76,9 @@ class StudentService:
         logger.info("StudentService: Update student")
         logger.trace(f"StudentService: Patch student with id: {user_id} - with following data: {patch_data}")
         resp = await self._student_dao.patch(patch_data, user_id)
+        if resp is None:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail=f"Student with provided id does not exist.")
         return resp
 
     async def delete(self, user_id: str) -> NoReturn:
@@ -84,7 +87,10 @@ class StudentService:
         logger.info("StudentService: Delete student (mark student as deleted)")
         patch_data = StudentDeleteDTO(deleted_at=datetime.utcnow())
         logger.trace(f"StudentService: Patch student with id: {user_id} - with following data: {patch_data}")
-        await self._student_dao.patch(patch_data, user_id)
+        resp = await self._student_dao.patch(patch_data, user_id)
+        if resp is None:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail=f"Student with provided id does not exist.")
 
 
 student_service = StudentService(student_dao)

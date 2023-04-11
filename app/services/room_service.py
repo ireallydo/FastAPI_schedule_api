@@ -41,8 +41,7 @@ class RoomService:
         response = await self._room_dao.get_by(room_number=num)
         if response is None:
             raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
-                                detail="Room with provided number does not exist.",
-                                headers={"WWW-Authenticate": "Bearer"})
+                                detail="Room with provided number does not exist.")
         return response
 
     async def patch(self, num: int, patch_data: RoomPatchDTO) -> RoomModel:

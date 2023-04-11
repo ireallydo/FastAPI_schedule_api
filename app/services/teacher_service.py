@@ -54,7 +54,10 @@ class TeacherService:
         patch_data = TeacherSetRegisteredDTO(
             registered_user=reg_flag
         )
-        await self._teacher_dao.patch(patch_data, user_id)
+        resp = await self._teacher_dao.patch(patch_data, user_id)
+        if resp is None:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail=f"Teacher with provided id does not exist.")
 
     async def get_all(self, *args) -> list:
         """gets all teachers who are not deleted (deleted_at is None)"""
@@ -73,7 +76,10 @@ class TeacherService:
         logger.info("TeacherService: Delete teacher (mark student as deleted)")
         patch_data = TeacherDeleteDTO(deleted_at=datetime.utcnow())
         logger.trace(f"TeacherService: Patch teacher with id: {user_id} - with following data: {patch_data}")
-        await self._teacher_dao.patch(patch_data, user_id)
+        resp = await self._teacher_dao.patch(patch_data, user_id)
+        if resp is None:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail=f"Teacher with provided id does not exist.")
 
     async def create_teacher_modules(self, user_id: str, modules: list) -> TeacherWithModulesDTO:
         """adds modules that are not in teacher modules to teacher modules"""

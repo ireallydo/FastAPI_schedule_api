@@ -26,5 +26,9 @@ class TeacherModel(BaseModel):
                            back_populates='teachers',
                            lazy='subquery')
 
+    schedule = relationship('ScheduleModel',
+                            back_populates='teachers',
+                            lazy='subquery')
+
     def dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}

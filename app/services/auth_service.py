@@ -25,9 +25,7 @@ class AuthService:
             access_token=access_token,
             refresh_token=refresh_token,
             access_expire_time=access_expire_time,
-            refresh_expire_time=refresh_expire_time,
-            blocked=user.blocked,
-            is_active=user.is_active
+            refresh_expire_time=refresh_expire_time
         )
         session = await self._session_dao.create(session_obj)
         return session
@@ -58,3 +56,7 @@ class AuthService:
 
 
 auth_service = AuthService(session_dao)
+
+
+# TODO: add fields "blocked' and "is_active" to session model +
+#  add checks to break session when user is blocked or deleted

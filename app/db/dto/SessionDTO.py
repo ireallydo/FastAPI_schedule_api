@@ -17,8 +17,6 @@ class SessionCreateDTO(SessionBaseDTO):
     refresh_expire_time: Union[datetime, str]
     access_token: str
     refresh_token: str
-    blocked: bool
-    is_active: bool
 
 
 class SessionPatchDTO(SessionBaseDTO):

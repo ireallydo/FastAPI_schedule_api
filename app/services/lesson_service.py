@@ -68,6 +68,9 @@ class LessonService:
         await self.__check_lesson_time(patch_data)
         lesson = await self.get_by_number(num)
         resp = await self._lesson_dao.patch(patch_data, lesson.id)
+        if resp is None:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail="Lesson with provided number does not exist.")
         return resp
 
     async def delete(self, num: LessonsEnum) -> NoReturn:

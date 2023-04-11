@@ -54,7 +54,7 @@ class TeacherView(AuthMixin):
         return response
 
     @router.get(ApiSpec.TEACHERS_MODULES, status_code=HTTPStatus.OK, response_model=List[TeacherModulesDTO])
-    @available_roles(role=Roles.TEACHER, self_action=True)
+    @available_roles(role=Roles.ADMIN, self_action=True)
     async def get_teachers_modules(self, user_id: str):
         response = await teacher_service.get_modules(user_id)
         return response
