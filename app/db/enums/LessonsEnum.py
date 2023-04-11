@@ -1,4 +1,5 @@
-from enum import Enum;
+from enum import Enum
+
 
 class LessonsEnum(str, Enum):
     ONE = 1

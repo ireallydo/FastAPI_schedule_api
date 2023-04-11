@@ -1,27 +1,10 @@
-from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
+from db.models.UserModel import UserModel
+from db.dto import UserCreateDTO, UserPatchDTO
+from .base_dao import BaseDAO
 
-from fastapi import Depends, FastAPI, HTTPException
 
-from db.models import UserModel
+class UserDAO(BaseDAO[UserModel, UserCreateDTO, UserPatchDTO, None]):
+    pass
 
-def get_db():
-    db = SessionLocal();
-    try:
-        yield db;
-    finally:
-        db.close();
 
-db: Session = Depends(get_db)
-
-#class UserDao:
-
-def get_by_id(db: Session, user_id: int):
-    return db.query(UserModel).filter(UserModel.id == user_id).first()
-
-def get_by_email(db:Session, email: str):
-    return db.query(UserModel).filter(UserModel.email == email).first()
-
-def get_users(db: Session, skip: int, limit: int):
-    return db.query(UserModel).offset(skip).limit(limit).all()
-
-#user_dao = UserDao()
+user_dao = UserDAO(UserModel)

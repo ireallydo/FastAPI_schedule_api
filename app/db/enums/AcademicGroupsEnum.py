@@ -1,4 +1,5 @@
-from enum import Enum;
+from enum import Enum
+
 
 class AcademicGroupsEnum(str, Enum):
     FIRST_1 = 101

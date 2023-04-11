@@ -1,0 +1,39 @@
+[2023-04-08 22:42:53 +0200] [51857] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-08 22:42:53 +0200] [51857] [TRACE] [services.auth_service] AuthService: Login user: admin
+[2023-04-08 22:42:53 +0200] [51857] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-08 22:42:53 +0200] [51857] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin'}
+[2023-04-08 22:42:53 +0200] [51857] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-08 22:42:53 +0200] [51857] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-08 22:42:53 +0200] [51857] [TRACE] [services.auth_service] AuthService: Create session with user: fd53b508-ed22-4735-bc38-a419d42a2390
+[2023-04-08 22:42:53 +0200] [51857] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-08 22:42:53 +0200] [51857] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('fd53b508-ed22-4735-bc38-a419d42a2390') login='admin' role='admin' access_expire_time=datetime.datetime(2023, 4, 8, 20, 47, 53, 805362) refresh_expire_time=datetime.datetime(2023, 4, 10, 20, 42, 53, 805543) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5ODY4NzMsInN1YiI6ImFkbWluIn0.7f7b77bXAagxDqnQ5khhzDZ1NbS577HgSahlTGBeKUQ' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODExNTkzNzMsInN1YiI6ImFkbWluIn0.vsjk07odBQv2yFKgpw3eGCQYfSRVtBesTOm_j4Foeqs' blocked=False is_active=True
+[2023-04-08 22:42:53 +0200] [51857] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('bbd30461-38da-40cf-b837-a11f58bba1b1'), 'user_id': UUID('fd53b508-ed22-4735-bc38-a419d42a2390'), 'login': 'admin', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5ODY4NzMsInN1YiI6ImFkbWluIn0.7f7b77bXAagxDqnQ5khhzDZ1NbS577HgSahlTGBeKUQ', 'access_expire_time': datetime.datetime(2023, 4, 8, 20, 47, 53, 805362), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODExNTkzNzMsInN1YiI6ImFkbWluIn0.vsjk07odBQv2yFKgpw3eGCQYfSRVtBesTOm_j4Foeqs', 'refresh_expire_time': datetime.datetime(2023, 4, 10, 20, 42, 53, 805543), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 8, 20, 42, 53, 808848), 'updated_at': datetime.datetime(2023, 4, 8, 20, 42, 53, 808853)}
+[2023-04-08 22:43:12 +0200] [51857] [INFO] [services.user_service] UserService: Create user
+[2023-04-08 22:43:12 +0200] [51857] [TRACE] [services.user_service] UserService: Create user with passed data role='admin' login='admin1' password='1234567!' email='admin1' id=None first_name='admin1' second_name=None last_name='admin' birth_date='28-02-2002' registration_token='admin1'
+[2023-04-08 22:43:12 +0200] [51857] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-08 22:43:12 +0200] [51857] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin1'}
+[2023-04-08 22:43:12 +0200] [51857] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-08 22:43:12 +0200] [51857] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-08 22:43:12 +0200] [51857] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'email': 'admin1'}
+[2023-04-08 22:43:12 +0200] [51857] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-08 22:43:12 +0200] [51857] [INFO] [db.dao.base_dao] UserModel DAO: Create db entry
+[2023-04-08 22:43:12 +0200] [51857] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed for creation: role='admin' login='admin1' password='$2b$12$3IzFTNg8HwcaWkHdOK3Dtu/HYDMLJPaaiToBpY5JbvlXkt.F6KQ8e' email='admin1' id=None
+[2023-04-08 22:43:12 +0200] [51857] [DEBUG] [db.dao.base_dao] UserModel DAO: Created entry in database: {'id': UUID('01a069c0-eea6-4a4d-a343-d84aefd6ac8e'), 'login': 'admin1', 'email': 'admin1', 'password': '$2b$12$3IzFTNg8HwcaWkHdOK3Dtu/HYDMLJPaaiToBpY5JbvlXkt.F6KQ8e', 'role': 'admin', 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 8, 20, 43, 12, 661029), 'updated_at': datetime.datetime(2023, 4, 8, 20, 43, 12, 661033)}
+[2023-04-08 22:43:20 +0200] [51857] [INFO] [services.auth_service] AuthService: Login user
+[2023-04-08 22:43:20 +0200] [51857] [TRACE] [services.auth_service] AuthService: Login user: admin1
+[2023-04-08 22:43:20 +0200] [51857] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-08 22:43:20 +0200] [51857] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin1'}
+[2023-04-08 22:43:20 +0200] [51857] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-08 22:43:20 +0200] [51857] [INFO] [services.auth_service] AuthService: Create session
+[2023-04-08 22:43:20 +0200] [51857] [TRACE] [services.auth_service] AuthService: Create session with user: 01a069c0-eea6-4a4d-a343-d84aefd6ac8e
+[2023-04-08 22:43:20 +0200] [51857] [INFO] [db.dao.base_dao] SessionModel DAO: Create db entry
+[2023-04-08 22:43:20 +0200] [51857] [TRACE] [db.dao.base_dao] SessionModel DAO: Data passed for creation: user_id=UUID('01a069c0-eea6-4a4d-a343-d84aefd6ac8e') login='admin1' role='admin' access_expire_time=datetime.datetime(2023, 4, 8, 20, 48, 20, 315547) refresh_expire_time=datetime.datetime(2023, 4, 10, 20, 43, 20, 315685) access_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5ODY5MDAsInN1YiI6ImFkbWluMSJ9.pSacFGnVL8UR4XqEg73Lvz9v5us4aYohXowpAiYEdrc' refresh_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODExNTk0MDAsInN1YiI6ImFkbWluMSJ9.L3UpHf_WcKaArEInwXNrm4EUlJD2PlSCV7DlBPO9ysE' blocked=False is_active=True
+[2023-04-08 22:43:20 +0200] [51857] [DEBUG] [db.dao.base_dao] SessionModel DAO: Created entry in database: {'id': UUID('a2986654-66ae-4866-b98e-d03ebe029e3d'), 'user_id': UUID('01a069c0-eea6-4a4d-a343-d84aefd6ac8e'), 'login': 'admin1', 'role': 'admin', 'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA5ODY5MDAsInN1YiI6ImFkbWluMSJ9.pSacFGnVL8UR4XqEg73Lvz9v5us4aYohXowpAiYEdrc', 'access_expire_time': datetime.datetime(2023, 4, 8, 20, 48, 20, 315547), 'refresh_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODExNTk0MDAsInN1YiI6ImFkbWluMSJ9.L3UpHf_WcKaArEInwXNrm4EUlJD2PlSCV7DlBPO9ysE', 'refresh_expire_time': datetime.datetime(2023, 4, 10, 20, 43, 20, 315685), 'blocked': False, 'is_active': True, 'created_at': datetime.datetime(2023, 4, 8, 20, 43, 20, 317364), 'updated_at': datetime.datetime(2023, 4, 8, 20, 43, 20, 317368)}
+[2023-04-08 22:43:42 +0200] [51857] [INFO] [mixins.auth_mixin] AuthMixin: get auth headers from request
+[2023-04-08 22:43:42 +0200] [51857] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by parameters
+[2023-04-08 22:43:42 +0200] [51857] [TRACE] [db.dao.base_dao] UserModel DAO: Data passed to filter: params: {'login': 'admin1'}
+[2023-04-08 22:43:42 +0200] [51857] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database
+[2023-04-08 22:43:42 +0200] [51857] [INFO] [services.user_service] UserService: Get user profile
+[2023-04-08 22:43:42 +0200] [51857] [TRACE] [services.user_service] UserService: Get user by id: 01a069c0-eea6-4a4d-a343-d84aefd6ac8e
+[2023-04-08 22:43:42 +0200] [51857] [INFO] [db.dao.base_dao] UserModel DAO: Get db entry by id: 01a069c0-eea6-4a4d-a343-d84aefd6ac8e
+[2023-04-08 22:43:42 +0200] [51857] [DEBUG] [db.dao.base_dao] UserModel DAO: received a response from the database

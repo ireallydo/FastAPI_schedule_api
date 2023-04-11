@@ -1,28 +1,33 @@
-from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
+from db.models.TeacherModel import TeacherModel
+from db.dto import TeacherCreateDTO
+from .base_dao import BaseDAO
+from loguru import logger
 
-from fastapi import Depends, FastAPI, HTTPException
 
-from db.models import UserModel
+class TeacherDAO(BaseDAO[TeacherModel, TeacherCreateDTO, None, None]):
 
-def get_db():
-    db = SessionLocal();
-    try:
-        yield db;
-    finally:
-        db.close();
+    async def create_modules(self, user_id, modules):
+        logger.info("TeacherDAO: Create db entry")
+        logger.trace(f"TeacherDAO: Data passed for creation: modules: {modules}")
+        async with self._session_generator() as session:
+            teacher = await session.get(self._model, user_id)
+            for module in modules:
+                teacher.modules.append(module)
+                await session.commit()
+            resp = await session.get(self._model, user_id)
+            return resp.modules
 
-db: Session = Depends(get_db)
+    async def delete_teacher_module(self, user_id, module):
+        logger.info("TeacherDAO: Query db to de-associate teacher from module")
+        logger.trace(f"TeacherDAO: Data passed for de-association: teacher_id: {user_id}, module_id: {module.id}")
+        async with self._session_generator() as session:
+            teacher = await session.get(self._model, user_id)
+            for mod in teacher.modules:
+                if mod.id == module.id:
+                    obj = mod
+            teacher = await session.get(self._model, user_id)
+            teacher.modules.remove(obj)
+            await session.commit()
 
-def set_busy(db: Session, teacher_id, weekday, lesson):
-        db.query(TeacherBusyModel).filter(TeacherBusyModel.teacher_id==teacher_id,
-                                                 TeacherBusyModel.weekday==weekday,
-                                                 TeacherBusyModel.lesson==lesson).update({'is_busy': True}, synchronize_session="fetch");
-        db.commit()
 
-def get_id_by_module(db: Session, module_id):
-    return db.query(teachers_to_modules).where(teachers_to_modules.c.Module_id==module_id).all()
-
-def check_busy(db: Session, teacher_id, weekday, lesson):
-    return db.query(TeacherBusyModel.is_busy).where(TeacherBusyModel.teacher_id==teacher_id,
-                                                           TeacherBusyModel.weekday==weekday,
-                                                           TeacherBusyModel.lesson==lesson).all()
+teacher_dao = TeacherDAO(TeacherModel)

@@ -1,55 +1,51 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, func;
-from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
+from typing import Union
+from http import HTTPStatus
+from fastapi import HTTPException
+from db.models import GroupBusyModel
+from db.dto import GroupBusyRequestDTO, GroupBusyCreateDTO, BusyDTO
+from db.dao import group_busy_dao, GroupBusyDAO
+from db.enums import AcademicGroupsEnum, WeekdaysEnum, LessonsEnum, SemestersEnum
+from loguru import logger
 
-from db.models import *
-from db.dto import *
-from db.dao import group_dao
-from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
+
+class GroupService:
+
+    def __init__(self, group_busy_dao: GroupBusyDAO):
+        self._group_busy_dao = group_busy_dao
+
+    async def check_group_busy(self, num: AcademicGroupsEnum, weekday: WeekdaysEnum,
+                               lesson: LessonsEnum, semester: SemestersEnum) -> Union[GroupBusyModel, None]:
+        logger.info("GroupService: Check group busy")
+        group_busy = await self._group_busy_dao.get_by(
+            group_number=num,
+            weekday=weekday,
+            lesson=lesson,
+            semester=semester
+        )
+        return group_busy
+
+    async def set_group_busy(self, num: AcademicGroupsEnum,
+                             input_data: Union[BusyDTO, GroupBusyRequestDTO]) -> GroupBusyModel:
+        logger.info("GroupService: Set group busy")
+        logger.trace(f"GroupService: Set group busy: group_number: {num}, data: {input_data}")
+        group_busy = await self.check_group_busy(num, input_data.weekday, input_data.lesson, input_data.semester)
+        if group_busy is None:
+            obj = GroupBusyCreateDTO(
+                group_number=num,
+                weekday=input_data.weekday,
+                lesson=input_data.lesson,
+                semester=input_data.semester,
+                is_busy=input_data.is_busy
+            )
+            response = await self._group_busy_dao.create(obj)
+        else:
+            try:
+                assert (group_busy.is_busy != input_data.is_busy)
+                response = await self._group_busy_dao.patch_busy(input_data, num)
+            except AssertionError:
+                raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                    detail=f"The group is already set busy: {input_data.is_busy} at this time.")
+        return response
 
 
-enum_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5};
-
-def translate_enum_weekday(db: Session, weekday: WeekdaysEnum):
-    '''is used to support mutilingual databases while using latin for input
-    takes a value from the enum model as an input
-    returns the matching weekday value from the 'weekdays' table in db
-    e.g. "Monday" will return a proper weekday name from database in accordance with the enum attribute value'''
-    if str(WeekdaysEnum(weekday).name) in enum_dict.keys():
-        day_id=enum_dict[str(WeekdaysEnum(weekday).name)];
-        db_weekday = db.query(WeekdayModel.name).where(WeekdayModel.id==day_id).all();
-    return db_weekday[0][0];
-
-# -----------------------------------------------------------------
-# tech create functions
-# -----------------------------------------------------------------
-
-def set_group_busy(group_id: int, weekday: str, lesson: int):
-    '''takes group id, weekday (str) and lesson number as input
-    sets the is_busy flag to true'''
-    return goup_dao.set_busy(group_id, weekday, lesson)
-
-# -----------------------------------------------------------------
-# tech read functions
-# -----------------------------------------------------------------
-
-# def get_group_id_by_number(group: int):
-#     '''takes a group number as input, returns group id as an int'''
-#     request_group_id = group_dao.get_id_by_number(group)
-#     group_id = request_group_id[0][0];
-#     return group_id;
-
-def check_group_busy(group_number: int, weekday: WeekdaysEnum, lesson_number: int):
-    '''takes group id, weekday (str) and lesson number as input
-    returns false flag if the group is NOT busy and true flag is the group IS busy'''
-
-    db_weekday = translate_enum_weekday(db, weekday);
-    group_id = get_group_id_by_number(db, group_number);
-
-    db_request = group_dao.check_busy(group_number, weekday, lesson_number)
-
-    db_dict = db_request[0];
-
-    if db_dict['is_busy']== False:
-        return False;
-    else:
-        return True;
+group_service = GroupService(group_busy_dao)

@@ -1,19 +1,15 @@
-from sqlalchemy import Column, ForeignKey, Unicode, DateTime, Enum, Boolean
-from sqlalchemy.dialects.postgresql import UUID, BOOLEAN, INTEGER
-from uuid import uuid4
-from sqlalchemy.orm import relationship
-
+from sqlalchemy import Column, Enum, Boolean
 from db.models import BaseModel
+from db.enums import AcademicGroupsEnum, WeekdaysEnum, LessonsEnum, SemestersEnum
 
-from db.enums import AcademicGroupsEnum, WeekdaysEnum, LessonsEnum
 
 class GroupBusyModel(BaseModel):
     __tablename__ = 'tbl_groups_busy'
-
     group_number = Column('group_number', Enum(AcademicGroupsEnum), primary_key=True)
-    weekday = Column('weekday', Enum(WeekdaysEnum), nullable=False)
-    lesson = Column('lesson', ForeignKey('tbl_lessons.lesson_number'), Enum(LessonsEnum), nullable=False)
+    semester = Column('semester', Enum(SemestersEnum))
+    weekday = Column('weekday', Enum(WeekdaysEnum), primary_key=True)
+    lesson = Column('lesson', Enum(LessonsEnum), primary_key=True)
     is_busy = Column('is_busy', Boolean, default=False)
 
-    # many-to-one, this one is parent
-    lessons = relationship('LessonModel')
+    def dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

@@ -1,4 +1,4 @@
-from .BaseModel import *
+from .BaseModel import BaseModel
 from .GroupBusyModel import *
 from .LessonModel import *
 from .ModuleModel import *
@@ -10,3 +10,4 @@ from .TeacherBusyModel import *
 from .TeacherModel import *
 from .teachers_to_modules_association_table import *
 from .UserModel import *
+from .SessionModel import *

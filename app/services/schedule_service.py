@@ -1,200 +1,266 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, func;
-from sqlalchemy.orm import Session, joinedload, defaultload, join, contains_eager, PropComparator;
+from http import HTTPStatus
+from typing import Any, NoReturn
+from fastapi import HTTPException
+from db.models import ScheduleModel
+from db.dto import ScheduleCreateDTO, BusyDTO, ScheduleCreateManuallyDTO,\
+    ScheduleOutDTO, TeacherInScheduleDTO,\
+    ClassesGroupDTO, WeekdaysGroupDTO, GroupScheduleDTO,\
+    ClassesTeacherDTO, WeekdaysTeacherDTO, TeacherScheduleDTO
+from db.dao import schedule_dao, ScheduleDAO
+from db.enums import SemestersEnum
+from services.group_service import group_service, GroupService
+from services.teacher_service import teacher_service, TeacherService
+from services.module_service import module_service, ModuleService
+from services.lesson_service import lesson_service, LessonService
+from services.room_service import room_service, RoomService
+from loguru import logger
 
-from db.models import *
-from db.dto import *
-from db.dao import schedule_dao
-from db.enums import WeekdaysEnum, LessonsEnum, ClassTypesEnum, SemestersEnum
 
+class ScheduleService:
 
-enum_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5};
+    def __init__(self, schedule_dao: ScheduleDAO, group_service: GroupService, room_service: RoomService,
+                 teacher_service: TeacherService, lesson_service: LessonService, module_service: ModuleService):
+        self._schedule_dao = schedule_dao
+        self._group_service = group_service
+        self._room_service = room_service
+        self._teacher_service = teacher_service
+        self._lesson_service = lesson_service
+        self._module_service = module_service
 
+    @staticmethod
+    async def __make_resp_obj(schedule: ScheduleModel) -> ScheduleOutDTO:
+        response_obj = ScheduleOutDTO(
+            id=schedule.id,
+            semester=schedule.semester,
+            group_number=schedule.group_number,
+            weekday=schedule.weekday,
+            lesson=schedule.lessons,
+            module=schedule.modules,
+            room_number=schedule.room_number,
+            teacher=schedule.teachers
+        )
+        return response_obj
 
-# -----------------------------------------------------------------
-# create functions
-# -----------------------------------------------------------------
-
-def fill_schedule_manually(db, input_data: ScheduleCreateManuallyDTO):
-    '''function for fully manual creation of schedule, has no specific checks or constraints'''
-
-    # input_data.weekday = translate_enum_weekday(db, input_data.weekday);
-    # input_data.class_type = translate_enum_class_type(db, input_data.class_type);
-
-    new_line = schedule_dao.fill_manually(db, input_data)
-
-    return new_line
-
-def autofill_schedule(db: Session, semester: int, weekday: WeekdaysEnum, lesson_number: int, group_number: int, module_id: int, class_type: ClassTypesEnum):
-
-    db_weekday = translate_enum_weekday(db, weekday);
-    group_id = get_group_id_by_number(db, group_number);
-    db_class_type = translate_enum_class_type(db, class_type);
-    chosen_room_number = 0;
-
-    teachers_list = teachers_id_by_module(db, module_id=module_id);
-
-    for teacher in teachers_list:
-        teacher_busy_flag = check_teacher_busy(db=db, teacher_id=teacher, weekday=db_weekday, lesson=lesson_number);
-
-        if teacher_busy_flag == False:
-            chosen_teacher_id = teacher;
-            set_teacher_busy(db=db, teacher_id=chosen_teacher_id, weekday=db_weekday, lesson=lesson_number);
-            break;
-
-        if teacher_busy_flag == True and teacher == teachers_list[-1]:
-            join_groups_check = query_db_for_same_class(db=db,
-                                                        teachers_list=teachers_list,
-                                                        semester=semester,
-                                                        weekday=db_weekday,
-                                                        lesson_number=lesson_number,
-                                                        module_id=module_id,
-                                                        class_type=db_class_type);
-
-            if join_groups_check == False:
-                return False;
-            else:
-                chosen_teacher_id = join_groups_check[0];
-                chosen_room_number = join_groups_check[1];
+    async def create_auto(self, item: ScheduleCreateDTO) -> ScheduleOutDTO:
+        logger.info("ScheduleService: Create schedule automatically")
+        logger.trace(f"ScheduleService: Create schedule automatically with passed data: {item}")
+        # check if provided lesson is in db and group is not busy
+        await self.check_for_schedule(item)
+        # get module class type
+        module = await self._module_service.get_by_id(item.module_id)
+        if module is None:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail=f"There is no module with provided id: {item.module_id}")
+        class_type = module.class_type
+        # check if there are free rooms to hold a new lesson of provided class type at this time
+        free_room = await self._room_service.get_free_room(class_type, item.weekday, item.lesson_number, item.semester)
+        if free_room is not None:
+            # get list of all teachers who can teach the provided module
+            all_teachers = module.teachers
+            # find the first teacher in the list  who's not busy at provided time
+            for teacher in all_teachers:
+                teacher_busy = await self._teacher_service.check_teacher_busy(teacher.id,
+                                                                              item.weekday,
+                                                                              item.lesson_number,
+                                                                              item.semester)
+                if teacher_busy is None or not teacher_busy.is_busy:
+                    busy = BusyDTO(
+                        is_busy=True,
+                        weekday=item.weekday,
+                        lesson=item.lesson_number,
+                        semester=item.semester
+                    )
+                    await self._teacher_service.set_teacher_busy(teacher.id, busy)
+                    await self._group_service.set_group_busy(item.group_number, busy)
+                    await self._room_service.set_room_busy(free_room.room_number, busy)
+                    schedule_obj = ScheduleCreateManuallyDTO(
+                        semester=item.semester,
+                        weekday=item.weekday,
+                        lesson_number=item.lesson_number,
+                        group_number=item.group_number,
+                        module_id=item.module_id,
+                        room_number=free_room.room_number,
+                        teacher_id=teacher.id
+                    )
+                    schedule = await self._schedule_dao.create(schedule_obj)
+                    return await self.__make_resp_obj(schedule)
+        # if didn't find any free teacher, or room,
+        # find if there's the same module at this time in the schedule
+        same_schedule = await self._schedule_dao.get_by(
+            semester=item.semester,
+            weekday=item.weekday,
+            lesson_number=item.lesson_number,
+            module_id=item.module_id
+        )
+        if same_schedule is None:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail='There are no available options of teachers and/or rooms for this class.')
         else:
-            continue;
+            busy = BusyDTO(
+                is_busy=True,
+                weekday=item.weekday,
+                lesson=item.lesson_number,
+                semester=item.semester
+            )
+            await self._group_service.set_group_busy(item.group_number, busy)
+            # assign the group to the existing teacher and room
+            schedule_obj = ScheduleCreateManuallyDTO(
+                semester=item.semester,
+                weekday=item.weekday,
+                lesson_number=item.lesson_number,
+                group_number=item.group_number,
+                module_id=item.module_id,
+                room_number=same_schedule.room_number,
+                teacher_id=same_schedule.teacher_id
+            )
+            schedule = await self._schedule_dao.create(schedule_obj)
+            return await self.__make_resp_obj(schedule)
 
-    if chosen_room_number == 0:
-        room_id = check_room_busy(db=db, weekday=db_weekday, lesson=lesson_number);
-        chosen_room_number = get_room_number_by_id(db=db, room_id=room_id);
+    async def create_manually(self, item: ScheduleCreateManuallyDTO) -> ScheduleOutDTO:
+        logger.info("ScheduleService: Create schedule manually")
+        logger.trace(f"ScheduleService: Create schedule manually with passed data: {item}")
+        # check if provided lesson is in db and group is not busy
+        await self.check_for_schedule(item)
+        # check if room suits the module class type
+        room = await self._room_service.get_by_number(item.room_number)
+        module = await self._module_service.get_by_id(item.module_id)
+        if room.class_type != module.class_type:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail='Room class type does not match module class type.')
+        # check if room is busy
+        room_busy = await self._room_service.check_room_busy(room.id, item.weekday, item.lesson_number, item.semester)
+        if room_busy is not None and room_busy.is_busy:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail='Room is already busy at provided time.')
+        # check if teacher can be assigned to the module
+        teacher_modules = await self._teacher_service.get_modules(item.teacher_id)
+        if teacher_modules:
+            module_ids = [str(mod.id) for mod in teacher_modules]
+            if item.module_id not in module_ids:
+                raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                    detail='Teacher cannot be assigned to the module.')
+        else:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail='Teacher cannot be assigned to the module.')
+        # check if teacher is busy
+        teacher_busy = await self._teacher_service.check_teacher_busy(item.teacher_id,
+                                                                      item.weekday,
+                                                                      item.lesson_number,
+                                                                      item.semester)
+        if teacher_busy is not None and teacher_busy.is_busy:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail='Teacher is already busy at provided time.')
+        # if all checks are passed - set group, room and teacher busy and create schedule
+        busy = BusyDTO(
+            is_busy=True,
+            weekday=item.weekday,
+            lesson=item.lesson_number,
+            semester=item.semester
+        )
+        await self._teacher_service.set_teacher_busy(item.teacher_id, busy)
+        await self._group_service.set_group_busy(item.group_number, busy)
+        await self._room_service.set_room_busy(item.room_number, busy)
+        schedule_obj = ScheduleCreateManuallyDTO(
+            semester=item.semester,
+            weekday=item.weekday,
+            lesson_number=item.lesson_number,
+            group_number=item.group_number,
+            module_id=item.module_id,
+            room_number=item.room_number,
+            teacher_id=item.teacher_id
+        )
+        schedule = await self._schedule_dao.create(schedule_obj)
+        return await self.__make_resp_obj(schedule)
 
-    set_group_busy(db=db, group_id=group_id, weekday=db_weekday, lesson=lesson_number);
+    async def check_for_schedule(self, item: Any) -> NoReturn:
+        logger.info("ScheduleService: Check if provided lesson is in db and group is not busy")
+        # check if provided lesson is in db
+        await self._lesson_service.get_by_number(item.lesson_number)
+        # check if the group is busy at the provided date and time
+        group_busy = await self._group_service.check_group_busy(item.group_number,
+                                                                item.weekday,
+                                                                item.lesson_number,
+                                                                item.semester)
+        if group_busy is not None and group_busy.is_busy:
+            raise HTTPException(status_code=HTTPStatus.BAD_REQUEST,
+                                detail='The group is already busy at provided time.')
 
-    new_line = ScheduleModel(semester=semester,
-                               group=group_number,
-                               weekday=db_weekday,
-                               lesson_number=lesson_number,
-                               module_id=module_id,
-                               class_type=db_class_type,
-                               room=chosen_room_number,
-                               teacher_id=chosen_teacher_id);
+    async def get_all_by(self, *args, **kwargs):
+        logger.info("ScheduleService: Get all schedule entries by parameters")
+        resp = await self._schedule_dao.get_all_by(*args, **kwargs)
+        return resp
 
-    db.add(new_line);
-    db.commit();
-    db.refresh(new_line);
+    async def get_by_group(self, *args, **kwargs) -> GroupScheduleDTO:
+        logger.info("ScheduleService: Get schedule by group number")
+        logger.trace(f"ScheduleService: Get schedule by parameters: {kwargs}")
+        items = await self.get_all_by(*args, **kwargs)
+        weekdays = {}
+        for i in items:
+            data = ClassesGroupDTO(
+                schedule_id=i.id,
+                lesson=i.lessons,
+                module=i.modules,
+                room_number=i.room_number,
+                teacher=i.teachers
+            )
+            if i.weekday in weekdays:
+                weekdays[i.weekday].append(data)
+            else:
+                weekdays[i.weekday] = [data]
 
-    return new_line;
+        schedule = [WeekdaysGroupDTO(weekday=day, classes=unit) for (day, unit) in weekdays.items()]
+        response = GroupScheduleDTO(
+            semester=kwargs.get('semester'),
+            group_number=kwargs.get('group_number'),
+            schedule=schedule
+        )
+        return response
 
-# -----------------------------------------------------------------
-# read functions
-# -----------------------------------------------------------------
+    async def get_by_teacher(self, *args, **kwargs) -> TeacherScheduleDTO:
+        logger.info("ScheduleService: Get schedule by teacher id")
+        logger.trace(f"ScheduleService: Get schedule by parameters: {kwargs}")
+        items = await self.get_all_by(*args, **kwargs)
+        weekdays = {}
 
-def check_schedule(db, input_data: ScheduleCreateManuallyDTO):
+        for i in items:
+            # don't have id, as joined by groups
+            data = ClassesTeacherDTO(
+                lesson=i.lessons,
+                module=i.modules,
+                room_number=i.room_number,
+                groups=[i.group_number]
+            )
+            if i.weekday in weekdays:
+                for entry in weekdays[i.weekday]:
+                    # join groups
+                    if entry.lesson.lesson_number == i.lessons.lesson_number and\
+                            entry.module.id == i.modules.id and\
+                            entry.room_number == i.room_number:
+                        entry.groups.append(i.group_number) if i.group_number not in entry.groups else None
+                        break
+                    elif entry == weekdays[i.weekday][-1]:
+                        weekdays[i.weekday].append(data)
+            else:
+                weekdays[i.weekday] = [data]
+        schedule = [WeekdaysTeacherDTO(weekday=day, classes=unit) for (day, unit) in weekdays.items()]
+        teacher = await self._teacher_service.get_by_id(kwargs.get('teacher_id'))
+        response = TeacherScheduleDTO(
+            semester=kwargs.get('semester'),
+            teacher=teacher,
+            schedule=schedule
+        )
+        return response
 
-    # db_weekday = translate_enum_weekday(input_data.weekday);
+    async def delete_schedule_entry(self, schedule_id: str) -> NoReturn:
+        logger.info("ScheduleService: Delete schedule entry in the database")
+        logger.trace(f"ScheduleService: Delete schedule entry with id: {schedule_id}")
+        await self._schedule_dao.delete(schedule_id)
 
-    return schedule_dao.check_exists(db, input_data)
-
-
-def get_schedule_by_group(db: Session, semester: SemestersEnum, group: int, skip: int = 0, limit: int = 100):
-
-    schedule = db.query(WeekdayModel).join(WeekdayModel.lessons).\
-                                    join(LessonModel.schedule.and_(ScheduleModel.weekday==WeekdayModel.name,
-                                                                     ScheduleModel.group==group,
-                                                                     ScheduleModel.semester==semester)).\
-                                    join(ScheduleModel.modules).options(contains_eager(WeekdayModel.lessons).\
-                                                                          contains_eager(LessonModel.schedule).\
-                                                                          contains_eager(ScheduleModel.modules)).order_by(LessonModel.id).offset(skip).limit(limit).all();
-
-    return schedule;
-
-
-def get_schedule_by_teacher_id(db: Session, semester: SemestersEnum, teacher_id: int, skip: int = 0, limit: int = 100):
-
-    schedule = db.query(WeekdayModel).join(WeekdayModel.lessons).\
-                                    join(LessonModel.schedule.and_(ScheduleModel.weekday==WeekdayModel.name,
-                                                                    ScheduleModel.teacher_id==teacher_id,
-                                                                    ScheduleModel.semester==semester)).\
-                                    join(ScheduleModel.modules).options(contains_eager(WeekdayModel.lessons).\
-                                                                          contains_eager(LessonModel.schedule).\
-                                                                          contains_eager(ScheduleModel.modules)).order_by(LessonModel.id).offset(skip).limit(limit).all();
-
-    return schedule;
-
-# -----------------------------------------------------------------
-# update functions
-# -----------------------------------------------------------------
-
-def update_schedule(db: Session,
-                    semester: SemestersEnum,
-                    group: int,
-                    weekday: WeekdaysEnum,
-                    lesson_number: LessonsEnum,
-                    module: str = None,
-                    class_type: ClassTypesEnum = None,
-                    room: int = None,
-                    teacher: str = None):
-
-    if class_type == None:
-        db_class_type = ScheduleModel.class_type;
-    else:
-        db_class_type = translate_enum_class_type(db, class_type);
-
-    if room == None:
-        room = ScheduleModel.room;
-
-    if module == None:
-        module = ScheduleModel.module;
-
-    if teacher == None:
-        teacher = ScheduleModel.teacher;
-
-    db_weekday = translate_enum_weekday(db, weekday);
-
-    db.query(ScheduleModel).filter(ScheduleModel.semester==semester,
-                                     ScheduleModel.group==group,
-                                     ScheduleModel.lesson_number==lesson_number,
-                                     ScheduleModel.weekday==db_weekday).update([(ScheduleModel.room, room),
-                                                                                  (ScheduleModel.module, module),
-                                                                                  (ScheduleModel.class_type, db_class_type),
-                                                                                  (ScheduleModel.teacher, teacher)
-                                                                                  ],
-                                                                                 update_args={'preserve_parameter_order':True});
-    db.commit();
+    async def clear_semester_schedule(self, semester: SemestersEnum) -> NoReturn:
+        logger.info("ScheduleService: Delete all schedule entries of the provided semester")
+        logger.trace(f"ScheduleService: Delete schedule entries for semester: {semester}")
+        await self._schedule_dao.delete_by(semester=semester)
 
 
-
-# -----------------------------------------------------------------
-# delete functions
-# -----------------------------------------------------------------
-def clear_table(db: Session, semester: SemestersEnum, group: int = None):
-    if group == None:
-        db.query(ScheduleModel).filter(ScheduleModel.semester==semester).delete();
-        db.commit();
-    else:
-        db.query(ScheduleModel).filter(ScheduleModel.semester==semester, ScheduleModel.group==group).delete();
-        db.commit();
-
-
-
-# -----------------------------------------------------------------
-# tech read functions
-# -----------------------------------------------------------------
-
-
-
-def query_db_for_same_class(db: Session, teachers_list: list, semester: int, weekday: str, lesson_number: int, module_id: int, class_type: str):
-    '''checks if there are classes in the schedule with the same teacher, module, class_type at the same time
-    for teachers in the teachers_list
-    if there are - returns a tuple of teacher_id and room_number of such classes
-    is used in autofill_schedule function'''
-
-    for teacher in teachers_list:
-
-        can_join_lessons = db.query(ScheduleModel).filter(ScheduleModel.teacher_id==teacher,
-                                    ScheduleModel.semester==semester,
-                                    ScheduleModel.weekday==weekday,
-                                    ScheduleModel.lesson_number==lesson_number,
-                                    ScheduleModel.module_id==module_id,
-                                    ScheduleModel.class_type==class_type).all();
-        if can_join_lessons:
-            query_dict = can_join_lessons[0];
-            chosen_teacher_id = teacher;
-            chosen_room_number = query_dict.room;
-            return chosen_teacher_id, chosen_room_number;
-
-    return False;
+schedule_service = ScheduleService(schedule_dao, group_service, room_service,
+                                   teacher_service, lesson_service, module_service)

@@ -1,24 +1,35 @@
-from typing import List, Union, Dict
+from typing import Union
 from pydantic import BaseModel
+from uuid import UUID
+from datetime import time
+from db.enums import LessonsEnum
 
-from db.enums import *
-
-
-# -----------------------------------------------------------------
-# lesson classes
-# -----------------------------------------------------------------
 
 class LessonBaseDTO(BaseModel):
-    number: int;
-    time: str;
     class Config:
-        orm_mode = True;
+        orm_mode = True
 
-class LessonCreateDTO(LessonBaseDTO):
-    pass;
 
-class LessonDTO(LessonBaseDTO):
-    id: int;
+class LessonPatchDTO(LessonBaseDTO):
+    start_time: Union[str, time]
+    end_time: Union[str, time]
+
+
+class LessonCreateDTO(LessonPatchDTO):
+    lesson_number: LessonsEnum
+
+
+class LessonDTO(LessonCreateDTO):
+    id: Union[UUID, str]
+
+
+class LessonSearchDTO(LessonBaseDTO):
+    lesson_number: LessonsEnum
+
+
+class LessonDeleteDTO(LessonSearchDTO):
+    pass
+
 
 class LessonScheduleDTO(LessonBaseDTO):
-    pass;
+    pass

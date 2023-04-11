@@ -1,30 +1,37 @@
 # schedule_api_fastapi
 
-to_do:
+* FastAPI
+* SQLAlchemy
+* PostgreSQL
+* Docker (including Nginx)
 
-___models___
+<b>included features</b>:
+* authorization
+* authentication
+* access by roles 
+* automatic schedule generation
+* manual schedule generation with checks
 
-* add semester  col to check is_busy tables (the same in crud)
 
-__schemas__
+<b>Usage</b>:
 
-___crud___
+<b><i>user registrations</i></b>:
+* user with role "admin" can be created with no prerequisites
+* to register a user with role "teacher" or "student",
+first must have such a student or a teacher created by admin
+  (create teacher/student endpoints)
+* when admin creates a student/teacher, the registration token
+for a student/teacher is created, which should be used during 
+registration of user with student/teacher role 
 
-* add semester argument to autofill (check is busy)
-* async
-* check loading concepts (?)
+<b><i>academic groups</i></b>: 
+* can only use those from the Enums
+  (designed that way to )
 
-___main___
+<b><i>prerequisites to create a schedule</i></b>: 
+* lesson created by admin 
+* room created by admin (must have a compatible class_type with module)
+* module created by admin (must have a compatible class_type with room)
+* teacher created by admin 
+* teacher assigned to module (create teacher modules endpoint)
 
-* async
-
-more to_do:
-
-* authentication and roles
-
-___DB___
-
-* Alembic
-
-___DEPLOY___
-* docker
