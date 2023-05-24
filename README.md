@@ -1,5 +1,4 @@
 # schedule_api_fastapi
-college schedule API: FastAPI, Pydantic, SQLAlchemy, PostgreSQL
 
 * FastAPI
 * SQLAlchemy
